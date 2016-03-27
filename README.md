@@ -1,1 +1,3 @@
 # VisualNovel
+
+This is my personal project of creating a super simplistic Visual Novel game from scratch.  It is written in C# using OpenTK/OpenAL.  If you're looking for a framework to create your own Visual Novel, look elsewhere.  The code here is super muddy and not very optimized.  It will improve in time, but this is just a personal project for me and not anything worth anyone else's time.  Also the actual game itself is super childish/immature.
