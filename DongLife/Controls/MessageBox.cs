@@ -3,6 +3,7 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
 using OpenTK;
 using TK = OpenTK.Graphics;
 using TKG = OpenTK.Graphics.OpenGL;
@@ -24,16 +25,22 @@ namespace DongLife.Controls
         private bool renderingButtons = false;
 
         private string textBuffer = String.Empty;
+        private string currentText = String.Empty;
+        private int textIndex = 0;
+        private List<RectangleF> characterRegions;
+
         private float textTimer = 0f;
         private int textDelay = 0;
-        private int cursorDelay = 600;
-        private int textIndex = 0;
+
         private bool cursorDisplayed = true;
+        private int cursorDelay = 600;
 
         public MessageBox(int width, int height)
         {
             this.Width = width;
             this.Height = height;
+
+            characterRegions = new List<RectangleF>();
 
             textDelay = GameSettings.GetSetting<int>("TextSpeed");
             textTimer = 0f;
@@ -76,6 +83,19 @@ namespace DongLife.Controls
                     }
                 }
             }
+
+            /*if (!renderingButtons && textIndex < textBuffer.Length)
+            {
+                textTimer += (float)gameTime.ElapsedTime.TotalMilliseconds;
+
+                if (textTimer >= textDelay)
+                {
+                    updateText();
+
+                    textTimer = 0f;
+                    textIndex++;
+                }
+            }*/
             
             base.Update(gameTime);
         }
@@ -83,7 +103,6 @@ namespace DongLife.Controls
         {
             renderBitmap = new Bitmap((int)Width, (int)Height);
             graphics = Graphics.FromImage(renderBitmap);
-            //messageFont = new Font(FontFamily.GenericMonospace, 10f);
             messageFont = new Font("Comic Sans MS", 12f);
 
             fillBackground();
@@ -98,6 +117,8 @@ namespace DongLife.Controls
             graphics.Dispose();
             messageFont.Dispose();
 
+            characterRegions.Clear();
+
             base.UnloadContent();
         }
 
@@ -108,7 +129,11 @@ namespace DongLife.Controls
 
             if (ContentLoaded)
             {
-                textBuffer = wrapText(textBuffer, (int)(Bounds.Width - 20));
+                /*fillBackground();
+
+                characterRegions.Clear();
+                calculateRegions(text);*/
+                textBuffer = wrapText(text, (int)Width - 20);
                 textIndex = 0;
             }
 
@@ -195,6 +220,47 @@ namespace DongLife.Controls
             graphics.DrawString(text, messageFont, Brushes.White, 10, 10);
 
             updateTexture();
+        }
+        private void updateText()
+        {
+            graphics.DrawString(textBuffer[textIndex].ToString(), messageFont, Brushes.White, characterRegions[textIndex].Location);
+            updateTexture();
+        }
+        private void calculateRegions(string text)
+        {
+            StringFormat format = new StringFormat();
+            format.Alignment = StringAlignment.Near;
+            format.LineAlignment = StringAlignment.Near;
+            format.Trimming = StringTrimming.EllipsisWord;
+            format.FormatFlags = StringFormatFlags.MeasureTrailingSpaces;
+
+            //Have to split the text by 32 characters because SetMeasureableCharacterRanges will overflow
+            int numberOfChunks = (int)Math.Ceiling(text.Length % 32.0);
+            int totalBuffer = text.Length;
+            
+
+            for (int chunk = 0; chunk < numberOfChunks && totalBuffer > 0; chunk++)
+            {
+                int buffer = Math.Min(32, totalBuffer);
+
+                CharacterRange[] ranges = new CharacterRange[buffer];
+                for (int i = 0; i < ranges.Length; i++)
+                {
+                    ranges[i] = new CharacterRange(i, 1);
+                }
+                format.SetMeasurableCharacterRanges(ranges);
+
+                string bufferText = text.Substring(chunk * 32, buffer);
+
+                Region[] regions = graphics.MeasureCharacterRanges(bufferText, messageFont, new RectangleF(10, 10, Width - 20, Height - 20), format);
+                for (int i = 0; i < regions.Length; i++)
+                {
+                    characterRegions.Add(regions[i].GetBounds(graphics));
+                }
+
+                totalBuffer -= buffer;
+            }
+            format.Dispose();
         }
         private void renderButtons()
         {
