@@ -1,5 +1,5 @@
 ﻿using OpenTK;
-using System.Drawing;
+using OpenTK.Graphics;
 using Minalear;
 using Minalear.UI.Controls;
 using DongLife.Controls;
@@ -74,6 +74,18 @@ namespace DongLife.Code
             actorTexture.Delete();
 
             base.UnloadContent();
+        }
+
+        public void Reset()
+        {
+            //Reset Alpha
+            Color4 color = this.DrawColor;
+            color.A = 1f;
+            this.DrawColor = color;
+
+            //Reset Zoom
+            HasFocus = false;
+            CurrentScale = NormalScale;
         }
 
         public string Name

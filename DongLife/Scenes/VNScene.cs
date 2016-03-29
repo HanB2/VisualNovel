@@ -26,6 +26,9 @@ namespace DongLife.Scenes
 
         public override void OnEnter()
         {
+            foreach (Actor actor in this.actors.Values)
+                actor.Reset();
+
             MessageBox.TextFinished += MessageBox_TextFinished;
             MessageBox.OptionSelected += MessageBox_OptionSelected;
 
@@ -57,7 +60,7 @@ namespace DongLife.Scenes
                         actor.SetFocus(false);
                 }
             }
-            if (actorName != "NONE")
+            if (actorName != "NONE" && !actors[actorName].HasFocus)
                 actors[actorName].SetFocus(true);
         }
 

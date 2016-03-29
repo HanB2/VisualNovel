@@ -47,6 +47,7 @@ namespace DongLife.Controls
             this.DrawOrder = 0f;
         }
 
+        //TODO Make decisions more apparent that it is actually a choice (it's not immediately apparent)
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(renderTexture, Bounds, TK.Color4.White);
@@ -133,7 +134,7 @@ namespace DongLife.Controls
 
                 characterRegions.Clear();
                 calculateRegions(text);*/
-                textBuffer = wrapText(text, (int)Width - 20);
+                textBuffer = wrapText(textBuffer, (int)Width - 20);
                 textIndex = 0;
             }
 
@@ -268,7 +269,11 @@ namespace DongLife.Controls
             {
                 fillBackground();
                 for (int i = 0; i < messageButtons.Length; i++)
+                {
+                    if (!messageButtons[i].Enabled)
+                        break;
                     messageButtons[i].RenderText(graphics, messageFont);
+                }
 
                 updateTexture();
             }
