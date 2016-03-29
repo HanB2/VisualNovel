@@ -3,7 +3,7 @@ using OpenTK;
 using DongLife.Code;
 using DongLife.Controls;
 
-namespace DongLife.Scenes
+namespace DongLife.Scenes.GameScenes
 {
     public class MOM_Base : VNScene
     {

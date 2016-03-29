@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DongLife.Scenes
+namespace DongLife.Scenes.GameScenes
 {
     public class SCHL_Base : VNScene
     {

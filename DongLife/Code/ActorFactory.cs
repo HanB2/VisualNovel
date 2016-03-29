@@ -43,6 +43,14 @@ namespace DongLife.Code
                     sexyMother.NormalScale = 1f;
 
                     return sexyMother;
+                case "ShiaMother":
+                    Actor shiaMother = new Actor("ShiaMother", @"Textures/Actors/shia_mother.png");
+                    shiaMother.Position = new Vector2(725, 500);
+                    shiaMother.NormalScale = 1f;
+                    shiaMother.FocusScale = 1.25f;
+                    shiaMother.NormalScale = 1f;
+
+                    return shiaMother;
                 case "Father":
                     Actor father = new Actor("Father", @"Textures/Actors/foster_father.png");
                     father.Position = new Vector2(980, 425);

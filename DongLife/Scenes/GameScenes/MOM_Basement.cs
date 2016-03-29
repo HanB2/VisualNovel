@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DongLife.Scenes.GameScenes
 {
-    public class CMP_Base : VNScene
+    class MOM_Basement
     {
-        public CMP_Base() : base("CMP_Base") { }
     }
 }

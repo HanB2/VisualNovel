@@ -62,11 +62,16 @@
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\EndScene.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
     <Compile Include="Scenes\GameScenes\CMP_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Base.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
@@ -90,8 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Data\" />
+    <Folder Include="Scenes\DeathScenes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Actors\shia_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Backgrounds\cambodia.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

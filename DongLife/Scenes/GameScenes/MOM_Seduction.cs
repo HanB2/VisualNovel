@@ -3,7 +3,7 @@ using OpenTK;
 using DongLife.Code;
 using DongLife.Controls;
 
-namespace DongLife.Scenes
+namespace DongLife.Scenes.GameScenes
 {
     public class MOM_Seduction : VNScene
     {
@@ -130,9 +130,9 @@ namespace DongLife.Scenes
             ((SequenceDecision)Sequences.Sequences[75]).Choice += (sender, e) =>
             {
                 if (e == 0) //Kill him
-                    Sequences.SetStage(66);
+                    Sequences.SetStage(90);
                 else if (e == 1) //Run away
-                    Sequences.SetStage(71);
+                    Sequences.SetStage(100);
 
                 Sequences.ExecuteSequence(this);
             };
