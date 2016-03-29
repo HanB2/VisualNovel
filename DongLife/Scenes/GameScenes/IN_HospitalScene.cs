@@ -54,6 +54,12 @@ namespace DongLife.Scenes
             Sequences.RegisterSequence(02, new SequenceMessage("Doctor", "Nice to meet you {PLAYERNAME}.  Now... can you describe your physical appearance?  I seem to have misplaced my glasses."));
             Sequences.RegisterSequence(03, new SequenceMessage(NO_ACTOR, "PRETEND THERE IS A CHARACTER CREATOR HERE!"));
             Sequences.RegisterSequence(04, new SequenceSpecial("SpawnPlayer"));
+            (Sequences.Sequences[04] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            {
+                doctor.Animator.AnimateSlide(new Vector2(880f, doctor.PosY), 250f);
+                player.Visible = true;
+                player.Animator.FadeIn(250f);
+            };
             Sequences.RegisterSequence(05, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
             Sequences.RegisterSequence(06, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
             Sequences.RegisterSequence(07, new SequenceMessage("Doctor", "Don't be testy now.  You're parents are dead and gone.  You have been placed into a foster home by the state."));
@@ -61,6 +67,16 @@ namespace DongLife.Scenes
             Sequences.RegisterSequence(09, new SequenceMessage("Doctor", "Yea, people typically don't survive 37 shots to the head.  Your new foster parents are outside and they're excited to meet you."));
             Sequences.RegisterSequence(10, new SequenceMessage("Player", "Wut!?"));
             Sequences.RegisterSequence(11, new SequenceSpecial("SpawnParents"));
+            (Sequences.Sequences[11] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            {
+                doctor.Animator.FadeOut(250f);
+
+                mother.Visible = true;
+                father.Visible = true;
+
+                mother.Animator.FadeIn(500f);
+                father.Animator.FadeIn(500f);
+            };
             Sequences.RegisterSequence(12, new SequenceMessage("Father", "Hello, son.  I'm your new father."));
             Sequences.RegisterSequence(13, new SequenceMessage("Player", "Wut!?"));
             Sequences.RegisterSequence(14, new SequenceMessage("Father", "Calm the fuck down."));
@@ -71,7 +87,12 @@ namespace DongLife.Scenes
             Sequences.RegisterSequence(19, new SequenceMessage("Player", "HOW DO YOU EVEN FUNCTION?!"));
             Sequences.RegisterSequence(20, new SequenceMessage("Father", "Alright, fuck this kid.  I'll be out in the car."));
             Sequences.RegisterSequence(21, new SequenceSpecial("FatherStormsOut"));
-            Sequences.RegisterSequence(22, new SequenceMessage("Mother", "Don't worry, he's just a little hot headed.  But my... you sure are a strapping young man."));
+            (Sequences.Sequences[21] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            {
+                father.Animator.FadeOut(100f);
+                mother.Animator.AnimateSlide(new Vector2(880f, mother.PosY), 250f);
+            };
+            Sequences.RegisterSequence(22, new SequenceMessage("Mother", "Don't worry, he's just a little hot headed.  But my... you seem to be a strapping young man ;)"));
             Sequences.RegisterSequence(23, new SequenceDecision("Player",
                 "WHY DOES HE HAVE A FISH FOR A HEAD?!",
                 "Who are you people?",
@@ -136,30 +157,6 @@ namespace DongLife.Scenes
             base.OnEnter();
         }
 
-        protected override void Sequences_OnSequenceExecution(int stage, string id)
-        {
-            if (id == "SpawnPlayer")
-            {
-                doctor.Animator.AnimateSlide(new Vector2(880f, doctor.PosY), 1500f);
-                player.Visible = true;
-                player.Animator.FadeIn(1500f);
-            }
-            else if (id == "SpawnParents")
-            {
-                doctor.Animator.FadeOut(2000f);
-
-                mother.Visible = true;
-                father.Visible = true;
-
-                mother.Animator.FadeIn(1500f);
-                father.Animator.FadeIn(1500f);
-            }
-            else if (id == "FatherStormsOut")
-            {
-                father.Animator.FadeOut(1000f);
-                mother.Animator.AnimateSlide(new Vector2(880f, mother.PosY), 1500f);
-            }
-        }
         private void Animator_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
         {
             if (Sequences.GetCurrentSequence().SequenceStage == 4 && finishedMode == ControlAnimator.AnimationModes.Slide)

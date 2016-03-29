@@ -18,6 +18,12 @@ namespace DongLife.Code
             sequence.SequenceStage = stageID;
             this.Sequences.Add(stageID, sequence);
         }
+        public void RegisterSequence(int stageID, string actor, string message)
+        {
+            SequenceMessage sequence = new SequenceMessage(actor, message);
+            sequence.SequenceStage = stageID;
+            this.Sequences.Add(stageID, sequence);
+        }
 
         public void ProgressStage(int amount = 1)
         {
@@ -59,8 +65,7 @@ namespace DongLife.Code
             }
             else if (current.SequenceType == SequenceTypes.Special)
             {
-                if (OnSequenceExecution != null)
-                    OnSequenceExecution(current.SequenceStage, (current as SequenceSpecial).SequenceID);
+                (current as SequenceSpecial).ExecuteSpecialSequence();
             }
         }
         public void ExecuteChoice(VNScene scene, int buttonID)
@@ -75,8 +80,7 @@ namespace DongLife.Code
             return (Stage >= Sequences.Count);
         }
 
-        public delegate void SpecialSequenceDelegate(int stage, string id);
-        public event SpecialSequenceDelegate OnSequenceExecution;
+        
     }
 
     public abstract class SequenceEvent
@@ -170,7 +174,16 @@ namespace DongLife.Code
         {
             this.SequenceID = sequenceID;
             this.SequenceType = SequenceTypes.Special;
-        }        
+        }
+
+        public void ExecuteSpecialSequence()
+        {
+            if (OnSequenceExecution != null)
+                OnSequenceExecution(this.SequenceStage, this.SequenceID);
+        }
+
+        public delegate void SpecialSequenceDelegate(int stage, string id);
+        public event SpecialSequenceDelegate OnSequenceExecution;
     }
 
     public enum SequenceTypes { Message, Decision, StageTransition, SceneTransition, Special }

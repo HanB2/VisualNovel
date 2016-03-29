@@ -38,7 +38,7 @@ namespace DongLife
             sceneManager.RegisterScene(new IN_HospitalScene());
             sceneManager.RegisterScene(new IN_Home());
 
-            sceneManager.SetScene("IN_HospitalScene");
+            sceneManager.SetScene("IN_Home");
         }
         public override void Draw(GameTime gameTime)
         {
