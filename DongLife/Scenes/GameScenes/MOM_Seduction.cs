@@ -72,12 +72,14 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(31, new SequenceStageTransition(40));
 
             Sequences.RegisterSequence(39, "Mother", "Ohhhh... you naughty little boy ;)");
-            Sequences.RegisterSequence(40, "Mother", "{PLAYERNAME}!  I can't hold it anymore!  I need you... right here... right now...");
-            Sequences.RegisterSequence(41, new SequenceDecision("Player",
+            Sequences.RegisterSequence(40, "Mother", "{PLAYERNAME}!  I can't hold it anymore!  I need you...");
+            Sequences.RegisterSequence(41, "Mother", "right here...");
+            Sequences.RegisterSequence(42, "Mother", "right now...");
+            Sequences.RegisterSequence(43, new SequenceDecision("Player",
                 "I shall take you to pound town right now!",
                 "I... I don't know New Mom... I have to think about this.  This is all too sudden.",
                 "No."));
-            ((SequenceDecision)Sequences.Sequences[41]).Choice += (sender, e) =>
+            ((SequenceDecision)Sequences.Sequences[43]).Choice += (sender, e) =>
             {
                 if (e == 0) //Pound Town
                     Sequences.SetStage(60);
