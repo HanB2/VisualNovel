@@ -12,6 +12,7 @@ namespace DongLife.Controls
         public Image(string imagePath)
         {
             this.imagePath = imagePath;
+            this.AutoSize = true;
         }
 
         public override void LoadContent(ContentManager content)

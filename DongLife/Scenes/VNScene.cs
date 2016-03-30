@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Minalear.UI;
 using DongLife.Controls;
 using DongLife.Code;
+using OpenTK.Input;
 
 namespace DongLife.Scenes
 {
@@ -19,13 +20,15 @@ namespace DongLife.Scenes
         public VNScene(string sceneName) : base(sceneName)
         {
             this.sequences = new SequenceHandler();
-            this.sequences.OnSequenceExecution += Sequences_OnSequenceExecution;
             this.actors = new Dictionary<string, Actor>();
             AddChild(messageBox);
         }
 
         public override void OnEnter()
         {
+            foreach (Actor actor in this.actors.Values)
+                actor.Reset();
+
             MessageBox.TextFinished += MessageBox_TextFinished;
             MessageBox.OptionSelected += MessageBox_OptionSelected;
 
@@ -53,12 +56,24 @@ namespace DongLife.Scenes
             {
                 foreach (Actor actor in actors.Values)
                 {
-                    if (actor.Name != actorName)
+                    if (actor.Name != actorName && actor.HasFocus)
                         actor.SetFocus(false);
                 }
             }
-            if (actorName != "NONE")
+            if (actorName != "NONE" && !actors[actorName].HasFocus)
                 actors[actorName].SetFocus(true);
+        }
+
+        //TODO: Allow clicking the messagebox to skip animations
+        public override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            foreach (Actor actor in actors.Values)
+            {
+                if (actor.Animator.Animating)
+                    actor.Animator.ForceEndAnimation();
+            }
+
+            base.OnMouseUp(e);
         }
 
         protected virtual void MessageBox_TextFinished(object sender, EventArgs args)
@@ -69,7 +84,6 @@ namespace DongLife.Scenes
         {
             Sequences.ExecuteChoice(this, optionID);
         }
-        protected virtual void Sequences_OnSequenceExecution(int stage, string id) { }
 
         public SequenceHandler Sequences
         {

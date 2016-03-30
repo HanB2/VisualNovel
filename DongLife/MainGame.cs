@@ -2,6 +2,8 @@
 using Minalear;
 using Minalear.UI;
 using DongLife.Scenes;
+using DongLife.Scenes.EndScenes;
+using DongLife.Scenes.GameScenes;
 
 namespace DongLife
 {
@@ -37,8 +39,19 @@ namespace DongLife
             //Game Scenes
             sceneManager.RegisterScene(new IN_HospitalScene());
             sceneManager.RegisterScene(new IN_Home());
+            sceneManager.RegisterScene(new BASE_Home());
+            sceneManager.RegisterScene(new MOM_Base());
+            sceneManager.RegisterScene(new MOM_Seduction());
+            sceneManager.RegisterScene(new MOM_Cambodia());
+            sceneManager.RegisterScene(new MOM_Basement());
 
-            sceneManager.SetScene("IN_HospitalScene");
+            sceneManager.RegisterScene(new GEND_TvStar_Shia());
+            sceneManager.RegisterScene(new GEND_DongMolePeople());
+            sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
+            sceneManager.RegisterScene(new BEND_DeadInBasement());
+            sceneManager.RegisterScene(new BEND_SandCoffin());
+
+            sceneManager.SetScene("MOM_Basement");
         }
         public override void Draw(GameTime gameTime)
         {

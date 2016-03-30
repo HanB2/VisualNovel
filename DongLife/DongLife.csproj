@@ -62,8 +62,21 @@
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\EndScene.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_DeadInBasement.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
+    <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
+    <Compile Include="Scenes\GameScenes\CMP_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Base.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
+    <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\RenderScene.cs" />
     <Compile Include="Scenes\TestScene.cs" />
@@ -87,6 +100,21 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Actors\mole_king.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\mole_people.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\shia_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\basement.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\cambodia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\doctor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -94,6 +122,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\foster_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\foster_mother_sexy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\professor_kaiju.png">
@@ -130,6 +161,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Intro\title_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Props\briefcase.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Props\nuclear_fallout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\reg.jpg">
