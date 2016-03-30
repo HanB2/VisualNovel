@@ -46,6 +46,7 @@ namespace DongLife
             sceneManager.RegisterScene(new MOM_Basement());
 
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
+            sceneManager.RegisterScene(new GEND_DongMolePeople());
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
             sceneManager.RegisterScene(new BEND_DeadInBasement());
             sceneManager.RegisterScene(new BEND_SandCoffin());

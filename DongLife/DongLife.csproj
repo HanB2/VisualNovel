@@ -66,6 +66,7 @@
     <Compile Include="Scenes\EndScenes\BEND_DeadInBasement.cs" />
     <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
     <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
     <Compile Include="Scenes\GameScenes\CMP_Base.cs" />

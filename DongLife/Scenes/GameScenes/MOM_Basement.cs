@@ -162,41 +162,100 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(41, "KingMole", "Nuclear launch codes.");
             Sequences.RegisterSequence(42, "Player", "WHAT?!");
             Sequences.RegisterSequence(43, "KingMole", "I plan on conquering the surface for the mole people.  If you help me with this small request, I will liberate you from this basement.  However, if you do not, I will have to eliminate you.");
-            Sequences.RegisterSequence(44, "Player", "Hand over the briefcase, chief.");
-            Sequences.RegisterSequence(45, new SequenceSpecial("BriefcaseOpened"));
-            ((SequenceSpecial)Sequences.Sequences[45]).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(44, new SequenceDecision("Player",
+                "Help the Mole King.",
+                "Don't help the Mole King."));
+            ((SequenceDecision)Sequences.Sequences[44]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Help
+                    Sequences.SetStage(45);
+                else if (e == 1) //Don't help
+                    Sequences.SetStage(100);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            Sequences.RegisterSequence(45, "Player", "Hand over the briefcase, chief.");
+            Sequences.RegisterSequence(46, new SequenceSpecial("BriefcaseOpened"));
+            ((SequenceSpecial)Sequences.Sequences[46]).OnSequenceExecution += (sender, e) =>
             {
                 briefcase.Visible = false;
-                Sequences.SetStage(46);
+                Sequences.SetStage(47);
             };
-            Sequences.RegisterSequence(46, "KingMole", "Thank you!  Now, my minions, rise out of the earth for we will conquer the earth!");
-            Sequences.RegisterSequence(47, new SequenceSpecial("MolePeopleAppear"));
-            ((SequenceSpecial)Sequences.Sequences[47]).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(47, "KingMole", "Thank you!  Now, my minions, rise out of the earth for we will conquer the earth!");
+            Sequences.RegisterSequence(48, new SequenceSpecial("MolePeopleAppear"));
+            ((SequenceSpecial)Sequences.Sequences[48]).OnSequenceExecution += (sender, e) =>
             {
                 molePeople.Animator.FadeIn(800f);
-                Sequences.SetStage(48);
+                Sequences.SetStage(49);
             };
-            Sequences.RegisterSequence(48, "Player", "Oh boy...");
-            Sequences.RegisterSequence(49, new SequenceSpecial("NuclearFallout"));
-            ((SequenceSpecial)Sequences.Sequences[49]).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(49, "Player", "Oh boy...");
+            Sequences.RegisterSequence(50, new SequenceSpecial("NuclearFallout"));
+            ((SequenceSpecial)Sequences.Sequences[50]).OnSequenceExecution += (sender, e) =>
             {
                 nuclearAnimator.FadeIn(800f);
-                Sequences.SetStage(50);
+                Sequences.SetStage(51);
                 Sequences.ExecuteSequence(this);
             };
-            Sequences.RegisterSequence(50, NO_ACTOR, "Through nuclear attrition, the mole people eventually conquer the surface and claim it for themselves.");
-            Sequences.RegisterSequence(51, new SequenceSpecial("NuclearFallout"));
-            ((SequenceSpecial)Sequences.Sequences[51]).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(51, NO_ACTOR, "Through nuclear attrition, the mole people eventually conquer the surface and claim it for themselves.");
+            Sequences.RegisterSequence(52, new SequenceSpecial("NuclearFallout"));
+            ((SequenceSpecial)Sequences.Sequences[52]).OnSequenceExecution += (sender, e) =>
             {
                 nuclearAnimator.FadeOut(800f);
-                Sequences.SetStage(52);
+                Sequences.SetStage(53);
                 Sequences.ExecuteSequence(this);
             };
-            Sequences.RegisterSequence(52, "KingMole", "Thank you human for your help in this endeavour, it was a long and arduous process, but we finally killed the last remaining human.");
-            Sequences.RegisterSequence(53, "KingMole", "...well... almost the last one.");
-            Sequences.RegisterSequence(54, "Player", "What do you mean?");
-            Sequences.RegisterSequence(55, "KingMole", "I mean, you filthy humans all need to die for us Mole people to live peacefully.  I have no option but to kill you.");
-            Sequences.RegisterSequence(56, new SequenceSceneTransition("BEND_SandCoffin"));
+            Sequences.RegisterSequence(53, "KingMole", "Thank you human for your help in this endeavour, it was a long and arduous process, but we finally killed the last remaining human.");
+            Sequences.RegisterSequence(54, "KingMole", "...well... almost the last one.");
+            Sequences.RegisterSequence(55, "Player", "What do you mean?");
+            Sequences.RegisterSequence(56, "KingMole", "I mean, you filthy humans all need to die for us Mole people to live peacefully.  I have no option but to kill you.");
+            Sequences.RegisterSequence(57, new SequenceDecision("Player",
+                "Try to overthrow the Mole King.",
+                "Plead with the Mole King."));
+            ((SequenceDecision)Sequences.Sequences[57]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Overthrow
+                    Sequences.SetStage(70);
+                else if (e == 1) //Plead for life
+                    Sequences.SetStage(60);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Plead for life
+            Sequences.RegisterSequence(60, "Player", "Oh great and might Mole King, I request you spare my pathetic life so I may live for another day!");
+            Sequences.RegisterSequence(61, "KingMole", "You're right.  Your life is pathetic.  You're too ugly to serve as a sex slave, so I will just end your misery.");
+            Sequences.RegisterSequence(62, new SequenceStageTransition(101));
+
+            //Overthrow
+            Sequences.RegisterSequence(70, "Player", "Listen to me, denizens of the underworld!");
+            Sequences.RegisterSequence(71, "KingMole", "What are you doing?!");
+            Sequences.RegisterSequence(72, "Player", "Your king is a pathetic worm that is not worthy to lead such an amazing race such as you!");
+            Sequences.RegisterSequence(73, "KingMole", "Stop it!");
+            Sequences.RegisterSequence(74, "Player", "I will prove my worth to you that I would be a much superior king than him!");
+            Sequences.RegisterSequence(75, new SequenceDecision("Player",
+                "Whip out your dick to show you're a superior being.",
+                "Promise them that they will be treated as your equals under your regime."));
+            ((SequenceDecision)Sequences.Sequences[75]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Whip out the dong
+                    Sequences.SetStage(76);
+                else if (e == 1) //False promises
+                    Sequences.SetStage(110);
+
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(76, "Player", "Look at my magnificent dong!  I could anally please all of you!");
+            Sequences.RegisterSequence(77, "KingMole", "NOOOOO!!!!");
+            Sequences.RegisterSequence(78, new SequenceSceneTransition("GEND_DongMolePeople")); 
+
+            //Don't help the Mole King
+            Sequences.RegisterSequence(100, "KingMole", "Well, that's a shame.  We'll have to find another hapless sap to help us.  For you, however, I'll just have to kill you.");
+            Sequences.RegisterSequence(101, new SequenceSceneTransition("BEND_SandCoffin"));
+
+            //Fail to overthrow king
+            Sequences.RegisterSequence(110, "KingMole", "LOL!  You think that will convince them?  Time to die, cretin!");
+            Sequences.RegisterSequence(111, new SequenceSceneTransition("BEND_SandCoffin"));
         }
 
         public override void OnEnter()
