@@ -81,8 +81,6 @@
     <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\RenderScene.cs" />
-    <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
   </ItemGroup>
   <ItemGroup>
