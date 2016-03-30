@@ -8,7 +8,11 @@ namespace DongLife.Scenes.GameScenes
     public class MOM_Basement : VNScene
     {
         private Actor player, father, kingMole, molePeople;
+
         private Image briefcase;
+        private Image nuclearFallout;
+
+        private ControlAnimator nuclearAnimator;
 
         private int timesScreamed = 0;
         private int timesWaited = 0;
@@ -26,6 +30,13 @@ namespace DongLife.Scenes.GameScenes
             kingMole.FocusScale = 0.4f;
             kingMole.CurrentScale = 0.25f;
 
+            molePeople = new Actor("MolePeople", @"Textures/Actors/mole_people.png");
+            molePeople.Position = new Vector2(GameSettings.WindowWidth / 2, GameSettings.WindowHeight / 2);
+            molePeople.NormalScale = 1f;
+            molePeople.FocusScale = 1f;
+            molePeople.CurrentScale = 1f;
+            molePeople.DrawOrder = 0.8f;
+
             father.Animator.AnimationEnd += Father_AnimationEnd;
             kingMole.Animator.AnimationEnd += KingMole_AnimationEnd;
 
@@ -38,11 +49,22 @@ namespace DongLife.Scenes.GameScenes
             briefcase.AutoSize = false;
             briefcase.Visible = false;
 
+            nuclearFallout = new Image(@"Textures/Props/nuclear_fallout.png");
+            nuclearFallout.Position = Vector2.Zero;
+            nuclearFallout.AutoSize = false;
+            nuclearFallout.Size = new Vector2(GameSettings.WindowWidth, GameSettings.WindowHeight);
+            nuclearFallout.DrawOrder = 0.1f;
+
+            nuclearAnimator = new ControlAnimator();
+            nuclearFallout.AddChild(nuclearAnimator);
+
             AddChild(background);
             AddChild(briefcase);
+            AddChild(nuclearFallout);
             RegisterActor(player);
             RegisterActor(father);
             RegisterActor(kingMole);
+            RegisterActor(molePeople);
 
             Sequences.RegisterSequence(0, "Father", "And you can stay down here until you die, you fucking trashbag of a human being.");
             Sequences.RegisterSequence(1, new SequenceSpecial("FatherLeaves"));
@@ -110,11 +132,17 @@ namespace DongLife.Scenes.GameScenes
                 if (e == 0) //Who are you
                     Sequences.SetStage(30);
                 else if (e == 1) //What are you
-                    Sequences.SetStage(100);
+                    Sequences.SetStage(25);
 
                 Sequences.ExecuteSequence(this);
             };
 
+            //What are you
+            Sequences.RegisterSequence(25, "KingMole", "I told you...");
+            Sequences.RegisterSequence(26, "KingMole", "DON'T INSULT THE KING!!!");
+            Sequences.RegisterSequence(27, new SequenceSceneTransition("BEND_SandCoffin"));
+
+            //Who are you
             Sequences.RegisterSequence(30, "KingMole", "Like I said earlier... I am the Mole King, King of the Mole People.");
             Sequences.RegisterSequence(31, "Player", "What are you doing here?");
             Sequences.RegisterSequence(32, "KingMole", "I heard an earth dweller screaming and thought I would check it out.  What are YOU doing here?");
@@ -135,19 +163,40 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(42, "Player", "WHAT?!");
             Sequences.RegisterSequence(43, "KingMole", "I plan on conquering the surface for the mole people.  If you help me with this small request, I will liberate you from this basement.  However, if you do not, I will have to eliminate you.");
             Sequences.RegisterSequence(44, "Player", "Hand over the briefcase, chief.");
+            Sequences.RegisterSequence(45, new SequenceSpecial("BriefcaseOpened"));
             ((SequenceSpecial)Sequences.Sequences[45]).OnSequenceExecution += (sender, e) =>
             {
                 briefcase.Visible = false;
                 Sequences.SetStage(46);
             };
             Sequences.RegisterSequence(46, "KingMole", "Thank you!  Now, my minions, rise out of the earth for we will conquer the earth!");
-            Sequences.RegisterSequence(47, NO_ACTOR, "*MOLES APPEAR*");
+            Sequences.RegisterSequence(47, new SequenceSpecial("MolePeopleAppear"));
+            ((SequenceSpecial)Sequences.Sequences[47]).OnSequenceExecution += (sender, e) =>
+            {
+                molePeople.Animator.FadeIn(800f);
+                Sequences.SetStage(48);
+            };
             Sequences.RegisterSequence(48, "Player", "Oh boy...");
-            Sequences.RegisterSequence(49, "KingMole", "*MOLES CONQUER THE SURFACE*");
-            Sequences.RegisterSequence(50, "KingMole", "Thank you human for your help in this endeavour, it was a long and arduous process, but we finally killed the last remaining human.");
-            Sequences.RegisterSequence(51, "KingMole", "...well... almost the last one.");
-            Sequences.RegisterSequence(51, "Player", "What do you mean?");
-            Sequences.RegisterSequence(52, "KingMole", "I mean, you filthy humans all need to die for us Mole people to live peacefully.  I have no option but to kill you.");
+            Sequences.RegisterSequence(49, new SequenceSpecial("NuclearFallout"));
+            ((SequenceSpecial)Sequences.Sequences[49]).OnSequenceExecution += (sender, e) =>
+            {
+                nuclearAnimator.FadeIn(800f);
+                Sequences.SetStage(50);
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(50, NO_ACTOR, "Through nuclear attrition, the mole people eventually conquer the surface and claim it for themselves.");
+            Sequences.RegisterSequence(51, new SequenceSpecial("NuclearFallout"));
+            ((SequenceSpecial)Sequences.Sequences[51]).OnSequenceExecution += (sender, e) =>
+            {
+                nuclearAnimator.FadeOut(800f);
+                Sequences.SetStage(52);
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(52, "KingMole", "Thank you human for your help in this endeavour, it was a long and arduous process, but we finally killed the last remaining human.");
+            Sequences.RegisterSequence(53, "KingMole", "...well... almost the last one.");
+            Sequences.RegisterSequence(54, "Player", "What do you mean?");
+            Sequences.RegisterSequence(55, "KingMole", "I mean, you filthy humans all need to die for us Mole people to live peacefully.  I have no option but to kill you.");
+            Sequences.RegisterSequence(56, new SequenceSceneTransition("BEND_SandCoffin"));
         }
 
         public override void OnEnter()
@@ -156,7 +205,9 @@ namespace DongLife.Scenes.GameScenes
 
             father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 1f);
             kingMole.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            molePeople.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
             briefcase.Visible = false;
+            nuclearFallout.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
         }
 
         private void Father_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
