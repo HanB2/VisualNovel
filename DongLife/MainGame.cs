@@ -32,8 +32,6 @@ namespace DongLife
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
             //Scene Creation
-            sceneManager.RegisterScene(new TestScene());
-            sceneManager.RegisterScene(new RenderScene());
             sceneManager.RegisterScene(new MainMenuScene());
 
             //Game Scenes
