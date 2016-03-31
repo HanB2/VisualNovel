@@ -44,6 +44,7 @@ namespace DongLife
                 writer.WriteLine(String.Format("## Graphic Settings ##"));
                 writer.WriteLine(String.Format("WindowWidth:{0}", 800));
                 writer.WriteLine(String.Format("WindowHeight:{0}", 450));
+                writer.WriteLine(String.Format("TextSpeed:{0}", 25));
             }
         }
         private static void checkValidTokens(string[] tokens)
