@@ -15,19 +15,9 @@ namespace DongLife.Scenes.GameScenes
             background = new Background(@"Textures/Backgrounds/school_hall.png");
 
             player = ActorFactory.CreateActor("Player");
-
-            janitor = new Actor("Janitor", @"Textures/Actors/janitor_normal.png");
-            janitor.Position = new Vector2(GameSettings.WindowWidth / 2 + 350f, GameSettings.WindowHeight / 2 + 75f);
+            janitor = ActorFactory.CreateActor("Janitor");
             janitorNormalPos = janitor.Position;
-            janitor.CurrentScale = 0.65f;
-            janitor.NormalScale = 0.65f;
-            janitor.FocusScale = 0.75f;
-
-            principal = new Actor("Principal", @"Textures/Actors/principal_normal.png");
-            principal.Position = new Vector2(GameSettings.WindowWidth / 2 + 100f, GameSettings.WindowHeight / 2 + 75f);
-            principal.CurrentScale = 0.75f;
-            principal.NormalScale = 0.75f;
-            principal.FocusScale = 0.9f;
+            principal = ActorFactory.CreateActor("Principal");
 
             AddChild(background);
             RegisterActor(player);
