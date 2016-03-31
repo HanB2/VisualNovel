@@ -51,10 +51,13 @@ namespace DongLife
 
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
             sceneManager.RegisterScene(new GEND_DongMolePeople());
+            sceneManager.RegisterScene(new GEND_HeadHoncho());
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
             sceneManager.RegisterScene(new BEND_DeadInBasement());
             sceneManager.RegisterScene(new BEND_SandCoffin());
             sceneManager.RegisterScene(new BEND_Suicide());
+            sceneManager.RegisterScene(new BEND_SlaveDeath());
+            sceneManager.RegisterScene(new BEND_SlaveDieByGuards());
 
             sceneManager.SetScene("SCHL_Base");
             

@@ -5,10 +5,23 @@ using DongLife.Controls;
 
 namespace DongLife.Scenes.GameScenes
 {
-    public class SCHL_Alley : EndScene
+    public class SCHL_Alley : VNScene
     {
-        public SCHL_Alley() : base(
-            "SCHL_Alley", true, "Test alley scene")
-        { }
+        private Actor player, janitor;
+
+        public SCHL_Alley() : base("SCHL_Alley")
+        {
+            background = new Background(@"Textures/Backgrounds/alley.png");
+
+            player = ActorFactory.CreateActor("Player");
+            janitor = ActorFactory.CreateActor("Janitor");
+
+            AddChild(background);
+            RegisterActor(player);
+            RegisterActor(janitor);
+
+            Sequences.RegisterSequence(0, "Player", "This alley looks... suspicious.");
+            Sequences.RegisterSequence(1, new SequenceStageTransition(0));
+        }
     }
 }

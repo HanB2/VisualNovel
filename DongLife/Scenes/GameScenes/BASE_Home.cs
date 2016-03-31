@@ -82,5 +82,15 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(60, "Player", "Whelp, goodbye cruel world... ");
             Sequences.RegisterSequence(61, new SequenceSceneTransition("PSYCHIATRIC_WARD"));
         }
+
+        public override void OnEnter()
+        {
+            if (GameManager.PissedOffJanitor)
+            {
+                //The janitor comes to kidnap you
+            }
+            else
+                base.OnEnter();
+        }
     }
 }

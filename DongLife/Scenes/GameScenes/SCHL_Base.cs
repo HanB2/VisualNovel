@@ -97,7 +97,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(42, "Janitor", "Why thank you young man!  Boy, most kids would just kick me while I'm down, but you helped me up!  I appreciate it.");
             Sequences.RegisterSequence(43, "Player", "Don't worry m8, it's all good.  Just thought I would be kind today.");
             Sequences.RegisterSequence(44, "Janitor", "I don't recognize you... are you new to this school?");
-            Sequences.RegisterSequence(45, "Player", "Yea, I am new.");
+            Sequences.RegisterSequence(45, "Player", "Yea, I am new.  My name is {PLAYERNAME}.");
             Sequences.RegisterSequence(46, "Janitor", "Ohh, right!  I've heard of you.  You're the kid with the giant, fucking penis!");
             Sequences.RegisterSequence(47, "Player", "Yea... that's me.");
             Sequences.RegisterSequence(48, "Janitor", "It's okay man, having a freakishly long dong isn't the end of the world.  I bet some people may actually like it!");
