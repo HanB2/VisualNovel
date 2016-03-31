@@ -76,10 +76,10 @@ namespace DongLife.Scenes.GameScenes
 
             //Succeed in suicide
             Sequences.RegisterSequence(50, "Player", "Whelp, goodbye cruel world.  *blurgh*");
-            Sequences.RegisterSequence(51, new SequenceSceneTransition("MainMenuScene"));
+            Sequences.RegisterSequence(51, new SequenceSceneTransition("BEND_Suicide"));
 
             //Fail in suicide
-            Sequences.RegisterSequence(60, "Player", "Whelp, goodbye cruel world... wait.");
+            Sequences.RegisterSequence(60, "Player", "Whelp, goodbye cruel world... ");
             Sequences.RegisterSequence(61, new SequenceSceneTransition("PSYCHIATRIC_WARD"));
         }
     }

@@ -42,14 +42,16 @@ namespace DongLife
             sceneManager.RegisterScene(new MOM_Seduction());
             sceneManager.RegisterScene(new MOM_Cambodia());
             sceneManager.RegisterScene(new MOM_Basement());
+            sceneManager.RegisterScene(new SCHL_Base());
 
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
             sceneManager.RegisterScene(new GEND_DongMolePeople());
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
             sceneManager.RegisterScene(new BEND_DeadInBasement());
             sceneManager.RegisterScene(new BEND_SandCoffin());
+            sceneManager.RegisterScene(new BEND_Suicide());
 
-            sceneManager.SetScene("MOM_Basement");
+            sceneManager.SetScene("SCHL_Base");
         }
         public override void Draw(GameTime gameTime)
         {
