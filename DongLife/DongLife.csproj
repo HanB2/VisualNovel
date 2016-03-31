@@ -61,6 +61,7 @@
     <Compile Include="Controls\MessageBox.cs" />
     <Compile Include="Controls\MessageButton.cs" />
     <Compile Include="Controls\TextInput.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
@@ -80,7 +81,10 @@
     <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Alley.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_PrincipalOffice.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_SchoolRoom.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
   </ItemGroup>

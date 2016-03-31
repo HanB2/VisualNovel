@@ -31,6 +31,8 @@ namespace DongLife
             VNScene.MessageBox.PosX = GameSettings.WindowWidth / 2 - VNScene.MessageBox.Width / 2;
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
+            GameManager.Init();
+
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
 
@@ -43,6 +45,9 @@ namespace DongLife
             sceneManager.RegisterScene(new MOM_Cambodia());
             sceneManager.RegisterScene(new MOM_Basement());
             sceneManager.RegisterScene(new SCHL_Base());
+            sceneManager.RegisterScene(new SCHL_SchoolRoom());
+            sceneManager.RegisterScene(new SCHL_PrincipalOffice());
+            sceneManager.RegisterScene(new SCHL_Alley());
 
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
             sceneManager.RegisterScene(new GEND_DongMolePeople());
@@ -52,6 +57,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_Suicide());
 
             sceneManager.SetScene("SCHL_Base");
+            
         }
         public override void Draw(GameTime gameTime)
         {

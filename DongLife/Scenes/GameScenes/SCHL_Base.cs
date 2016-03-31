@@ -101,20 +101,63 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(41, new SequenceSpecial("HelpJanitorUp"));
             ((SequenceSpecial)Sequences.Sequences[41]).OnSequenceExecution += (sender, e) =>
             {
-                janitor.Animator.AnimateSlide(new Vector2(), 800f);
+                janitor.Animator.AnimateSlide(janitorNormalPos, 800f);
                 Sequences.SetStage(42);
             };
             Sequences.RegisterSequence(42, "Janitor", "Why thank you young man!  Boy, most kids would just kick me while I'm down, but you helped me up!  I appreciate it.");
             Sequences.RegisterSequence(43, "Player", "Don't worry m8, it's all good.  Just thought I would be kind today.");
-            Sequences.RegisterSequence(44, "Janitor", "I don't recognize... are you new to this school?");
+            Sequences.RegisterSequence(44, "Janitor", "I don't recognize you... are you new to this school?");
             Sequences.RegisterSequence(45, "Player", "Yea, I am new.");
             Sequences.RegisterSequence(46, "Janitor", "Ohh, right!  I've heard of you.  You're the kid with the giant, fucking penis!");
             Sequences.RegisterSequence(47, "Player", "Yea... that's me.");
-
-            Sequences.RegisterSequence(47, new SequenceDecision("Player",
+            Sequences.RegisterSequence(48, "Janitor", "It's okay man, having a freakishly long dong isn't the end of the world.  I bet some people may actually like it!");
+            Sequences.RegisterSequence(49, "Player", "It's an absolute pain and only causes me trouble.  My parents are dead because of it.");
+            Sequences.RegisterSequence(50, "Janitor", "That's a shame... a damn shame... I can help you with your problem, If you want.");
+            Sequences.RegisterSequence(51, new SequenceDecision("Player",
                 "Go to class.",
                 "Keep talking to him."));
+            ((SequenceDecision)Sequences.Sequences[51]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Go to class
+                    Sequences.SetStage(60);
+                else if (e == 1) //Keep talking
+                    Sequences.SetStage(80);
 
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Keep talking
+            Sequences.RegisterSequence(60, "Player", "I appreciate your concern, but I really need to get to class.  Sorry.");
+            Sequences.RegisterSequence(61, "Janitor", "You know what?  Fuck you too!  You don't just come into someone's life like that and leave all of the sudden.  Screw off, faggot.");
+            Sequences.RegisterSequence(62, new SequenceSpecial("JanitorLeaves"));
+            ((SequenceSpecial)Sequences.Sequences[62]).OnSequenceExecution += (sender, e) =>
+            {
+                Sequences.SetStage(63);
+                SetActorFocus("Player");
+                MessageBox.SetText("Wonder what his problem is...");
+                janitor.Animator.FadeOut(800f);
+
+                GameManager.PissedOffJanitor = true;
+            };
+            Sequences.RegisterSequence(63, new SequenceSceneTransition("SCHL_SchoolRoom"));
+
+            //Keep talking
+            Sequences.RegisterSequence(80, "Player", "Help me?  With... my weiner?");
+            Sequences.RegisterSequence(81, "Janitor", "Yes... :)  I can help you out.  Rid you of that curse for the rest of your life!  You just need to follow me to my van behind the school.");
+            Sequences.RegisterSequence(82, new SequenceDecision("Player",
+                "Go with him.",
+                "Go to class."));
+            ((SequenceDecision)Sequences.Sequences[82]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Go with him
+                    Sequences.SetStage(83);
+                else if (e == 1) //Go to class
+                    Sequences.SetStage(60);
+
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(83, "Player", "Sure, lead the way!");
+            Sequences.RegisterSequence(84, new SequenceSceneTransition("SCHL_Alley"));
         }
 
         public override void OnEnter()
