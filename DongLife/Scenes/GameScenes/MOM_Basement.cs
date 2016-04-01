@@ -16,7 +16,7 @@ namespace DongLife.Scenes.GameScenes
 
         private int timesScreamed = 0;
         private int timesWaited = 0;
-        private int timesToWait = 1;
+        private int timesToWait = 3;
 
         public MOM_Basement() : base("MOM_Basement")
         {
