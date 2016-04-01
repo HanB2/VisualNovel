@@ -98,6 +98,11 @@ namespace DongLife.Code
             get { return this.animator; }
             set { this.animator = value; }
         }
+        public string TexturePath
+        {
+            get { return this.texturePath; }
+            set { this.texturePath = value; }
+        }
         public float NormalScale
         {
             get { return this.normalScale; }

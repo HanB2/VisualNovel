@@ -88,6 +88,8 @@
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_PrincipalOffice.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_SchoolRoom.cs" />
+    <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
+    <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
   </ItemGroup>
@@ -109,6 +111,12 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Actors\head_honcho.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\head_honcho_skin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\principal_normal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -128,6 +136,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\shia_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\slave_guard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\alley.png">
@@ -170,6 +181,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\school_hall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\slave_camp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Intro\background.png">

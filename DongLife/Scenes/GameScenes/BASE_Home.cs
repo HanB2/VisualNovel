@@ -87,7 +87,7 @@ namespace DongLife.Scenes.GameScenes
         {
             if (GameManager.PissedOffJanitor)
             {
-                //The janitor comes to kidnap you
+                Manager.ChangeScene("SLAVE_HomeAmbush");
             }
             else
                 base.OnEnter();
