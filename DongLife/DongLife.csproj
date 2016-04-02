@@ -55,6 +55,8 @@
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
     <Compile Include="Code\Sequence.cs" />
+    <Compile Include="Controls\FatigueBar.cs" />
+    <Compile Include="Controls\ShekelsCounter.cs" />
     <Compile Include="Controls\ControlAnimator.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Image.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDieByGuards.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveGunDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveSleepDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveWorkToDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_Suicide.cs" />
     <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
     <Compile Include="Scenes\EndScenes\GEND_HeadHoncho.cs" />
@@ -112,6 +116,9 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Props\shekels_hud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\head_honcho.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -137,6 +144,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\shia_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\shop_owner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\slave_guard.png">

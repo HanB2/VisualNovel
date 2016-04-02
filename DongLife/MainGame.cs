@@ -59,8 +59,10 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_SandCoffin());
             sceneManager.RegisterScene(new BEND_Suicide());
             sceneManager.RegisterScene(new BEND_SlaveDeath());
+            sceneManager.RegisterScene(new BEND_SlaveSleepDeath());
             sceneManager.RegisterScene(new BEND_SlaveDieByGuards());
             sceneManager.RegisterScene(new BEND_SlaveGunDeath());
+            sceneManager.RegisterScene(new BEND_SlaveWorkToDeath());
 
             sceneManager.SetScene("SLAVE_Base");
             
