@@ -60,8 +60,9 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_Suicide());
             sceneManager.RegisterScene(new BEND_SlaveDeath());
             sceneManager.RegisterScene(new BEND_SlaveDieByGuards());
+            sceneManager.RegisterScene(new BEND_SlaveGunDeath());
 
-            sceneManager.SetScene("BASE_Home");
+            sceneManager.SetScene("SLAVE_Base");
             
         }
         public override void Draw(GameTime gameTime)

@@ -72,6 +72,7 @@
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDieByGuards.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveGunDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_Suicide.cs" />
     <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
     <Compile Include="Scenes\EndScenes\GEND_HeadHoncho.cs" />
