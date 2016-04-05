@@ -48,6 +48,8 @@ namespace DongLife
             sceneManager.RegisterScene(new SCHL_SchoolRoom());
             sceneManager.RegisterScene(new SCHL_PrincipalOffice());
             sceneManager.RegisterScene(new SCHL_AlternateOffice());
+            sceneManager.RegisterScene(new SCHL_Detention());
+            sceneManager.RegisterScene(new SCHL_Date());
             sceneManager.RegisterScene(new SCHL_Alley());
             sceneManager.RegisterScene(new SLAVE_HomeAmbush());
             sceneManager.RegisterScene(new SLAVE_Base());
@@ -57,6 +59,8 @@ namespace DongLife
             sceneManager.RegisterScene(new GEND_DongMolePeople());
             sceneManager.RegisterScene(new GEND_HeadHoncho());
             sceneManager.RegisterScene(new GEND_FinalEnding());
+            sceneManager.RegisterScene(new GEND_TimeParadox());
+            sceneManager.RegisterScene(new GEND_GrowOldShia());
 
             //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
@@ -69,8 +73,9 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_SlaveGunDeath());
             sceneManager.RegisterScene(new BEND_SlaveWorkToDeath());
             sceneManager.RegisterScene(new BEND_DetentionDeath());
+            sceneManager.RegisterScene(new BEND_DateDeath());
 
-            sceneManager.SetScene("SCHL_PrincipalOffice");
+            sceneManager.SetScene("SCHL_Date");
         }
         public override void Draw(GameTime gameTime)
         {

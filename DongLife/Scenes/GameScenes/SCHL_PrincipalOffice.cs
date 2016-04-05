@@ -120,6 +120,49 @@ namespace DongLife.Scenes.GameScenes
 
             //Hit on him
             Sequences.RegisterSequence(40, "Player", "You're looking very dashing today, Mr. Principal.");
+            Sequences.RegisterSequence(41, "Principal", "Why... thank you {PLAYERNAME}.  But we're not here for me.  We are here for you.");
+            Sequences.RegisterSequence(42, "Player", "And your hair... the way it is... shaped.  It's so sensual.");
+            Sequences.RegisterSequence(43, "Principal", "{PLAYERNAME}.  This is getting very... inappropriate.");
+            Sequences.RegisterSequence(44, new SequenceDecision("Player",
+                "Ask him out on a date.",
+                "Kill him."));
+            ((SequenceDecision)Sequences.Sequences[44]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Ask him out on a date
+                    Sequences.SetStage(50);
+                else if (e == 1) //Kill him
+                    Sequences.SetStage(10);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Ask him out on a date
+            Sequences.RegisterSequence(50, "Player", "Mr. Principal, I don't care if it is inappropriate.  I really like you.");
+            Sequences.RegisterSequence(51, "Principal", "{PLAYERNAME}!  This is not okay!  I'm 87.  You're 32!");
+            Sequences.RegisterSequence(52, "Principal", "I couldn't in the right mind reciprocate the feelings you have for me!");
+            Sequences.RegisterSequence(53, "Player", "Just go on one measly date with me and you will see how amazing I am.  We are meant to be together.");
+            Sequences.RegisterSequence(54, "Principal", "Oh... okay.  Where would we go for this date?");
+            Sequences.RegisterSequence(55, new SequenceDecision("Player",
+                "Take him to the movies.",
+                "Take him to a baseball game.",
+                "Take him bowling.",
+                "Take him to laser tag."));
+            ((SequenceDecision)Sequences.Sequences[55]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Movie date
+                    GameManager.ChosenDate = "MOVIES";
+                else if (e == 1) //Baseball date
+                    GameManager.ChosenDate = "BASEBALL";
+                else if (e == 2) //Bowling date
+                    GameManager.ChosenDate = "BOWLING";
+                else if (e == 3) //Laser tag
+                    GameManager.ChosenDate = "LASER";
+
+                Sequences.SetStage(56);
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(56, "Principal", "That sounds like a great idea!  Let's go, you little rapscallion!");
+            Sequences.RegisterSequence(57, new SequenceSceneTransition("SCHL_Date"));
         }
 
         public override void OnEnter()
