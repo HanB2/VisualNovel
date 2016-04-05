@@ -61,7 +61,7 @@ namespace DongLife.Code
                     return janitor;
                 case "Principal":
                     Actor principal = new Actor("Principal", @"Textures/Actors/principal_normal.png");
-                    principal.Position = new Vector2(GameSettings.WindowWidth / 2 + 100f, GameSettings.WindowHeight / 2 + 75f);
+                    principal.Position = new Vector2(GameSettings.WindowWidth / 2 + 300f, GameSettings.WindowHeight / 2 + 75f);
                     principal.CurrentScale = 0.75f;
                     principal.NormalScale = 0.75f;
                     principal.FocusScale = 0.9f;

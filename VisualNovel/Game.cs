@@ -53,7 +53,7 @@ namespace Minalear
             UnloadContent();
         }
 
-        private void updateFrame(FrameEventArgs e)
+        protected virtual void updateFrame(FrameEventArgs e)
         {
             if (Window.Focused)
             {
@@ -63,7 +63,7 @@ namespace Minalear
                 Update(gameTime);
             }
         }
-        private void renderFrame(FrameEventArgs e)
+        protected virtual void renderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

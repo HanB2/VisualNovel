@@ -18,6 +18,7 @@ namespace DongLife.Scenes.GameScenes
             janitor = ActorFactory.CreateActor("Janitor");
             janitorNormalPos = janitor.Position;
             principal = ActorFactory.CreateActor("Principal");
+            principal.PosX = GameSettings.WindowWidth / 2 + 100f;
 
             AddChild(background);
             RegisterActor(player);

@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\EndScene.cs" />
     <Compile Include="Scenes\EndScenes\BEND_DeadInBasement.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_DetentionDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Scenes\EndScenes\BEND_SlaveWorkToDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_Suicide.cs" />
     <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_FinalEnding.cs" />
     <Compile Include="Scenes\EndScenes\GEND_HeadHoncho.cs" />
     <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
@@ -90,7 +92,9 @@
     <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Alley.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_AlternateOffice.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Detention.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_PrincipalOffice.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_SchoolRoom.cs" />
     <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
@@ -116,6 +120,15 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Backgrounds\detention.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\principal_office.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\water_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Props\shekels_hud.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -213,6 +226,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Props\nuclear_fallout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Props\sick_gun.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico">
