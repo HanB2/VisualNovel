@@ -55,21 +55,36 @@
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
     <Compile Include="Code\Sequence.cs" />
+    <Compile Include="Controls\FatigueBar.cs" />
+    <Compile Include="Controls\ShekelsCounter.cs" />
     <Compile Include="Controls\ControlAnimator.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Image.cs" />
     <Compile Include="Controls\MessageBox.cs" />
     <Compile Include="Controls\MessageButton.cs" />
     <Compile Include="Controls\TextInput.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\EndScene.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_DateDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_DeadInBasement.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_DetentionDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveDieByGuards.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveGunDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveSleepDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_SlaveWorkToDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_Suicide.cs" />
     <Compile Include="Scenes\EndScenes\GEND_DongMolePeople.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_FinalEnding.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_GrowOldShia.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_HeadHoncho.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_TimeParadox.cs" />
     <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
     <Compile Include="Scenes\GameScenes\CMP_Base.cs" />
@@ -79,10 +94,16 @@
     <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Seduction.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Alley.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_AlternateOffice.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Date.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Detention.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_PrincipalOffice.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_SchoolRoom.cs" />
+    <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
+    <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\RenderScene.cs" />
-    <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,13 +124,64 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Backgrounds\baseball_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\bowling_alley.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\detention.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\laser_tag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\movie_theater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\principal_office.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\water_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Props\shekels_hud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\head_honcho.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\head_honcho_skin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\principal_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\janitor_death.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\janitor_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\mole_king.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\mole_people.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Actors\principal_shia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\shia_mother.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\shop_owner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\slave_guard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\alley.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\basement.png">
@@ -148,10 +220,10 @@
     <Content Include="Content\Textures\Backgrounds\kaiju_dining.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Backgrounds\school.png">
+    <Content Include="Content\Textures\Backgrounds\school_hall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\button.png">
+    <Content Include="Content\Textures\Backgrounds\slave_camp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Intro\background.png">
@@ -172,10 +244,13 @@
     <Content Include="Content\Textures\Props\nuclear_fallout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\reg.jpg">
+    <Content Include="Content\Textures\Props\shia_head.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\test_image.jpg">
+    <Content Include="Content\Textures\Props\sick_gun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Props\static.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico">

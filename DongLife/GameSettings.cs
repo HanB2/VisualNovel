@@ -42,8 +42,10 @@ namespace DongLife
             using (StreamWriter writer = new StreamWriter(File.OpenWrite(filePath)))
             {
                 writer.WriteLine(String.Format("## Graphic Settings ##"));
-                writer.WriteLine(String.Format("WindowWidth:{0}", 800));
-                writer.WriteLine(String.Format("WindowHeight:{0}", 450));
+                writer.WriteLine(String.Format("WindowWidth:{0}", 1280));
+                writer.WriteLine(String.Format("WindowHeight:{0}", 720));
+                writer.WriteLine(String.Format("TextSpeed:{0}", 25));
+                writer.WriteLine(String.Format("Name:{0}", "Robert"));
             }
         }
         private static void checkValidTokens(string[] tokens)

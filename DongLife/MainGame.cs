@@ -31,9 +31,9 @@ namespace DongLife
             VNScene.MessageBox.PosX = GameSettings.WindowWidth / 2 - VNScene.MessageBox.Width / 2;
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
+            GameManager.Init();
+
             //Scene Creation
-            sceneManager.RegisterScene(new TestScene());
-            sceneManager.RegisterScene(new RenderScene());
             sceneManager.RegisterScene(new MainMenuScene());
 
             //Game Scenes
@@ -44,14 +44,38 @@ namespace DongLife
             sceneManager.RegisterScene(new MOM_Seduction());
             sceneManager.RegisterScene(new MOM_Cambodia());
             sceneManager.RegisterScene(new MOM_Basement());
+            sceneManager.RegisterScene(new SCHL_Base());
+            sceneManager.RegisterScene(new SCHL_SchoolRoom());
+            sceneManager.RegisterScene(new SCHL_PrincipalOffice());
+            sceneManager.RegisterScene(new SCHL_AlternateOffice());
+            sceneManager.RegisterScene(new SCHL_Detention());
+            sceneManager.RegisterScene(new SCHL_Date());
+            sceneManager.RegisterScene(new SCHL_Alley());
+            sceneManager.RegisterScene(new SLAVE_HomeAmbush());
+            sceneManager.RegisterScene(new SLAVE_Base());
 
+            //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
             sceneManager.RegisterScene(new GEND_DongMolePeople());
+            sceneManager.RegisterScene(new GEND_HeadHoncho());
+            sceneManager.RegisterScene(new GEND_FinalEnding());
+            sceneManager.RegisterScene(new GEND_TimeParadox());
+            sceneManager.RegisterScene(new GEND_GrowOldShia());
+
+            //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
             sceneManager.RegisterScene(new BEND_DeadInBasement());
             sceneManager.RegisterScene(new BEND_SandCoffin());
+            sceneManager.RegisterScene(new BEND_Suicide());
+            sceneManager.RegisterScene(new BEND_SlaveDeath());
+            sceneManager.RegisterScene(new BEND_SlaveSleepDeath());
+            sceneManager.RegisterScene(new BEND_SlaveDieByGuards());
+            sceneManager.RegisterScene(new BEND_SlaveGunDeath());
+            sceneManager.RegisterScene(new BEND_SlaveWorkToDeath());
+            sceneManager.RegisterScene(new BEND_DetentionDeath());
+            sceneManager.RegisterScene(new BEND_DateDeath());
 
-            sceneManager.SetScene("MOM_Basement");
+            sceneManager.SetScene("SCHL_Date");
         }
         public override void Draw(GameTime gameTime)
         {

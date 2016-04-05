@@ -45,5 +45,10 @@ namespace DongLife.Code
         }
 
         public bool AutoSize { get; set; }
+        public string Path
+        {
+            get { return this.backgroundPath; }
+            set { this.backgroundPath = value; }
+        }
     }
 }

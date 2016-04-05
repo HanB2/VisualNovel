@@ -51,6 +51,22 @@ namespace DongLife.Code
                     shiaMother.NormalScale = 1f;
 
                     return shiaMother;
+                case "Janitor":
+                    Actor janitor = new Actor("Janitor", @"Textures/Actors/janitor_normal.png");
+                    janitor.Position = new Vector2(GameSettings.WindowWidth / 2 + 350f, GameSettings.WindowHeight / 2 + 75f);
+                    janitor.CurrentScale = 0.65f;
+                    janitor.NormalScale = 0.65f;
+                    janitor.FocusScale = 0.75f;
+
+                    return janitor;
+                case "Principal":
+                    Actor principal = new Actor("Principal", @"Textures/Actors/principal_normal.png");
+                    principal.Position = new Vector2(GameSettings.WindowWidth / 2 + 300f, GameSettings.WindowHeight / 2 + 75f);
+                    principal.CurrentScale = 0.75f;
+                    principal.NormalScale = 0.75f;
+                    principal.FocusScale = 0.9f;
+
+                    return principal;
                 case "Father":
                     Actor father = new Actor("Father", @"Textures/Actors/foster_father.png");
                     father.Position = new Vector2(980, 425);
