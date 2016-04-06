@@ -10,7 +10,7 @@ namespace DongLife
     public class MainGame : Game
     {
         private SpriteBatch spriteBatch;
-        private SceneManager sceneManager;
+        private VNSceneManager sceneManager;
 
         public MainGame(int width, int height) : base(width, height, "Life with a Massive Dong™")
         {
@@ -22,7 +22,7 @@ namespace DongLife
             spriteBatch = new SpriteBatch(
                 Content.LoadShader(@"Shaders/vert.glsl", @"Shaders/frag.glsl"),
                 Window.Width, Window.Height);
-            sceneManager = new SceneManager(this);
+            sceneManager = new VNSceneManager(this, spriteBatch);
 
             //Message Box init
             VNScene.MessageBox = new Controls.MessageBox(
@@ -75,7 +75,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_DetentionDeath());
             sceneManager.RegisterScene(new BEND_DateDeath());
 
-            sceneManager.SetScene("SCHL_Date");
+            sceneManager.SetScene("MainMenuScene");
         }
         public override void Draw(GameTime gameTime)
         {

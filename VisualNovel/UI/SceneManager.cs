@@ -28,27 +28,27 @@ namespace Minalear.UI
             game.Window.KeyPress += Window_KeyPress;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             currentScene.Draw(spriteBatch);
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             currentScene.Update(gameTime);
         }
 
-        public void RegisterScene(Scene scene)
+        public virtual void RegisterScene(Scene scene)
         {
             scene.Manager = this;
             scenes.Add(scene.Name, scene);
         }
-        public void SetScene(string sceneName)
+        public virtual void SetScene(string sceneName)
         {
             currentScene = scenes[sceneName];
             currentScene.LoadContent(game.Content);
             currentScene.OnEnter();
         }
-        public void ChangeScene(string sceneName)
+        public virtual void ChangeScene(string sceneName)
         {
             currentScene.OnExit();
             currentScene.UnloadContent();

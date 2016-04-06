@@ -125,6 +125,23 @@ namespace Minalear
             GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
             GL.BindVertexArray(0);
         }
+
+        public void DirectDraw(int texture, RectangleF bounds, Color4 color)
+        {
+            this.DirectDraw(texture, bounds, color, RenderFlags.None);
+        }
+        public void DirectDraw(int texture, RectangleF bounds, Color4 color, RenderFlags flags)
+        {
+            shader.UseProgram();
+            setUniforms(new Vector2(bounds.X, bounds.Y), color, 0f, Vector2.Zero, new Vector2(bounds.Width, bounds.Height), flags);
+
+            GL.ActiveTexture(TextureUnit.Texture0);
+            GL.BindTexture(TextureTarget.Texture2D, texture);
+
+            GL.BindVertexArray(vao);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
+            GL.BindVertexArray(0);
+        }
         
         private void setUniforms(Vector2 position, Color4 color, float rotation, Vector2 origin, Vector2 size, RenderFlags flags)
         {
