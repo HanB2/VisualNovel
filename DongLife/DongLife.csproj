@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\Transition.cs" />
     <Compile Include="Code\Actor.cs" />
     <Compile Include="Code\ActorFactory.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
     <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
+    <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
     <Compile Include="TransitionRenderer.cs" />
     <Compile Include="VNSceneManager.cs" />
