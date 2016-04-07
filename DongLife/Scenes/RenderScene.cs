@@ -11,6 +11,7 @@ namespace DongLife.Scenes
     public class RenderScene : Scene
     {
         private Transition transition;
+        private bool transitioning = true;
         
         public RenderScene() : base("RenderScene")
         {
@@ -19,13 +20,17 @@ namespace DongLife.Scenes
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            transition.Draw(spriteBatch);
+            if (transitioning)
+                transition.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }
         public override void Update(GameTime gameTime)
         {
-            transition.Update(gameTime);
+            if (transitioning)
+                transition.Update(gameTime);
+
+            transitioning = !transition.Done();
 
             base.Update(gameTime);
         }

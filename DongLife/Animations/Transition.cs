@@ -55,7 +55,7 @@ namespace DongLife.Animations
             renderer.Begin();
             for (int i = 0; i < index && i < circles.Length; i++)
             {
-                renderer.FillCircle(this.circles[i].Position, this.circles[i].Radius, 32, Color4.White);
+                renderer.FillCircle(this.circles[i].Position, this.circles[i].Radius, 4, Color4.White);
             }
             renderer.End();
         }
@@ -82,6 +82,12 @@ namespace DongLife.Animations
 
             for (int i = 0; i < circles.Length; i++)
                 circles[i].Radius = 0f;
+        }
+        public bool Done()
+        {
+            if (this.circles.Length == 0)
+                return true;
+            return this.circles[this.circles.Length - 1].Radius >= maxRadius;
         }
 
         private struct Circle
