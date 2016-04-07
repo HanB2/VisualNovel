@@ -29,10 +29,16 @@ namespace DongLife
             {
                 //Draw the scene
                 GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboBase);
+                GL.Viewport(0, 0, 1280, 720);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
+
                 base.Draw(spriteBatch);
 
                 //Draw the FBO
                 GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+                GL.Viewport(0, 0, Game.Window.Width, Game.Window.Height);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
+
                 spriteBatch.DirectDraw(texBase, new RectangleF(0, 0, Game.Window.Width, Game.Window.Height), Color4.White);
             }
             else
