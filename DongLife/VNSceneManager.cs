@@ -11,8 +11,9 @@ namespace DongLife
     {
         private SpriteBatch spriteBatch;
 
-        private int fboBase, fboDest;
-        private int texBase, texDest;
+        //Base scene rendering, destination scene rendering, transition rendering
+        private int fboBase, fboDest, fboTran;
+        private int texBase, texDest, texTran;
 
         private bool transitioning = false;
         private float transitionX = 0f;

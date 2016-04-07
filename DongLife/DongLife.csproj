@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\Transition.cs" />
     <Compile Include="Code\Actor.cs" />
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
