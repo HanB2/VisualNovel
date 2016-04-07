@@ -105,8 +105,8 @@
     <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
     <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\RenderScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
+    <Compile Include="TransitionRenderer.cs" />
     <Compile Include="VNSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +123,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Shaders\geovert.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\tfrag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\tvert.glsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Shaders\vert.glsl">
@@ -218,9 +224,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\bedroom.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Backgrounds\city_water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\hospital_room.png">

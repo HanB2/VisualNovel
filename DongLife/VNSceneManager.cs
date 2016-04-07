@@ -4,23 +4,32 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using Minalear;
 using Minalear.UI;
+using DongLife.Animations;
 
 namespace DongLife
 {
     public class VNSceneManager : SceneManager
     {
         private SpriteBatch spriteBatch;
+        private TransitionRenderer renderer;
+        private Transition transition;
 
         //Base scene rendering, destination scene rendering, transition rendering
         private int fboBase, fboDest, fboTran;
         private int texBase, texDest, texTran;
 
         private bool transitioning = false;
-        private float transitionX = 0f;
 
         public VNSceneManager(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
+
+            renderer = new TransitionRenderer(
+                Game.Content.LoadShader(@"Shaders/tvert.glsl", @"Shaders/tfrag.glsl"), 
+                Game.Window.Width, Game.Window.Height);
+            transition = new Transition(16f);
+            transition.LoadContent(Game.Content);
+
             initFBO();
         }
 
@@ -44,8 +53,17 @@ namespace DongLife
             }
             else
             {
-                spriteBatch.DirectDraw(texDest, new RectangleF(0, 0, Game.Window.Width, Game.Window.Height), Color4.White, RenderFlags.Blur | RenderFlags.Desaturate);
-                spriteBatch.DirectDraw(texBase, new RectangleF(transitionX, 0, Game.Window.Width, Game.Window.Height), Color4.White, RenderFlags.Blur | RenderFlags.Desaturate);
+                GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboTran);
+                GL.Viewport(0, 0, Game.Window.Width, Game.Window.Height);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
+
+                transition.Draw(spriteBatch);
+
+                GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+
+                renderer.DrawTransition(texBase, texDest, texTran);
+                //spriteBatch.DirectDraw(texDest, new RectangleF(0, 0, Game.Window.Width, Game.Window.Height), Color4.White, RenderFlags.Blur | RenderFlags.Desaturate);
+                //spriteBatch.DirectDraw(texBase, new RectangleF(0, 0, Game.Window.Width, Game.Window.Height), Color4.White, RenderFlags.Blur | RenderFlags.Desaturate);
             }
         }
         public override void Update(GameTime gameTime)
@@ -54,9 +72,8 @@ namespace DongLife
                 base.Update(gameTime);
             else
             {
-                transitionX -= 500f * (float)gameTime.ElapsedTime.TotalSeconds;
-                if (transitionX < -Game.Window.Width)
-                    transitioning = false;
+                transition.Update(gameTime);
+                transitioning = !transition.Done();
             }
         }
         public override void SetScene(string sceneName)
@@ -66,7 +83,7 @@ namespace DongLife
         public override void ChangeScene(string sceneName)
         {
             transitioning = true;
-            transitionX = 0f;
+            transition.BeginTransition();
 
             //Draw current scene to base fbo
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboBase);
@@ -87,10 +104,12 @@ namespace DongLife
             //FBO
             fboBase = GL.GenFramebuffer();
             fboDest = GL.GenFramebuffer();
+            fboTran = GL.GenFramebuffer();
 
             //Textures
             texBase = GL.GenTexture();
             texDest = GL.GenTexture();
+            texTran = GL.GenTexture();
 
             //Base FBO
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboBase);
@@ -116,6 +135,19 @@ namespace DongLife
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 
             GL.FramebufferTexture(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0, texDest, 0);
+            GL.DrawBuffer(DrawBufferMode.ColorAttachment0);
+
+            //Transition FBO
+            GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboTran);
+            GL.BindTexture(TextureTarget.Texture2D, texTran);
+
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, Game.Window.Width, Game.Window.Height,
+                0, PixelFormat.Rgb, PixelType.UnsignedByte, IntPtr.Zero);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+            GL.FramebufferTexture(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0, texTran, 0);
             GL.DrawBuffer(DrawBufferMode.ColorAttachment0);
         }
     }

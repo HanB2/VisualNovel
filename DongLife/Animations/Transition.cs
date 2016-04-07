@@ -64,13 +64,13 @@ namespace DongLife.Animations
             initTimer += (float)gameTime.ElapsedTime.TotalMilliseconds;
             if (initTimer >= 1f && index < circles.Length)
             {
-                index += 24;
+                index += 64;
                 initTimer = 0f;
             }
 
             for (int i = 0; i < index && i < circles.Length; i++)
             {
-                this.circles[i].Radius += 32f * (float)gameTime.ElapsedTime.TotalSeconds;
+                this.circles[i].Radius += 48f * (float)gameTime.ElapsedTime.TotalSeconds;
                 this.circles[i].Radius = MathHelper.Clamp(this.circles[i].Radius, 0, maxRadius);
             }
         }
