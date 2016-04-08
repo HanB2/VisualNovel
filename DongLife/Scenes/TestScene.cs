@@ -17,8 +17,10 @@ namespace DongLife.Scenes
         
         private GeoPanel panel;
         private GeoInput input;
+        private CreatorOptions genderOption;
 
         private Texture2D maleTexture, femaleTexture;
+        private bool isMale = true;
 
         public TestScene() : base("TestScene")
         {
@@ -43,12 +45,17 @@ namespace DongLife.Scenes
             input = new GeoInput(renderer, 640, 48);
             input.Position = new Vector2(600, 50);
 
+            genderOption = new CreatorOptions(renderer, "Body Type", new Vector2(600, 120), 640);
+            genderOption.OptionSelected += GenderOption_OptionSelected;
+
             AddChild(background);
             AddChild(panel);
             AddChild(input);
+            AddChild(genderOption);
 
             base.LoadContent(content);
         }
+
         public override void UnloadContent()
         {
             maleTexture.Dispose();
@@ -61,7 +68,15 @@ namespace DongLife.Scenes
         {
             base.Draw(spriteBatch);
 
-            spriteBatch.Draw(maleTexture, new RectangleF(75, 100, 400, 548), Color4.White);
+            if (isMale)
+                spriteBatch.Draw(maleTexture, new RectangleF(75, 100, 400, 548), Color4.White);
+            else
+                spriteBatch.Draw(femaleTexture, new RectangleF(75, 100, 400, 548), Color4.White);
+        }
+
+        private void GenderOption_OptionSelected(object sender, int value)
+        {
+            isMale = !isMale;
         }
     }
 
@@ -91,10 +106,6 @@ namespace DongLife.Scenes
             renderer.FillCircle(Position + Size / 2, 10f, 4, Color4.White);
             renderer.End();
         }
-        public override void Update(GameTime gameTime)
-        {
-            
-        }
 
         public override void OnMouseEnter()
         {
@@ -111,7 +122,12 @@ namespace DongLife.Scenes
         public override void OnMouseUp(MouseButtonEventArgs e)
         {
             currentMode = ButtonModes.Hover;
+            if (ButtonPressed != null)
+                ButtonPressed(this, e);
         }
+
+        public delegate void ButtonPressedDelegate(object sender, MouseButtonEventArgs e);
+        public event ButtonPressedDelegate ButtonPressed;
 
         private enum ButtonModes { Normal, Hover, Pressed }
     }
@@ -233,5 +249,111 @@ namespace DongLife.Scenes
 
             bitmap.UnlockBits(data);
         }
+    }
+    public class GeoTextBox : Control
+    {
+        private string text;
+        private float textWidth;
+
+        private Bitmap bitmap;
+        private Graphics graphics;
+        private Texture2D renderTexture;
+        private Font font;
+
+        public GeoTextBox(float width, float height, string text)
+        {
+            this.text = text;
+            Size = new Vector2(width, height);
+            DrawOrder = 0.1f;
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            bitmap = new Bitmap((int)Width, (int)Height);
+            graphics = Graphics.FromImage(bitmap);
+            font = new Font("Comic Sans MS", 24f, FontStyle.Regular);
+
+            textWidth = graphics.MeasureString(text, font).Width;
+
+            initTexture();
+
+            base.LoadContent(content);
+        }
+        public override void UnloadContent()
+        {
+            bitmap.Dispose();
+            graphics.Dispose();
+            font.Dispose();
+            renderTexture.Dispose();
+
+            base.UnloadContent();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(renderTexture, Bounds, Color4.White);
+
+            base.Draw(spriteBatch);
+        }
+
+        private void initTexture()
+        {
+            graphics.Clear(Color.Transparent);
+            graphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
+            graphics.DrawString(text, font, Brushes.White, Width / 2 - textWidth / 2, 0f);
+
+            System.Drawing.Imaging.BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), 
+                System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            renderTexture = new Texture2D(bitmap.Width, bitmap.Height, data.Scan0);
+
+            bitmap.UnlockBits(data);
+        }
+    }
+
+    public class CreatorOptions : Control
+    {
+        private GeoTextBox textBox;
+        private GeoButton left, right;
+
+        public CreatorOptions(GeoRenderer renderer, string text, Vector2 position, float width)
+        {
+            Position = position;
+            Size = new Vector2(width, 48);
+
+            left = new GeoButton(renderer);
+            left.Size = new Vector2(32, 32);
+            left.Position = new Vector2(position.X + 8, position.Y + 8);
+
+            right = new GeoButton(renderer);
+            right.Size = new Vector2(32, 32);
+            right.Position = new Vector2(position.X + width - 40, position.Y + 8);
+
+            textBox = new GeoTextBox(width, 48, text);
+            textBox.Position = position;
+
+            AddChild(left);
+            AddChild(right);
+            AddChild(textBox);
+
+            DrawOrder = 0f;
+
+            left.ButtonPressed += LeftPressed;
+            right.ButtonPressed += RightPressed;
+        }
+
+        private void LeftPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (OptionSelected != null)
+                OptionSelected(this, -1);
+        }
+        private void RightPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (OptionSelected != null)
+                OptionSelected(this, 1);
+        }
+
+        public delegate void OptionSelectedDelegate(object sender, int value);
+        public event OptionSelectedDelegate OptionSelected;
     }
 }
