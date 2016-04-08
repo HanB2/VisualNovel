@@ -35,6 +35,7 @@ namespace DongLife
 
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
+            sceneManager.RegisterScene(new TestScene());
 
             //Game Scenes
             sceneManager.RegisterScene(new IN_HospitalScene());
@@ -75,7 +76,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_DetentionDeath());
             sceneManager.RegisterScene(new BEND_DateDeath());
 
-            sceneManager.SetScene("MainMenuScene");
+            sceneManager.SetScene("TestScene");
         }
         public override void Draw(GameTime gameTime)
         {

@@ -153,17 +153,18 @@ namespace Minalear
         {
             float[] verts = new float[8];
 
-            verts[0] = position.X;
-            verts[1] = position.Y;
+            //0.5 offset to fix rendering issues
+            verts[0] = position.X - 0.5f;
+            verts[1] = position.Y - 0.5f;
 
-            verts[2] = position.X;
-            verts[3] = position.Y + size.Y;
+            verts[2] = position.X - 0.5f;
+            verts[3] = position.Y + size.Y + 0.5f;
 
-            verts[4] = position.X + size.X;
-            verts[5] = position.Y + size.Y;
+            verts[4] = position.X + size.X + 0.5f;
+            verts[5] = position.Y + size.Y + 0.5f;
 
-            verts[6] = position.X + size.X;
-            verts[7] = position.Y;
+            verts[6] = position.X + size.X + 0.5f;
+            verts[7] = position.Y - 0.5f;
 
             createShapeVertexInfo(verts);
         }
