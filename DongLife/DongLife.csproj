@@ -60,10 +60,11 @@
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
     <Compile Include="Code\Sequence.cs" />
+    <Compile Include="Controls\CharacterCreator.cs" />
     <Compile Include="Controls\FatigueBar.cs" />
+    <Compile Include="Controls\IGeoDrawable.cs" />
     <Compile Include="Controls\ShekelsCounter.cs" />
     <Compile Include="Controls\ControlAnimator.cs" />
-    <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Image.cs" />
     <Compile Include="Controls\MessageBox.cs" />
     <Compile Include="Controls\MessageButton.cs" />
