@@ -69,8 +69,8 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceSpecial)Sequences.Sequences[48]).OnSequenceExecution += (sender, e) =>
             {
                 SetActorFocus(NO_ACTOR);
-                player.Animator.FadeOut(800f);
-                janitor.Animator.FadeOut(800f);
+                player.Animator.AnimateFade(0f, 800f);
+                janitor.Animator.AnimateFade(0f, 800f);
 
                 MessageBox.SetText("*As you entered the van from behind, you feel a heavy, blunt object smack into your head.  You are out cold*");
                 Sequences.SetStage(49);

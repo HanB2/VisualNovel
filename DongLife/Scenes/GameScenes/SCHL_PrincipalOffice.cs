@@ -57,7 +57,7 @@ namespace DongLife.Scenes.GameScenes
             {
                 SetActorFocus("Player");
                 MessageBox.SetText("Alright, you son of a bitch, time to meet your maker!");
-                gunAnimator.FadeIn(200f);
+                gunAnimator.AnimateFade(1f, 200f);
 
                 Sequences.SetStage(11);
             };
@@ -68,7 +68,7 @@ namespace DongLife.Scenes.GameScenes
             {
                 SetActorFocus("Principal");
                 MessageBox.SetText("BLURGH!");
-                prinicpal.Animator.FadeOut(800f);
+                prinicpal.Animator.AnimateFade(0f, 800f);
 
                 Sequences.SetStage(14);
             };

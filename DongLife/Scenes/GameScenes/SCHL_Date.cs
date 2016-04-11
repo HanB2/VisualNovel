@@ -99,8 +99,8 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceSpecial)Sequences.Sequences[64]).OnSequenceExecution += (sender, e) =>
             {
                 SetActorFocus(NO_ACTOR);
-                principal.Animator.FadeOut(800f);
-                principalAlt.Animator.FadeIn(800f);
+                principal.Animator.AnimateFade(0f, 800f);
+                principalAlt.Animator.AnimateFade(1f, 800f);
 
                 Sequences.SetStage(65);
             };

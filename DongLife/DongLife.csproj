@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\AnimationFade.cs" />
+    <Compile Include="Animations\AnimationMove.cs" />
+    <Compile Include="Animations\AnimationActorZoom.cs" />
     <Compile Include="Animations\Transition.cs" />
     <Compile Include="Code\Actor.cs" />
     <Compile Include="Code\ActorFactory.cs" />

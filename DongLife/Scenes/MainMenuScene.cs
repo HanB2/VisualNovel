@@ -57,9 +57,9 @@ namespace DongLife.Scenes
             AddChild(beginText);
         }
 
-        private void EarthAnimator_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void EarthAnimator_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            beginAnimator.FadeIn(3500f);
+            beginAnimator.AnimateFade(1f, 3500f);
         }
 
         public override void OnEnter()
@@ -70,8 +70,8 @@ namespace DongLife.Scenes
             titleText.Position = new Vector2(75f, 75f);
 
             //ANIMATE
-            earthAnimator.AnimateSlide(new Vector2(150, 92), 15000f);
-            titleAnimator.AnimateSlide(new Vector2(0, 0), 15000f);
+            earthAnimator.AnimateMove(new Vector2(150, 92), 15000f);
+            titleAnimator.AnimateMove(new Vector2(0, 0), 15000f);
 
             base.OnEnter();
         }
@@ -80,10 +80,10 @@ namespace DongLife.Scenes
         {
             if (earthAnimator.Animating || titleAnimator.Animating)
             {
-                earthAnimator.ForceEndAnimation();
-                titleAnimator.ForceEndAnimation();
+                earthAnimator.ForceEndAllAnimations();
+                titleAnimator.ForceEndAllAnimations();
 
-                beginAnimator.FadeIn(1f);
+                beginAnimator.AnimateFade(1f, 1f);
             }
             else
             {

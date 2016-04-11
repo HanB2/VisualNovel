@@ -70,6 +70,10 @@ namespace Minalear.UI.Controls
             UnloadContent();
             contentLoaded = false;
         }
+        public void SetAlpha(float alpha)
+        {
+            this.drawColor.A = MathHelper.Clamp(alpha, 0f, 1f);
+        }
 
         #region MouseEvents
         public virtual void OnMouseMove(MouseMoveEventArgs e)

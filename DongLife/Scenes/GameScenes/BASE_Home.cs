@@ -66,7 +66,7 @@ namespace DongLife.Scenes.GameScenes
                 int chance = Minalear.RNG.Next(1, 101);
                 if (chance <= 50)
                 {
-                    player.Animator.FadeOut(2000f);
+                    player.Animator.AnimateFade(0f, 2000f);
                     Sequences.SetStage(50); //Succeed
                 }
                 else

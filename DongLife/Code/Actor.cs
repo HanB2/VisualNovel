@@ -57,9 +57,9 @@ namespace DongLife.Code
         {
             hasFocus = focus;
             if (hasFocus)
-                animator.ActorZoom(this, focusScale, 100f);
+                animator.AnimateActorZoom(focusScale, 100f);
             else
-                animator.ActorZoom(this, normalScale, 100f);
+                animator.AnimateActorZoom(normalScale, 100f);
         }
 
         public override void LoadContent(ContentManager content)
@@ -88,6 +88,7 @@ namespace DongLife.Code
             CurrentScale = NormalScale;
         }
 
+        #region Properties
         public string Name
         {
             get { return this.name; }
@@ -123,5 +124,6 @@ namespace DongLife.Code
             get { return this.hasFocus; }
             set { SetFocus(value); }
         }
+        #endregion
     }
 }

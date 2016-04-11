@@ -118,9 +118,9 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(72, new SequenceSpecial("FatherComesIn"));
             ((SequenceSpecial)Sequences.Sequences[72]).OnSequenceExecution += (sender, e) =>
             {
-                father.Animator.FadeIn(1500f);
-                sexyMother.Animator.AnimateSlide(startPos, 1500f);
-                player.Animator.AnimateSlide(playerStartPos, 1500f);
+                father.Animator.AnimateFade(1f, 1500f);
+                sexyMother.Animator.AnimateMove(startPos, 1500f);
+                player.Animator.AnimateMove(playerStartPos, 1500f);
 
                 fatherCameIn = true;
             };
@@ -150,7 +150,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(93, new SequenceSpecial("FatherDead"));
             ((SequenceSpecial)Sequences.Sequences[93]).OnSequenceExecution += (sender, e) =>
             {
-                father.Animator.FadeOut(1000f);
+                father.Animator.AnimateFade(0f, 1000f);
             };
             Sequences.RegisterSequence(94, "Mother", "OH MY GOD.... He's... dead...");
             Sequences.RegisterSequence(95, "Player", "Quick baby... we must flee before the cops arrive.");
@@ -169,48 +169,48 @@ namespace DongLife.Scenes.GameScenes
             base.OnEnter();
 
             //Simulate animation finish to start animation
-            Mother_AnimationEnd(ControlAnimator.AnimationModes.Slide);
+            Mother_AnimationEnd(sexyMother, Animations.AnimationTypes.Move);
             player.Position = new Vector2(GameSettings.WindowWidth / 2, player.Position.Y);
             sexyMother.Position = startPos;
 
             father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
         }
 
-        private void Mother_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Mother_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
             if (!fatherCameIn)
             {
-                if (finishedMode == ControlAnimator.AnimationModes.ActorZoom)
+                if (finishedMode == Animations.AnimationTypes.ActorZoom)
                 {
-                    sexyMother.Animator.AnimateSlide(startPos, 1500f);
+                    sexyMother.Animator.AnimateMove(startPos, 1500f);
                 }
-                else if (finishedMode == ControlAnimator.AnimationModes.Slide)
+                else if (finishedMode == Animations.AnimationTypes.Move)
                 {
                     Vector2 currentPos = sexyMother.Position;
 
                     up = !up;
                     if (up)
                     {
-                        sexyMother.Animator.AnimateSlide(new Vector2(currentPos.X + 15f, currentPos.Y - 30f), 1500f);
+                        sexyMother.Animator.AnimateMove(new Vector2(currentPos.X + 15f, currentPos.Y - 30f), 1500f);
                     }
                     else
                     {
-                        sexyMother.Animator.AnimateSlide(new Vector2(currentPos.X - 10f, currentPos.Y + 30f), 1500f);
+                        sexyMother.Animator.AnimateMove(new Vector2(currentPos.X - 10f, currentPos.Y + 30f), 1500f);
                     }
                 }
             }
             else
             {
-                if (finishedMode == ControlAnimator.AnimationModes.Slide && Sequences.GetCurrentSequence().SequenceStage == 72)
+                if (finishedMode == Animations.AnimationTypes.Move && Sequences.GetCurrentSequence().SequenceStage == 72)
                 {
                     Sequences.SetStage(73);
                     Sequences.ExecuteSequence(this);
                 }
             }
         }
-        private void Father_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Father_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (finishedMode == ControlAnimator.AnimationModes.FadeOut && Sequences.GetCurrentSequence().SequenceStage == 93)
+            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 93)
             {
                 Sequences.SetStage(94);
                 Sequences.ExecuteSequence(this);

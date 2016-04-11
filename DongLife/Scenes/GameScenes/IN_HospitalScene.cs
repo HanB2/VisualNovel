@@ -56,9 +56,10 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(04, new SequenceSpecial("SpawnPlayer"));
             (Sequences.Sequences[04] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
-                doctor.Animator.AnimateSlide(new Vector2(880f, doctor.PosY), 250f);
+                doctor.Animator.AnimateMove(new Vector2(800f, doctor.PosY), 250f);
+
                 player.Visible = true;
-                player.Animator.FadeIn(250f);
+                player.Animator.AnimateFade(1f, 250f);
             };
             Sequences.RegisterSequence(05, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
             Sequences.RegisterSequence(06, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
@@ -69,13 +70,13 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(11, new SequenceSpecial("SpawnParents"));
             (Sequences.Sequences[11] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
-                doctor.Animator.FadeOut(250f);
+                doctor.Animator.AnimateFade(0f, 250f);
 
                 mother.Visible = true;
                 father.Visible = true;
 
-                mother.Animator.FadeIn(500f);
-                father.Animator.FadeIn(500f);
+                mother.Animator.AnimateFade(1f, 500f);
+                father.Animator.AnimateFade(1f, 500f);
             };
             Sequences.RegisterSequence(12, new SequenceMessage("Father", "Hello, son.  I'm your new father."));
             Sequences.RegisterSequence(13, new SequenceMessage("Player", "Wut!?"));
@@ -89,8 +90,8 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(21, new SequenceSpecial("FatherStormsOut"));
             (Sequences.Sequences[21] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
-                father.Animator.FadeOut(100f);
-                mother.Animator.AnimateSlide(new Vector2(880f, mother.PosY), 250f);
+                father.Animator.AnimateFade(0f, 100f);
+                mother.Animator.AnimateMove(new Vector2(880f, mother.PosY), 250f);
             };
             Sequences.RegisterSequence(22, new SequenceMessage("Mother", "Don't worry, he's just a little hot headed.  But my... you seem to be a strapping young man ;)"));
             Sequences.RegisterSequence(23, new SequenceDecision("Player",
@@ -157,20 +158,20 @@ namespace DongLife.Scenes.GameScenes
             base.OnEnter();
         }
 
-        private void Animator_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Animator_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (Sequences.GetCurrentSequence().SequenceStage == 4 && finishedMode == ControlAnimator.AnimationModes.Slide)
+            if (Sequences.GetCurrentSequence().SequenceStage == 4 && finishedMode == Animations.AnimationTypes.Move)
             {
                 Sequences.ProgressStage();
                 Sequences.ExecuteSequence(this);
             }
-            else if (Sequences.GetCurrentSequence().SequenceStage == 11 && finishedMode == ControlAnimator.AnimationModes.FadeIn)
+            else if (Sequences.GetCurrentSequence().SequenceStage == 11 && finishedMode == Animations.AnimationTypes.Fade)
             {
                 Sequences.ProgressStage();
                 Sequences.ExecuteSequence(this);
                 doctor.Visible = false;
             }
-            else if (Sequences.GetCurrentSequence().SequenceStage == 21 && finishedMode == ControlAnimator.AnimationModes.FadeOut)
+            else if (Sequences.GetCurrentSequence().SequenceStage == 21 && finishedMode == Animations.AnimationTypes.Fade)
             {
                 Sequences.ProgressStage();
                 Sequences.ExecuteSequence(this);

@@ -32,7 +32,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(3, new SequenceSpecial("BumpIntoJanitor"));
             ((SequenceSpecial)Sequences.Sequences[3]).OnSequenceExecution += (sender, e) =>
             {
-                janitor.Animator.FadeIn(800f);
+                janitor.Animator.AnimateFade(1f, 800f);
                 Sequences.SetStage(4);
             };
             
@@ -64,7 +64,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(23, new SequenceSpecial("PrincipalShowsUp"));
             ((SequenceSpecial)Sequences.Sequences[23]).OnSequenceExecution += (sender, e) =>
             {
-                principal.Animator.FadeIn(800f);
+                principal.Animator.AnimateFade(1f, 800f);
                 Sequences.SetStage(24);
             };
             Sequences.RegisterSequence(24, "Player", "Who the hell are you?");
@@ -72,8 +72,8 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(26, new SequenceSpecial("PrincipalLeaves"));
             ((SequenceSpecial) Sequences.Sequences[26]).OnSequenceExecution += (sender, e) =>
             {
-                principal.Animator.FadeOut(800f);
-                janitor.Animator.FadeOut(800f);
+                principal.Animator.AnimateFade(0f, 800f);
+                janitor.Animator.AnimateFade(0f, 800f);
                 Sequences.SetStage(27);
             };
             Sequences.RegisterSequence(27, new SequenceDecision("Player",
@@ -92,7 +92,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(41, new SequenceSpecial("HelpJanitorUp"));
             ((SequenceSpecial)Sequences.Sequences[41]).OnSequenceExecution += (sender, e) =>
             {
-                janitor.Animator.AnimateSlide(janitorNormalPos, 800f);
+                janitor.Animator.AnimateMove(janitorNormalPos, 800f);
                 Sequences.SetStage(42);
             };
             Sequences.RegisterSequence(42, "Janitor", "Why thank you young man!  Boy, most kids would just kick me while I'm down, but you helped me up!  I appreciate it.");
@@ -126,7 +126,7 @@ namespace DongLife.Scenes.GameScenes
                 Sequences.SetStage(63);
                 SetActorFocus("Player");
                 MessageBox.SetText("Wonder what his problem is...");
-                janitor.Animator.FadeOut(800f);
+                janitor.Animator.AnimateFade(0f, 800f);
 
                 GameManager.PissedOffJanitor = true;
             };

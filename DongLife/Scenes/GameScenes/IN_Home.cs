@@ -31,7 +31,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(2, new SequenceSpecial("FatherStormsOut"));
             (Sequences.Sequences[2] as SequenceSpecial).OnSequenceExecution += (sender, id) =>
             {
-                father.Animator.FadeOut(350f);
+                father.Animator.AnimateFade(0f, 350f);
             };
             Sequences.RegisterSequence(3, "Mother", "Don't mind him, I'm sure he'll come around.");
             Sequences.RegisterSequence(4, new SequenceDecision("Player",
@@ -78,10 +78,10 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(51, new SequenceSceneTransition("BASE_Home")); //Transition to Home (normal branch)
         }
 
-        private void Animator_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Animator_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
             if (Sequences.GetCurrentSequence().SequenceStage == 2 && 
-                finishedMode == ControlAnimator.AnimationModes.FadeOut)
+                finishedMode == Animations.AnimationTypes.Fade)
             {
                 Sequences.ProgressStage();
                 Sequences.ExecuteSequence(this);

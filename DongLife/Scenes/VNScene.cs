@@ -70,7 +70,7 @@ namespace DongLife.Scenes
             foreach (Actor actor in actors.Values)
             {
                 if (actor.Animator.Animating)
-                    actor.Animator.ForceEndAnimation();
+                    actor.Animator.ForceEndAllAnimations();
             }
 
             base.OnMouseUp(e);

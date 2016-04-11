@@ -70,8 +70,8 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(1, new SequenceSpecial("FatherLeaves"));
             ((SequenceSpecial)Sequences.Sequences[1]).OnSequenceExecution += (sender, e) =>
             {
-                father.Animator.FadeOut(1000f);
-                //player.Animator.AnimateSlide(new Vector2(GameSettings.WindowWidth / 2, player.PosY), 1250f);
+                father.Animator.AnimateFade(0f, 1000f);
+                //player.Animator.AnimateMove(new Vector2(GameSettings.WindowWidth / 2, player.PosY), 1250f);
             };
             Sequences.RegisterSequence(2, "Player", "Well... that sucks.  Wonder what I'll do now.");
             Sequences.RegisterSequence(3, new SequenceDecision("Player",
@@ -85,7 +85,7 @@ namespace DongLife.Scenes.GameScenes
                     timesScreamed++;
                     if (timesScreamed == timesToWait)
                     {
-                        kingMole.Animator.FadeIn(800f);
+                        kingMole.Animator.AnimateFade(1f, 800f);
                     }
                     else
                     {
@@ -186,14 +186,14 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(48, new SequenceSpecial("MolePeopleAppear"));
             ((SequenceSpecial)Sequences.Sequences[48]).OnSequenceExecution += (sender, e) =>
             {
-                molePeople.Animator.FadeIn(800f);
+                molePeople.Animator.AnimateFade(1f, 800f);
                 Sequences.SetStage(49);
             };
             Sequences.RegisterSequence(49, "Player", "Oh boy...");
             Sequences.RegisterSequence(50, new SequenceSpecial("NuclearFallout"));
             ((SequenceSpecial)Sequences.Sequences[50]).OnSequenceExecution += (sender, e) =>
             {
-                nuclearAnimator.FadeIn(800f);
+                nuclearAnimator.AnimateFade(1f, 800f);
                 Sequences.SetStage(51);
                 Sequences.ExecuteSequence(this);
             };
@@ -201,7 +201,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(52, new SequenceSpecial("NuclearFallout"));
             ((SequenceSpecial)Sequences.Sequences[52]).OnSequenceExecution += (sender, e) =>
             {
-                nuclearAnimator.FadeOut(800f);
+                nuclearAnimator.AnimateFade(0f, 800f);
                 Sequences.SetStage(53);
                 Sequences.ExecuteSequence(this);
             };
@@ -269,17 +269,17 @@ namespace DongLife.Scenes.GameScenes
             nuclearFallout.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
         }
 
-        private void Father_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Father_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (finishedMode == ControlAnimator.AnimationModes.FadeOut && Sequences.GetCurrentSequence().SequenceStage == 1)
+            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 1)
             {
                 Sequences.SetStage(2);
                 Sequences.ExecuteSequence(this);
             }
         }
-        private void KingMole_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void KingMole_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (finishedMode == ControlAnimator.AnimationModes.FadeIn && Sequences.GetCurrentSequence().SequenceStage == 3)
+            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 3)
             {
                 Sequences.SetStage(20);
                 Sequences.ExecuteSequence(this);

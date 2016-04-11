@@ -33,8 +33,8 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(4, new SequenceSpecial("MomReveal"));
             ((SequenceSpecial)Sequences.Sequences[4]).OnSequenceExecution += (sender, e) =>
             {
-                mother.Animator.FadeOut(1500f);
-                shiaMother.Animator.FadeIn(1500f);
+                mother.Animator.AnimateFade(0f, 1500f);
+                shiaMother.Animator.AnimateFade(1f, 1500f);
             };
             Sequences.RegisterSequence(5, "ShiaMother", "My name is actually Shia LaBeouf and I love you.");
             Sequences.RegisterSequence(6, new SequenceDecision("Player",
@@ -66,9 +66,9 @@ namespace DongLife.Scenes.GameScenes
             shiaMother.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
         }
 
-        private void Mother_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Mother_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (finishedMode == ControlAnimator.AnimationModes.FadeIn && Sequences.GetCurrentSequence().SequenceStage == 4)
+            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 4)
             {
                 Sequences.SetStage(5);
                 Sequences.ExecuteSequence(this);
