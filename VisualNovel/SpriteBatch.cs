@@ -6,7 +6,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Minalear
 {
-    public class SpriteBatch
+    public class SpriteBatch : IDisposable
     {
         private int vao;
         private Shader shader;
@@ -142,7 +142,12 @@ namespace Minalear
             GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
             GL.BindVertexArray(0);
         }
-        
+
+        public void Dispose()
+        {
+            this.shader.Dispose();
+        }
+
         private void setUniforms(Vector2 position, Color4 color, float rotation, Vector2 origin, Vector2 size, RenderFlags flags)
         {
             //Matrix

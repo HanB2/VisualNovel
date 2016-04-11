@@ -5,7 +5,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Minalear
 {
-    public class GeoRenderer
+    public class GeoRenderer : IDisposable
     {
         private Shader shader;
 
@@ -118,6 +118,11 @@ namespace Minalear
 
             createShapeVertexInfo(vertices);
             GL.DrawArrays(PrimitiveType.Polygon, 0, vertices.Length / 2);
+        }
+
+        public void Dispose()
+        {
+            this.shader.Dispose();
         }
 
         private void createCircleVertexInfo(Vector2 center, float radius, int sides)
