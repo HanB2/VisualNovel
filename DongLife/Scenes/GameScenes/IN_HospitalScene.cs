@@ -19,7 +19,7 @@ namespace DongLife.Scenes.GameScenes
             textInput.Position = new Vector2(
                 GameSettings.WindowWidth / 2 - 100,
                 GameSettings.WindowHeight / 2 - 16);
-            textInput.OnSubmitText += TextInput_OnSubmitText;
+            //textInput.OnSubmitText += TextInput_OnSubmitText;
             textInput.Enabled = false;
             textInput.Visible = false;
 
@@ -153,7 +153,7 @@ namespace DongLife.Scenes.GameScenes
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
             
-            textInput.SetTextBox("Robert");
+            textInput.SetText("Robert");
 
             base.OnEnter();
         }

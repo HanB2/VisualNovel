@@ -45,7 +45,7 @@ namespace DongLife.Controls
             base.OnMouseUp(e);
         }
 
-        public event ButtonEventDelegate Click;
-        public event ButtonEventDelegate Hover;
+        public event ButtonPressedDelegate Click;
+        public event ButtonPressedDelegate Hover;
     }
 }

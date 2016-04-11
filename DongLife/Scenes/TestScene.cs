@@ -300,7 +300,7 @@ namespace DongLife.Scenes
         private Texture2D renderTexture;
         private Font font;
 
-        private string buffer = String.Empty;
+        private string buffer = string.Empty;
         private const int MAX_BUFFER = 32;
 
         public GeoInput(GeoRenderer renderer, int width, int height)
