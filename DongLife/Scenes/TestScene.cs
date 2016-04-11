@@ -271,7 +271,6 @@ namespace DongLife.Scenes
 
         public delegate void ButtonPressedDelegate(object sender, MouseButtonEventArgs e);
         public event ButtonPressedDelegate ButtonPressed;
-
         private enum ButtonModes { Normal, Hover, Pressed }
     }
     public class GeoPanel : Control
