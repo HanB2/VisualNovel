@@ -10,7 +10,10 @@ namespace DongLife
     public class MainGame : Game
     {
         private SpriteBatch spriteBatch;
+        private AudioPlayer player;
         private VNSceneManager sceneManager;
+
+        private AudioClip clip;
 
         public MainGame(int width, int height) : base(width, height, "Life with a Massive Dong™")
         {
@@ -23,6 +26,7 @@ namespace DongLife
                 Content.LoadShader(@"Shaders/vert.glsl", @"Shaders/frag.glsl"),
                 Window.Width, Window.Height);
             sceneManager = new VNSceneManager(this, spriteBatch);
+            player = new AudioPlayer();
 
             //Message Box init
             VNScene.MessageBox = new Controls.MessageBox(
@@ -84,11 +88,15 @@ namespace DongLife
         public override void Update(GameTime gameTime)
         {
             sceneManager.Update(gameTime);
+            player.Update(gameTime);
         }
 
         public override void LoadContent()
         {
             VNScene.MessageBox.LoadContent(Content);
+            clip = Content.LoadAudioFile(@"Audio/help1.wav");
+
+            player.PlayBackgroundTrack(clip, true);
 
             base.LoadContent();
         }
