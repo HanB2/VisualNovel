@@ -5,13 +5,19 @@ using Minalear.UI.Controls;
 
 namespace DongLife.Controls
 {
-    public class GeoPanel : Control, IGeoDrawable
+    public class GeoPanel : Control
     {
-        void IGeoDrawable.Draw(GeoRenderer renderer)
+        public GeoPanel()
         {
-            renderer.FillRect(Position, Size, new Color4(0.2f, 0.2f, 0.2f, 0.8f));
-            renderer.DrawRect(Position, Size, Color4.White);
+            DrawOrder = 1f;
         }
-        void IGeoDrawable.Update(GameTime gameTime) { }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            GameManager.Renderer.Begin();
+            GameManager.Renderer.FillRect(Position, Size, new Color4(0.2f, 0.2f, 0.2f, 0.8f));
+            GameManager.Renderer.DrawRect(Position, Size, Color4.White);
+            GameManager.Renderer.End();
+        }
     }
 }

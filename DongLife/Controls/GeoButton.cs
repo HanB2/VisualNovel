@@ -5,24 +5,30 @@ using Minalear.UI.Controls;
 
 namespace DongLife.Controls
 {
-    public class GeoButton : Control, IGeoDrawable
+    public class GeoButton : Control
     {
         private ButtonModes currentMode = ButtonModes.Normal;
 
-        void IGeoDrawable.Draw(GeoRenderer renderer)
+        public GeoButton()
         {
+            DrawOrder = 0.4f;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            GameManager.Renderer.Begin();
             //Fill
             if (currentMode == ButtonModes.Normal)
-                renderer.FillRect(Position, Size, new Color4(0.3f, 0.3f, 0.3f, 1f));
+                GameManager.Renderer.FillRect(Position, Size, new Color4(0.3f, 0.3f, 0.3f, 1f));
             else if (currentMode == ButtonModes.Hover)
-                renderer.FillRect(Position, Size, new Color4(0.5f, 0.5f, 0.5f, 1f));
+                GameManager.Renderer.FillRect(Position, Size, new Color4(0.5f, 0.5f, 0.5f, 1f));
             else //Pressed
-                renderer.FillRect(Position, Size, new Color4(0.2f, 0.2f, 0.2f, 1f));
+                GameManager.Renderer.FillRect(Position, Size, new Color4(0.2f, 0.2f, 0.2f, 1f));
 
             //Border
-            renderer.DrawRect(Position, Size, Color4.White);
+            GameManager.Renderer.DrawRect(Position, Size, Color4.White);
+            GameManager.Renderer.End();
         }
-        void IGeoDrawable.Update(GameTime gameTime) { }
 
         public override void OnMouseEnter()
         {

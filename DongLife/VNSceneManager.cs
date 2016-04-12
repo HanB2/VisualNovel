@@ -10,6 +10,7 @@ namespace DongLife
 {
     public class VNSceneManager : SceneManager
     {
+        //SpriteBatch used to render outside of Draw()
         private SpriteBatch spriteBatch;
         private TransitionRenderer renderer;
         private Transition transition;
@@ -27,6 +28,10 @@ namespace DongLife
             renderer = new TransitionRenderer(
                 Game.Content.LoadShader(@"Shaders/tvert.glsl", @"Shaders/tfrag.glsl"), 
                 Game.Window.Width, Game.Window.Height);
+            GameManager.Renderer = new GeoRenderer(
+                Game.Content.LoadShader(@"Shaders/geovert.glsl", @"Shaders/geofrag.glsl"),
+                Game.Window.Width, Game.Window.Height);
+
             transition = new Transition(16f);
             transition.LoadContent(Game.Content);
 

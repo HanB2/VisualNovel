@@ -23,7 +23,7 @@ namespace DongLife.Controls
         {
             Size = new Vector2(width, height);
             labelText = text;
-            this.DrawOrder = 0.1f;
+            this.DrawOrder = 0.5f;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

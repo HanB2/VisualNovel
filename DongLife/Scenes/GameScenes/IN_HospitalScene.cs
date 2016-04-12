@@ -2,12 +2,13 @@
 using OpenTK;
 using DongLife.Code;
 using DongLife.Controls;
+using Minalear;
 
 namespace DongLife.Scenes.GameScenes
 {
     public class IN_HospitalScene : VNScene
     {
-        private TextInput textInput;
+        private CharacterCreator creator;
         private Actor doctor, player;
         private Actor mother, father;
 
@@ -15,13 +16,10 @@ namespace DongLife.Scenes.GameScenes
         {
             background = new Background(@"Textures/Backgrounds/hospital_room.png");
 
-            textInput = new TextInput(200, 32);
-            textInput.Position = new Vector2(
-                GameSettings.WindowWidth / 2 - 100,
-                GameSettings.WindowHeight / 2 - 16);
-            //textInput.OnSubmitText += TextInput_OnSubmitText;
-            textInput.Enabled = false;
-            textInput.Visible = false;
+            creator = new CharacterCreator();
+            creator.Enabled = false;
+            creator.Visible = false;
+            creator.CharacterCreated += CharacterCreatedEvent;
 
             doctor = new Actor("Doctor", @"Textures/Actors/doctor.png");
             doctor.NormalScale = 0.6f;
@@ -41,7 +39,7 @@ namespace DongLife.Scenes.GameScenes
             player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
 
             AddChild(background);
-            AddChild(textInput);
+            AddChild(creator);
 
             RegisterActor(doctor);
             RegisterActor(player);
@@ -141,8 +139,8 @@ namespace DongLife.Scenes.GameScenes
 
         public override void OnEnter()
         {
-            textInput.Enabled = true;
-            textInput.Visible = true;
+            creator.Enabled = true;
+            creator.Visible = true;
 
             player.Visible = false;
             mother.Visible = false;
@@ -152,8 +150,8 @@ namespace DongLife.Scenes.GameScenes
             doctor.Position = new Vector2(640, 425);
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
-            
-            textInput.SetText("Robert");
+
+            MessageBox.Visible = false;
 
             base.OnEnter();
         }
@@ -178,15 +176,18 @@ namespace DongLife.Scenes.GameScenes
                 father.Visible = false;
             }
         }
-
         private void TextInput_OnSubmitText(object sender, string text)
         {
             GameSettings.PlayerName = text.Trim();
             Sequences.SetStage(2);
             Sequences.ExecuteSequence(this);
 
-            textInput.Enabled = false;
-            textInput.Visible = false;
+            creator.Enabled = false;
+            creator.Visible = false;
+        }
+        private void CharacterCreatedEvent(object sender)
+        {
+
         }
     }
 }

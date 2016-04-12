@@ -65,7 +65,6 @@
     <Compile Include="Controls\FatigueBar.cs" />
     <Compile Include="Controls\GeoButton.cs" />
     <Compile Include="Controls\GeoPanel.cs" />
-    <Compile Include="Controls\IGeoDrawable.cs" />
     <Compile Include="Controls\LabelBox.cs" />
     <Compile Include="Controls\ShekelsCounter.cs" />
     <Compile Include="Controls\ControlAnimator.cs" />

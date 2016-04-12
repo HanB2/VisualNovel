@@ -4,13 +4,15 @@ using Minalear.UI.Controls;
 
 namespace DongLife.Controls
 {
-    public class CreatorOptionSelector : Control, IGeoDrawable
+    public class CreatorOptionSelector : Control
     {
         private LabelBox labelBox;
         private GeoButton left, right;
 
         public CreatorOptionSelector(string text, Vector2 position, float width)
         {
+            DrawOrder = 0.5f;
+
             Position = position;
             Size = new Vector2(width, 48f);
 
@@ -25,23 +27,12 @@ namespace DongLife.Controls
             labelBox = new LabelBox(width, 48, text);
             labelBox.Position = position;
 
+            AddChild(left);
+            AddChild(right);
             AddChild(labelBox);
-
-            DrawOrder = 0f;
 
             left.ButtonPressed += LeftPressed;
             right.ButtonPressed += RightPressed;
-        }
-
-        void IGeoDrawable.Draw(GeoRenderer renderer)
-        {
-            (left as IGeoDrawable).Draw(renderer);
-            (right as IGeoDrawable).Draw(renderer);
-        }
-        void IGeoDrawable.Update(GameTime gameTime)
-        {
-            (left as IGeoDrawable).Update(gameTime);
-            (right as IGeoDrawable).Update(gameTime);
         }
 
         private void LeftPressed(object sender, OpenTK.Input.MouseButtonEventArgs e)

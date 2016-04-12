@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Minalear;
 
 namespace DongLife
 {
@@ -7,6 +7,8 @@ namespace DongLife
         public static bool PissedOffJanitor;
         public static string ChosenDate = "MOVIES";
         public static bool DeniedFeelings = false;
+
+        public static GeoRenderer Renderer;
 
         public static void Init()
         {
