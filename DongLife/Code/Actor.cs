@@ -48,10 +48,6 @@ namespace DongLife.Code
                 spriteBatch.Draw(actorTexture, Position, this.DrawColor, 0f, origin, currentScale, RenderFlags.Blur | RenderFlags.Desaturate);
             }
         }
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
 
         public void SetFocus(bool focus)
         {
@@ -79,13 +75,17 @@ namespace DongLife.Code
         public void Reset()
         {
             //Reset Alpha
-            Color4 color = this.DrawColor;
-            color.A = 1f;
-            this.DrawColor = color;
+            SetAlpha(1f);
 
             //Reset Zoom
-            HasFocus = false;
+            SetFocus(false);
+            Animator.ForceEndAllAnimations();
             CurrentScale = NormalScale;
+        }
+
+        public override string ToString()
+        {
+            return "Actor - " + this.Name;
         }
 
         #region Properties

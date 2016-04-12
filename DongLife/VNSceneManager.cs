@@ -5,6 +5,7 @@ using OpenTK.Graphics.OpenGL;
 using Minalear;
 using Minalear.UI;
 using DongLife.Animations;
+using OpenTK.Input;
 
 namespace DongLife
 {
@@ -102,6 +103,16 @@ namespace DongLife
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, fboDest);
             base.Draw(spriteBatch);
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+        }
+
+        protected override void Window_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (transitioning)
+            {
+                transitioning = false;
+            }
+
+            base.Window_MouseUp(sender, e);
         }
 
         private void initFBO()

@@ -32,7 +32,6 @@ namespace DongLife.Scenes.GameScenes
 
             player = ActorFactory.CreateActor("Player");
             player.Position = new Vector2(300f, 650f);
-            player.Visible = false;
             player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
 
             AddChild(background);
@@ -58,12 +57,10 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(03, new SequenceSpecial("SpawnPlayer"));
             (Sequences.Sequences[03] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
-                doctor.Animator.AnimateMove(new Vector2(800f, doctor.PosY), 2500f);
-                //doctor.Animator.AnimateFade(0f, 2500f);
-
-                player.Visible = true;
-                player.Animator.AnimateFade(1f, 2500f);
-                //Sequences.ProgressStage();
+                doctor.Animator.AnimateMove(new Vector2(800f, doctor.PosY), 800f);
+                
+                player.Animator.AnimateFade(1f, 800f);
+                Sequences.ProgressStage();
             };
             Sequences.RegisterSequence(04, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
             Sequences.RegisterSequence(05, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
@@ -75,9 +72,6 @@ namespace DongLife.Scenes.GameScenes
             (Sequences.Sequences[10] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
                 doctor.Animator.AnimateFade(0f, 250f);
-
-                mother.Visible = true;
-                father.Visible = true;
 
                 mother.Animator.AnimateFade(1f, 500f);
                 father.Animator.AnimateFade(1f, 500f);
@@ -147,16 +141,15 @@ namespace DongLife.Scenes.GameScenes
 
         public override void OnEnter()
         {
-            player.Visible = false;
-            mother.Visible = false;
-            father.Visible = false;
+            base.OnEnter();
+
             player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            mother.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
 
             doctor.Position = new Vector2(640, 425);
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
-
-            base.OnEnter();
         }
 
         private void TextInput_OnSubmitText(object sender, string text)

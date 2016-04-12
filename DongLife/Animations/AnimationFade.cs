@@ -19,7 +19,6 @@ namespace DongLife.Animations
 
         public override void Update(GameTime gameTime)
         {
-            //Actor fading in seems to be broken at the moment for no immediate reason
             float alpha = (targetAlpha - sourceAlpha) * Percent + sourceAlpha;
             this.Control.SetAlpha(alpha);
 

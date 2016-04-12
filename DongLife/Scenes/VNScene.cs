@@ -63,15 +63,14 @@ namespace DongLife.Scenes
             if (actorName != "NONE" && !actors[actorName].HasFocus)
                 actors[actorName].SetFocus(true);
         }
-
-        //TODO: Allow clicking the messagebox to skip animations
+        
         public override void OnMouseUp(MouseButtonEventArgs e)
         {
-            /*foreach (Actor actor in actors.Values)
+            foreach (Actor actor in actors.Values)
             {
                 if (actor.Animator.Animating)
                     actor.Animator.ForceEndAllAnimations();
-            }*/
+            }
 
             base.OnMouseUp(e);
         }
