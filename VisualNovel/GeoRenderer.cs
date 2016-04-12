@@ -97,6 +97,20 @@ namespace Minalear
             createShapeVertexInfo(vertices);
             GL.DrawArrays(PrimitiveType.LineLoop, 0, vertices.Length / 2);
         }
+        public void DrawPixel(Vector2 position, Color4 color)
+        {
+            GL.Uniform4(colorLoc, color);
+
+            createShapeVertexInfo(new float[] { position.X, position.Y });
+            GL.DrawArrays(PrimitiveType.Points, 0, 2);
+        }
+        public void DrawPixels(float[] vertices, Color4 color)
+        {
+            GL.Uniform4(colorLoc, color);
+
+            createShapeVertexInfo(vertices);
+            GL.DrawArrays(PrimitiveType.Points, 0, vertices.Length / 2);
+        }
 
         public void FillCircle(Vector2 position, float radius, int sides, Color4 color)
         {

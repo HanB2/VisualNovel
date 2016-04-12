@@ -90,7 +90,8 @@ namespace Minalear
 
                     int data_chunk_size = reader.ReadInt32();
 
-                    clip = new AudioClip(reader.ReadBytes((int)reader.BaseStream.Length), num_channels, bits_per_sample, sample_rate);
+                    byte[] dataStream = reader.ReadBytes(data_chunk_size);
+                    clip = new AudioClip(dataStream, num_channels, bits_per_sample, sample_rate);
                 }
             }
 
