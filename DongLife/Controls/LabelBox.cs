@@ -87,5 +87,11 @@ namespace DongLife.Controls
 
             bitmap.UnlockBits(data);
         }
+
+        public string Text
+        {
+            get { return this.labelText; }
+            set { this.SetText(value); }
+        }
     }
 }

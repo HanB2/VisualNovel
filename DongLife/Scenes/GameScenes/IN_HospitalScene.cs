@@ -3,6 +3,7 @@ using OpenTK;
 using DongLife.Code;
 using DongLife.Controls;
 using Minalear;
+using OpenTK.Input;
 
 namespace DongLife.Scenes.GameScenes
 {
@@ -29,10 +30,6 @@ namespace DongLife.Scenes.GameScenes
             mother = ActorFactory.CreateActor("Mother");
             father = ActorFactory.CreateActor("Father");
 
-            doctor.Animator.AnimationEnd += Animator_AnimationEnd;
-            mother.Animator.AnimationEnd += Animator_AnimationEnd;
-            father.Animator.AnimationEnd += Animator_AnimationEnd;
-
             player = ActorFactory.CreateActor("Player");
             player.Position = new Vector2(300f, 650f);
             player.Visible = false;
@@ -47,26 +44,35 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(father);
 
             #region Sequences
-            Sequences.RegisterSequence(00, new SequenceMessage("Doctor", "Hello!  I seem to have misplaced all of my documentation about you, so... what is your name?"));
-            Sequences.RegisterSequence(01, new SequenceStageTransition(0));
-            Sequences.RegisterSequence(02, new SequenceMessage("Doctor", "Nice to meet you {PLAYERNAME}.  Now... can you describe your physical appearance?  I seem to have misplaced my glasses."));
-            Sequences.RegisterSequence(03, new SequenceMessage(NO_ACTOR, "PRETEND THERE IS A CHARACTER CREATOR HERE!"));
-            Sequences.RegisterSequence(04, new SequenceSpecial("SpawnPlayer"));
-            (Sequences.Sequences[04] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(00, new SequenceMessage("Doctor", "Hello!  I seem to have misplaced all of my documentation and my glasses... So who the hell are you?"));
+            Sequences.RegisterSequence(01, new SequenceSpecial("CharacterCreator"));
+            ((SequenceSpecial)Sequences.Sequences[01]).OnSequenceExecution += (sender, e) =>
             {
-                doctor.Animator.AnimateMove(new Vector2(800f, doctor.PosY), 250f);
+                creator.Visible = true;
+                creator.Enabled = true;
+
+                MessageBox.Visible = false;
+                MessageBox.Enabled = false;
+            };
+            Sequences.RegisterSequence(02, new SequenceMessage("Doctor", "Nice to meet you {PLAYERNAME}.  You sound absolutely hideous!"));
+            Sequences.RegisterSequence(03, new SequenceSpecial("SpawnPlayer"));
+            (Sequences.Sequences[03] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            {
+                doctor.Animator.AnimateMove(new Vector2(800f, doctor.PosY), 2500f);
+                //doctor.Animator.AnimateFade(0f, 2500f);
 
                 player.Visible = true;
-                player.Animator.AnimateFade(1f, 250f);
+                player.Animator.AnimateFade(1f, 2500f);
+                //Sequences.ProgressStage();
             };
-            Sequences.RegisterSequence(05, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
-            Sequences.RegisterSequence(06, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
-            Sequences.RegisterSequence(07, new SequenceMessage("Doctor", "Don't be testy now.  You're parents are dead and gone.  You have been placed into a foster home by the state."));
-            Sequences.RegisterSequence(08, new SequenceMessage("Player", "Wut!?"));
-            Sequences.RegisterSequence(09, new SequenceMessage("Doctor", "Yea, people typically don't survive 37 shots to the head.  Your new foster parents are outside and they're excited to meet you."));
-            Sequences.RegisterSequence(10, new SequenceMessage("Player", "Wut!?"));
-            Sequences.RegisterSequence(11, new SequenceSpecial("SpawnParents"));
-            (Sequences.Sequences[11] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(04, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
+            Sequences.RegisterSequence(05, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
+            Sequences.RegisterSequence(06, new SequenceMessage("Doctor", "Don't be testy now.  You're parents are dead and gone.  You have been placed into a foster home by the state."));
+            Sequences.RegisterSequence(07, new SequenceMessage("Player", "Wut!?"));
+            Sequences.RegisterSequence(08, new SequenceMessage("Doctor", "Yea, people typically don't survive 37 shots to the head.  Your new foster parents are outside and they're excited to meet you."));
+            Sequences.RegisterSequence(09, new SequenceMessage("Player", "Wut!?"));
+            Sequences.RegisterSequence(10, new SequenceSpecial("SpawnParents"));
+            (Sequences.Sequences[10] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
                 doctor.Animator.AnimateFade(0f, 250f);
 
@@ -75,28 +81,30 @@ namespace DongLife.Scenes.GameScenes
 
                 mother.Animator.AnimateFade(1f, 500f);
                 father.Animator.AnimateFade(1f, 500f);
+                Sequences.ProgressStage();
             };
-            Sequences.RegisterSequence(12, new SequenceMessage("Father", "Hello, son.  I'm your new father."));
-            Sequences.RegisterSequence(13, new SequenceMessage("Player", "Wut!?"));
-            Sequences.RegisterSequence(14, new SequenceMessage("Father", "Calm the fuck down."));
-            Sequences.RegisterSequence(15, new SequenceMessage("Mother", "Calm down honey, you're scaring the lad."));
-            Sequences.RegisterSequence(16, new SequenceMessage("Player", "WHY DO YOU HAVE A FISH HEAD?!"));
-            Sequences.RegisterSequence(17, new SequenceMessage("Father", "What?!  This fucker is a racist!  I knew this was a bad idea."));
-            Sequences.RegisterSequence(18, new SequenceMessage("Mother", "Calm down dear, he's just... confused is all.  He's not a racist."));
-            Sequences.RegisterSequence(19, new SequenceMessage("Player", "HOW DO YOU EVEN FUNCTION?!"));
-            Sequences.RegisterSequence(20, new SequenceMessage("Father", "Alright, fuck this kid.  I'll be out in the car."));
-            Sequences.RegisterSequence(21, new SequenceSpecial("FatherStormsOut"));
-            (Sequences.Sequences[21] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
+            Sequences.RegisterSequence(11, new SequenceMessage("Father", "Hello, son.  I'm your new father."));
+            Sequences.RegisterSequence(12, new SequenceMessage("Player", "Wut!?"));
+            Sequences.RegisterSequence(13, new SequenceMessage("Father", "Calm the fuck down."));
+            Sequences.RegisterSequence(14, new SequenceMessage("Mother", "Calm down honey, you're scaring the lad."));
+            Sequences.RegisterSequence(15, new SequenceMessage("Player", "WHY DO YOU HAVE A FISH HEAD?!"));
+            Sequences.RegisterSequence(16, new SequenceMessage("Father", "What?!  This fucker is a racist!  I knew this was a bad idea."));
+            Sequences.RegisterSequence(17, new SequenceMessage("Mother", "Calm down dear, he's just... confused is all.  He's not a racist."));
+            Sequences.RegisterSequence(18, new SequenceMessage("Player", "HOW DO YOU EVEN FUNCTION?!"));
+            Sequences.RegisterSequence(19, new SequenceMessage("Father", "Alright, fuck this kid.  I'll be out in the car."));
+            Sequences.RegisterSequence(20, new SequenceSpecial("FatherStormsOut"));
+            (Sequences.Sequences[20] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
-                father.Animator.AnimateFade(0f, 100f);
+                father.Animator.AnimateFade(0f, 250f);
                 mother.Animator.AnimateMove(new Vector2(880f, mother.PosY), 250f);
+                Sequences.ProgressStage();
             };
-            Sequences.RegisterSequence(22, new SequenceMessage("Mother", "Don't worry, he's just a little hot headed.  But my... you seem to be a strapping young man ;)"));
-            Sequences.RegisterSequence(23, new SequenceDecision("Player",
+            Sequences.RegisterSequence(21, new SequenceMessage("Mother", "Don't worry, he's just a little hot headed.  But my... you seem to be a strapping young man ;)"));
+            Sequences.RegisterSequence(22, new SequenceDecision("Player",
                 "WHY DOES HE HAVE A FISH FOR A HEAD?!",
                 "Who are you people?",
                 "Where am I?"));
-            (Sequences.Sequences[23] as SequenceDecision).Choice += (sender, e) =>
+            (Sequences.Sequences[22] as SequenceDecision).Choice += (sender, e) =>
             {
                 if (e == 0)
                     Sequences.SetStage(100);
@@ -139,9 +147,6 @@ namespace DongLife.Scenes.GameScenes
 
         public override void OnEnter()
         {
-            creator.Enabled = true;
-            creator.Visible = true;
-
             player.Visible = false;
             mother.Visible = false;
             father.Visible = false;
@@ -151,31 +156,9 @@ namespace DongLife.Scenes.GameScenes
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
 
-            MessageBox.Visible = false;
-
             base.OnEnter();
         }
 
-        private void Animator_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
-        {
-            if (Sequences.GetCurrentSequence().SequenceStage == 4 && finishedMode == Animations.AnimationTypes.Move)
-            {
-                Sequences.ProgressStage();
-                Sequences.ExecuteSequence(this);
-            }
-            else if (Sequences.GetCurrentSequence().SequenceStage == 11 && finishedMode == Animations.AnimationTypes.Fade)
-            {
-                Sequences.ProgressStage();
-                Sequences.ExecuteSequence(this);
-                doctor.Visible = false;
-            }
-            else if (Sequences.GetCurrentSequence().SequenceStage == 21 && finishedMode == Animations.AnimationTypes.Fade)
-            {
-                Sequences.ProgressStage();
-                Sequences.ExecuteSequence(this);
-                father.Visible = false;
-            }
-        }
         private void TextInput_OnSubmitText(object sender, string text)
         {
             GameSettings.PlayerName = text.Trim();
@@ -187,7 +170,13 @@ namespace DongLife.Scenes.GameScenes
         }
         private void CharacterCreatedEvent(object sender)
         {
+            Sequences.SetStage(2);
+            creator.Visible = false;
+            creator.Enabled = false;
 
+            MessageBox.Visible = true;
+            MessageBox.Enabled = true;
+            Sequences.ExecuteSequence(this);
         }
     }
 }

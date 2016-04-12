@@ -38,7 +38,7 @@ namespace DongLife.Controls
         {
             currentMode = ButtonModes.Normal;
         }
-        public override void OnKeyDown(object sender, KeyboardKeyEventArgs e)
+        public override void OnMouseDown(MouseButtonEventArgs e)
         {
             currentMode = ButtonModes.Pressed;
         }
