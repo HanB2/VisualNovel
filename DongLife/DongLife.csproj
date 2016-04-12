@@ -113,7 +113,6 @@
     <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
     <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
     <Compile Include="TransitionRenderer.cs" />
     <Compile Include="VNSceneManager.cs" />

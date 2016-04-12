@@ -35,7 +35,6 @@ namespace DongLife
 
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
-            sceneManager.RegisterScene(new TestScene());
 
             //Game Scenes
             sceneManager.RegisterScene(new IN_HospitalScene());

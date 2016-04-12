@@ -14,8 +14,7 @@ namespace Minalear
         {
             ContentPath = "Content/";
         }
-
-        //TODO: Possible memory leak with unmanaged resources, double check everything
+        
         public Texture2D LoadTexture2D(string @path)
         {
             path = ContentPath + path;

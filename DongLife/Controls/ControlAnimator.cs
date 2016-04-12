@@ -17,8 +17,6 @@ namespace DongLife.Controls
             this.activeAnimations = new List<Animation>();
         }
 
-        //TODO: Allow shader values adjustment in the animator
-
         public override void Update(GameTime gameTime)
         {
             for (int i = 0; i < activeAnimations.Count; i++)

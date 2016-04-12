@@ -1,12 +1,10 @@
 ﻿using System.Drawing;
 using OpenTK;
-using Minalear;
 using Minalear.UI.Controls;
 using OpenTK.Input;
 
 namespace DongLife.Controls
 {
-    //TODO: Optimize the text rendering
     public class MessageButton : Control
     {
         public string Text { get; set; }
