@@ -150,6 +150,8 @@ namespace DongLife.Scenes.GameScenes
             doctor.Position = new Vector2(640, 425);
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
+
+            MusicManager.PlaySong("In_Pursuit");
         }
 
         private void TextInput_OnSubmitText(object sender, string text)

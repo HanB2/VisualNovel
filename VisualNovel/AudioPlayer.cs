@@ -25,6 +25,10 @@ namespace Minalear
             AL.Source(sourceID, ALSourcei.Buffer, track.ID);
             AL.SourcePlay(sourceID);
         }
+        public void StopBackgroundTrack()
+        {
+            AL.SourceStop(sourceID);
+        }
 
         public void Update(GameTime gameTime)
         {
