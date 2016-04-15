@@ -1,5 +1,4 @@
 ﻿using OpenTK;
-using OpenTK.Graphics;
 using Minalear;
 using Minalear.UI.Controls;
 using DongLife.Controls;
@@ -123,6 +122,11 @@ namespace DongLife.Code
         {
             get { return this.hasFocus; }
             set { SetFocus(value); }
+        }
+        protected Texture2D Texture
+        {
+            get { return this.actorTexture; }
+            set { this.actorTexture = value; }
         }
         #endregion
     }

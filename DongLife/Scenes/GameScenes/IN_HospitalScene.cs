@@ -154,17 +154,13 @@ namespace DongLife.Scenes.GameScenes
             MusicManager.PlaySong("In_Pursuit");
         }
 
-        private void TextInput_OnSubmitText(object sender, string text)
-        {
-            GameSettings.PlayerName = text.Trim();
-            Sequences.SetStage(2);
-            Sequences.ExecuteSequence(this);
-
-            creator.Enabled = false;
-            creator.Visible = false;
-        }
         private void CharacterCreatedEvent(object sender)
         {
+            //Update player texture - hack
+            player.TexturePath = GameManager.TexturePath;
+            player.UnloadContent();
+            player.LoadContent(Manager.Game.Content);
+
             Sequences.SetStage(2);
             creator.Visible = false;
             creator.Enabled = false;

@@ -1,6 +1,4 @@
-﻿using System;
-using Minalear;
-using Minalear.UI;
+﻿using Minalear;
 using DongLife.Scenes;
 using DongLife.Scenes.EndScenes;
 using DongLife.Scenes.GameScenes;
@@ -79,6 +77,7 @@ namespace DongLife
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
             MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
+            MusicManager.SetVolume(0.01f);
 
             //Set first scene
             sceneManager.SetScene("MainMenuScene");

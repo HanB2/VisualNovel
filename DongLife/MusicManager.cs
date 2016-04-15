@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using OpenTK;
-using OpenTK.Audio;
-using OpenTK.Audio.OpenAL;
 using Minalear;
 
 namespace DongLife
@@ -36,6 +33,10 @@ namespace DongLife
                 currentSong = contentManager.LoadAudioFile(songs[name]);
                 audioPlayer.PlayBackgroundTrack(currentSong);
             }
+        }
+        public static void SetVolume(float volume)
+        {
+            audioPlayer.SetVolume(volume);
         }
 
         public static void Update(GameTime gameTime)

@@ -56,9 +56,11 @@
     <Compile Include="Animations\AnimationMove.cs" />
     <Compile Include="Animations\AnimationActorZoom.cs" />
     <Compile Include="Animations\Transition.cs" />
+    <Compile Include="Code\Accessory.cs" />
     <Compile Include="Code\Actor.cs" />
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
+    <Compile Include="Code\Player.cs" />
     <Compile Include="Code\Sequence.cs" />
     <Compile Include="Controls\CharacterCreator.cs" />
     <Compile Include="Controls\CreatorOptionSelector.cs" />

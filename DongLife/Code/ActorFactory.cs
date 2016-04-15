@@ -1,7 +1,4 @@
 ﻿using OpenTK;
-using Minalear;
-using Minalear.UI.Controls;
-using DongLife.Controls;
 
 namespace DongLife.Code
 {
@@ -12,7 +9,7 @@ namespace DongLife.Code
             switch (actorName)
             {
                 case "Player":
-                    Actor player = new Actor("Player", @"Textures/Actors/player_male.png");
+                    Player player = new Player();
                     player.Position = new Vector2(300f, 650f);
                     player.NormalScale = 1f;
                     player.FocusScale = 1.25f;

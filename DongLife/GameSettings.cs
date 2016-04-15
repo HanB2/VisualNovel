@@ -29,7 +29,6 @@ namespace DongLife
 
             WindowWidth = GetSetting<int>("WindowWidth");
             WindowHeight = GetSetting<int>("WindowHeight");
-            PlayerName = GetSetting<string>("Name");
         }
 
         public static T GetSetting<T>(string token)
@@ -45,7 +44,6 @@ namespace DongLife
                 writer.WriteLine(String.Format("WindowWidth:{0}", 1280));
                 writer.WriteLine(String.Format("WindowHeight:{0}", 720));
                 writer.WriteLine(String.Format("TextSpeed:{0}", 25));
-                writer.WriteLine(String.Format("Name:{0}", "Robert"));
             }
         }
         private static void checkValidTokens(string[] tokens)
@@ -61,7 +59,6 @@ namespace DongLife
 
         public static int WindowWidth { get; private set; }
         public static int WindowHeight { get; private set; }
-        public static string PlayerName { get; set; }
     }
 
     public class InvalidSettingsFileException : Exception
