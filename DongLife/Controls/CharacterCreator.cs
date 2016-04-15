@@ -105,9 +105,15 @@ namespace DongLife.Controls
                 GameManager.PlayerName = textInput.Text.Trim();
 
                 if (maleSelected)
+                {
                     GameManager.TexturePath = @"Textures/Actors/player_male.png";
+                    GameManager.Gender = "Male";
+                }
                 else
+                {
                     GameManager.TexturePath = @"Textures/Actors/player_female.png";
+                    GameManager.Gender = "Female";
+                }
 
                 GameManager.HatIndex = selectedHat;
                 GameManager.ShirtIndex = selectedShirt;
