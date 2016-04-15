@@ -25,6 +25,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(janitor);
             RegisterActor(principal);
 
+            #region Sequences
             Sequences.RegisterSequence(0, NO_ACTOR, "*You're going to be late for class*");
             Sequences.RegisterSequence(1, "Player", "I'm going to be late for class!");
             Sequences.RegisterSequence(2, NO_ACTOR, "*In your haste to get to class, you accidently bump into the school janitor, knocking him down*");
@@ -149,15 +150,16 @@ namespace DongLife.Scenes.GameScenes
             };
             Sequences.RegisterSequence(83, "Player", "Sure, lead the way!");
             Sequences.RegisterSequence(84, new SequenceSceneTransition("SCHL_Alley"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            janitor.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            janitor.SetAlpha(0f);
             janitor.Position = new Vector2(janitor.PosX, GameSettings.WindowHeight - 25f);
-            principal.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            principal.SetAlpha(0f);
         }
     }
 }

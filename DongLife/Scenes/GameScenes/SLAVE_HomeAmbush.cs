@@ -49,9 +49,9 @@ namespace DongLife.Scenes.GameScenes
         public override void OnEnter()
         {
             base.OnEnter();
-
-            janitor.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 1f);
+            
+            janitor.SetAlpha(0f);
+            player.SetAlpha(1f);
         }
     }
 }

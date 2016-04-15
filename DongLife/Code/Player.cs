@@ -41,6 +41,7 @@ namespace DongLife.Code
         public void EquipAccessory(Accessory accessory)
         {
             accessories.Add(accessory);
+            accessories.Sort();
         }
         public void RemoveAccessory(Accessory accessory)
         {

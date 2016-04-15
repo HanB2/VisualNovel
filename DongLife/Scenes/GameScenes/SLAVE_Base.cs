@@ -57,6 +57,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(headhoncho);
             RegisterActor(shopOwner);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Player", "Where am I?");
             Sequences.RegisterSequence(1, "Guard", "Welcome to Camp La Fuckya!");
             Sequences.RegisterSequence(2, "Player", "Camp La Fuckwhat?");
@@ -323,17 +324,18 @@ namespace DongLife.Scenes.GameScenes
             };
             Sequences.RegisterSequence(81, "PlayerDisguised", "This is oddly comfortable!");
             Sequences.RegisterSequence(82, new SequenceSceneTransition("GEND_HeadHoncho"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            headhoncho.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            shopOwner.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            shekelsCounter.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            fatigueBar.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            playerDisguise.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            headhoncho.SetAlpha(0f);
+            shopOwner.SetAlpha(0f);
+            shekelsCounter.SetAlpha(0f);
+            fatigueBar.SetAlpha(0f);
+            playerDisguise.SetAlpha(0f);
         }
     }
 }

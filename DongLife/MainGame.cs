@@ -1,4 +1,5 @@
 ﻿using Minalear;
+using DongLife.Code;
 using DongLife.Scenes;
 using DongLife.Scenes.EndScenes;
 using DongLife.Scenes.GameScenes;
@@ -30,7 +31,7 @@ namespace DongLife
             VNScene.MessageBox.PosX = GameSettings.WindowWidth / 2 - VNScene.MessageBox.Width / 2;
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
-            GameManager.Init();
+            AccessoryManager.Init();
 
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
@@ -80,7 +81,7 @@ namespace DongLife
             MusicManager.SetVolume(0.01f);
 
             //Set first scene
-            sceneManager.SetScene("MainMenuScene");
+            sceneManager.SetScene("IN_HospitalScene");
         }
         public override void Draw(GameTime gameTime)
         {

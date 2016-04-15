@@ -12,7 +12,6 @@ namespace DongLife.Controls
         private TextInput textInput;
 
         private Player female, male;
-        private Accessory[] hats, maleShirts, femaleShirts, misc;
 
         //Accessory Pointers, -1 represents no accessory
         private int selectedHat = -1;
@@ -68,8 +67,6 @@ namespace DongLife.Controls
             AddChild(accOption);
             AddChild(colorOption);
             AddChild(submitButton);
-
-            initAccessories();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -112,71 +109,40 @@ namespace DongLife.Controls
                 else
                     GameManager.TexturePath = @"Textures/Actors/player_female.png";
 
+                GameManager.HatIndex = selectedHat;
+                GameManager.ShirtIndex = selectedShirt;
+                GameManager.MiscIndex = selectedMisc;
+
                 CharacterCreated(this);
             }
         }
-        private void initAccessories()
-        {
-            hats = new Accessory[7];
-            maleShirts = new Accessory[5];
-            femaleShirts = new Accessory[5];
-            misc = new Accessory[7];
-
-            hats[0] = new Accessory("Textures/Accessories/Hats/hat_01.png", new Vector2(4, -277f));
-            hats[1] = new Accessory("Textures/Accessories/Hats/hat_02.png", new Vector2(4, -300f));
-            hats[2] = new Accessory("Textures/Accessories/Hats/hat_03.png", new Vector2(8, -285f));
-            hats[3] = new Accessory("Textures/Accessories/Hats/hat_04.png", new Vector2(2, -305f));
-            hats[4] = new Accessory("Textures/Accessories/Hats/hat_05.png", new Vector2(4, -304f));
-            hats[5] = new Accessory("Textures/Accessories/Hats/hat_06.png", new Vector2(6, -305f));
-            hats[6] = new Accessory("Textures/Accessories/Hats/hat_07.png", new Vector2(3, -300f));
-
-            maleShirts[0] = new Accessory("Textures/Accessories/MaleShirts/mshirt_01.png", new Vector2(6f, -120f));
-            maleShirts[1] = new Accessory("Textures/Accessories/MaleShirts/mshirt_02.png", new Vector2(6f, -120f));
-            maleShirts[2] = new Accessory("Textures/Accessories/MaleShirts/mshirt_03.png", new Vector2(6f, -120f));
-            maleShirts[3] = new Accessory("Textures/Accessories/MaleShirts/mshirt_04.png", new Vector2(6f, -120f));
-            maleShirts[4] = new Accessory("Textures/Accessories/MaleShirts/mshirt_05.png", new Vector2(6f, -120f));
-
-            femaleShirts[0] = new Accessory("Textures/Accessories/FemaleShirts/fshirt_01.png", new Vector2(7f, -114f));
-            femaleShirts[1] = new Accessory("Textures/Accessories/FemaleShirts/fshirt_02.png", new Vector2(7f, -114f));
-            femaleShirts[2] = new Accessory("Textures/Accessories/FemaleShirts/fshirt_03.png", new Vector2(7f, -114f));
-            femaleShirts[3] = new Accessory("Textures/Accessories/FemaleShirts/fshirt_04.png", new Vector2(7f, -114f));
-            femaleShirts[4] = new Accessory("Textures/Accessories/FemaleShirts/fshirt_05.png", new Vector2(7f, -114f));
-
-            misc[0] = new Accessory("Textures/Accessories/Misc/acc_01.png", new Vector2(5f, -195f));
-            misc[1] = new Accessory("Textures/Accessories/Misc/acc_02.png", new Vector2(30f, -117f));
-            misc[2] = new Accessory("Textures/Accessories/Misc/acc_03.png", new Vector2(-240f, -140f));
-            misc[3] = new Accessory("Textures/Accessories/Misc/acc_04.png", new Vector2(-190f, 40f));
-            misc[4] = new Accessory("Textures/Accessories/Misc/acc_05.png", new Vector2(65f, -220f));
-            misc[5] = new Accessory("Textures/Accessories/Misc/acc_06.png", new Vector2(5f, -265f));
-            misc[6] = new Accessory("Textures/Accessories/Misc/acc_07.png", new Vector2(7f, -258f));
-        }
         private void loadAccessories(ContentManager content)
         {
-            for (int i = 0; i < hats.Length; i++)
-                hats[i].LoadContent(content);
+            for (int i = 0; i < AccessoryManager.Hats.Length; i++)
+                AccessoryManager.Hats[i].LoadContent(content);
 
-            for (int i = 0; i < misc.Length; i++)
-                misc[i].LoadContent(content);
+            for (int i = 0; i < AccessoryManager.Misc.Length; i++)
+                AccessoryManager.Misc[i].LoadContent(content);
 
-            for (int i = 0; i < maleShirts.Length; i++)
-                maleShirts[i].LoadContent(content);
+            for (int i = 0; i < AccessoryManager.MaleShirts.Length; i++)
+                AccessoryManager.MaleShirts[i].LoadContent(content);
 
-            for (int i = 0; i < femaleShirts.Length; i++)
-                femaleShirts[i].LoadContent(content);
+            for (int i = 0; i < AccessoryManager.FemaleShirts.Length; i++)
+                AccessoryManager.FemaleShirts[i].LoadContent(content);
         }
         private void unloadAccessories()
         {
-            for (int i = 0; i < hats.Length; i++)
-                hats[i].UnloadContent();
+            for (int i = 0; i < AccessoryManager.Hats.Length; i++)
+                AccessoryManager.Hats[i].UnloadContent();
 
-            for (int i = 0; i < misc.Length; i++)
-                misc[i].UnloadContent();
+            for (int i = 0; i < AccessoryManager.Misc.Length; i++)
+                AccessoryManager.Misc[i].UnloadContent();
 
-            for (int i = 0; i < maleShirts.Length; i++)
-                maleShirts[i].UnloadContent();
+            for (int i = 0; i < AccessoryManager.MaleShirts.Length; i++)
+                AccessoryManager.MaleShirts[i].UnloadContent();
 
-            for (int i = 0; i < femaleShirts.Length; i++)
-                femaleShirts[i].UnloadContent();
+            for (int i = 0; i < AccessoryManager.FemaleShirts.Length; i++)
+                AccessoryManager.FemaleShirts[i].UnloadContent();
         }
 
         private void GenderOption_SelectionChanged(object sender, int value)
@@ -187,60 +153,60 @@ namespace DongLife.Controls
         {
             if (selectedHat != -1)
             {
-                male.RemoveAccessory(hats[selectedHat]);
-                female.RemoveAccessory(hats[selectedHat]);
+                male.RemoveAccessory(AccessoryManager.Hats[selectedHat]);
+                female.RemoveAccessory(AccessoryManager.Hats[selectedHat]);
             }
 
             selectedHat += value;
-            if (selectedHat >= hats.Length)
+            if (selectedHat >= AccessoryManager.Hats.Length)
                 selectedHat = -1;
             if (selectedHat < -1)
-                selectedHat = hats.Length - 1;
+                selectedHat = AccessoryManager.Hats.Length - 1;
 
             if (selectedHat != -1)
             {
-                male.EquipAccessory(hats[selectedHat]);
-                female.EquipAccessory(hats[selectedHat]);
+                male.EquipAccessory(AccessoryManager.Hats[selectedHat]);
+                female.EquipAccessory(AccessoryManager.Hats[selectedHat]);
             }
         }
         private void ShirtOption_SelectionChanged(object sender, int value)
         {
             if (selectedShirt != -1)
             {
-                male.RemoveAccessory(maleShirts[selectedShirt]);
-                female.RemoveAccessory(femaleShirts[selectedShirt]);
+                male.RemoveAccessory(AccessoryManager.MaleShirts[selectedShirt]);
+                female.RemoveAccessory(AccessoryManager.FemaleShirts[selectedShirt]);
             }
 
             selectedShirt += value;
-            if (selectedShirt >= maleShirts.Length)
+            if (selectedShirt >= AccessoryManager.MaleShirts.Length)
                 selectedShirt = -1;
             if (selectedShirt < -1)
-                selectedShirt = maleShirts.Length - 1;
+                selectedShirt = AccessoryManager.MaleShirts.Length - 1;
 
             if (selectedShirt != -1)
             {
-                male.EquipAccessory(maleShirts[selectedShirt]);
-                female.EquipAccessory(femaleShirts[selectedShirt]);
+                male.EquipAccessory(AccessoryManager.MaleShirts[selectedShirt]);
+                female.EquipAccessory(AccessoryManager.FemaleShirts[selectedShirt]);
             }
         }
         private void AccOption_SelectionChanged(object sender, int value)
         {
             if (selectedMisc != -1)
             {
-                male.RemoveAccessory(misc[selectedMisc]);
-                female.RemoveAccessory(misc[selectedMisc]);
+                male.RemoveAccessory(AccessoryManager.Misc[selectedMisc]);
+                female.RemoveAccessory(AccessoryManager.Misc[selectedMisc]);
             }
 
             selectedMisc += value;
-            if (selectedMisc >= misc.Length)
+            if (selectedMisc >= AccessoryManager.Misc.Length)
                 selectedMisc = -1;
             if (selectedMisc < -1)
-                selectedMisc = misc.Length - 1;
+                selectedMisc = AccessoryManager.Misc.Length - 1;
 
             if (selectedMisc != -1)
             {
-                male.EquipAccessory(misc[selectedMisc]);
-                female.EquipAccessory(misc[selectedMisc]);
+                male.EquipAccessory(AccessoryManager.Misc[selectedMisc]);
+                female.EquipAccessory(AccessoryManager.Misc[selectedMisc]);
             }
         }
         private void ColorOption_SelectionChanged(object sender, int value)

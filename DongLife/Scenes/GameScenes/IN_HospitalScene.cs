@@ -30,15 +30,10 @@ namespace DongLife.Scenes.GameScenes
             mother = ActorFactory.CreateActor("Mother");
             father = ActorFactory.CreateActor("Father");
 
-            player = ActorFactory.CreateActor("Player");
-            player.Position = new Vector2(300f, 650f);
-            player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-
             AddChild(background);
             AddChild(creator);
 
             RegisterActor(doctor);
-            RegisterActor(player);
             RegisterActor(mother);
             RegisterActor(father);
 
@@ -142,10 +137,9 @@ namespace DongLife.Scenes.GameScenes
         public override void OnEnter()
         {
             base.OnEnter();
-
-            player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            mother.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            
+            mother.SetAlpha(0f);
+            father.SetAlpha(0f);
 
             doctor.Position = new Vector2(640, 425);
             mother.Position = new Vector2(725, 500);
@@ -156,10 +150,11 @@ namespace DongLife.Scenes.GameScenes
 
         private void CharacterCreatedEvent(object sender)
         {
-            //Update player texture - hack
-            player.TexturePath = GameManager.TexturePath;
-            player.UnloadContent();
+            //Update player actor - hack
+            player = ActorFactory.CreateActor("Player");
             player.LoadContent(Manager.Game.Content);
+            player.SetAlpha(0f);
+            RegisterActor(player);
 
             Sequences.SetStage(2);
             creator.Visible = false;

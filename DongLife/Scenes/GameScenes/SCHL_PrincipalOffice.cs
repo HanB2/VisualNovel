@@ -31,6 +31,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(player);
             RegisterActor(prinicpal);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Principal", "Thank you for joining me {PLAYERNAME}.  I don't need to say how much I am disappointed in you.");
             Sequences.RegisterSequence(1, new SequenceDecision("Player",
                 "Be a punk.",
@@ -163,13 +164,14 @@ namespace DongLife.Scenes.GameScenes
             };
             Sequences.RegisterSequence(56, "Principal", "That sounds like a great idea!  Let's go, you little rapscallion!");
             Sequences.RegisterSequence(57, new SequenceSceneTransition("SCHL_Date"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            gun.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            gun.SetAlpha(0f);
         }
     }
 }

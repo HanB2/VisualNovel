@@ -15,6 +15,8 @@ namespace DongLife.Code
                     player.FocusScale = 1.25f;
                     player.CurrentScale = 1.25f;
 
+                    attachAccessories(player);
+
                     return player;
                 case "Professor":
                     Actor professor = new Actor("Professor", @"Textures/Actors/professor_kaiju.png");
@@ -75,6 +77,23 @@ namespace DongLife.Code
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);
+        }
+
+        private static void attachAccessories(Player player)
+        {
+            if (GameManager.HatIndex != -1)
+                player.EquipAccessory(AccessoryManager.Hats[GameManager.HatIndex]);
+            if (GameManager.ShirtIndex != -1)
+            {
+                if (GameManager.Gender == "Male")
+                    player.EquipAccessory(AccessoryManager.MaleShirts[GameManager.ShirtIndex]);
+                else
+                    player.EquipAccessory(AccessoryManager.FemaleShirts[GameManager.ShirtIndex]);
+            }
+            if (GameManager.MiscIndex != -1)
+                player.EquipAccessory(AccessoryManager.Misc[GameManager.MiscIndex]);
+
+            //player.DrawColor = GameManager.PlayerColor;
         }
     }
 }

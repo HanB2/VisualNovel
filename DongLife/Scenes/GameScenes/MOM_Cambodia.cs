@@ -26,6 +26,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(mother);
             RegisterActor(shiaMother);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Player", "Wow... we're finally in Cambodia.");
             Sequences.RegisterSequence(1, "Mother", "That was such a long trip, I'm glad we made it safely.");
             Sequences.RegisterSequence(2, "Player", "So what do we do now?");
@@ -57,13 +58,14 @@ namespace DongLife.Scenes.GameScenes
             //Deny Love
             Sequences.RegisterSequence(20, "ShiaMother", "Well, I guess you will just have to die. ¯\\_(ツ)_/¯");
             Sequences.RegisterSequence(21, new SequenceSceneTransition("BEND_EatenAlive_Shia"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            shiaMother.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            shiaMother.SetAlpha(0f);
         }
 
         private void Mother_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)

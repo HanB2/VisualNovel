@@ -37,6 +37,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(sexyMother);
             RegisterActor(father);
 
+            #region Sequences
             Sequences.RegisterSequence(0, new SequenceDecision("Player",
                 "Why on earth are you naked?",
                 "Hmmmm... that feels real good."));
@@ -162,6 +163,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(100, "Father", "Oh no you don't, you little cunt!");
             Sequences.RegisterSequence(101, NO_ACTOR, "!WHAM!");
             Sequences.RegisterSequence(102, new SequenceSceneTransition("MOM_Basement"));
+            #endregion
         }
 
         public override void OnEnter()
@@ -173,7 +175,7 @@ namespace DongLife.Scenes.GameScenes
             player.Position = new Vector2(GameSettings.WindowWidth / 2, player.Position.Y);
             sexyMother.Position = startPos;
 
-            father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            father.SetAlpha(0f);
         }
 
         private void Mother_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)

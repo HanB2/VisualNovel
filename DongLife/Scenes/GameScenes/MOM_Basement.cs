@@ -66,6 +66,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(kingMole);
             RegisterActor(molePeople);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Father", "And you can stay down here until you die, you fucking trashbag of a human being.");
             Sequences.RegisterSequence(1, new SequenceSpecial("FatherLeaves"));
             ((SequenceSpecial)Sequences.Sequences[1]).OnSequenceExecution += (sender, e) =>
@@ -256,17 +257,19 @@ namespace DongLife.Scenes.GameScenes
             //Fail to overthrow king
             Sequences.RegisterSequence(110, "KingMole", "LOL!  You think that will convince them?  Time to die, cretin!");
             Sequences.RegisterSequence(111, new SequenceSceneTransition("BEND_SandCoffin"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            father.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 1f);
-            kingMole.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            molePeople.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
             briefcase.Visible = false;
-            nuclearFallout.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+
+            father.SetAlpha(0f);
+            kingMole.SetAlpha(0f);
+            molePeople.SetAlpha(0f);
+            nuclearFallout.SetAlpha(0f);
         }
 
         private void Father_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
