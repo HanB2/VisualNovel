@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using OpenTK;
+﻿using OpenTK;
+using OpenTK.Graphics;
 using Minalear;
 using Minalear.UI.Controls;
 using DongLife.Code;
@@ -17,8 +17,10 @@ namespace DongLife.Controls
         private int selectedHat = -1;
         private int selectedShirt = -1;
         private int selectedMisc = -1;
+        private int selectedColor = 0; //Not -1
 
         private bool maleSelected = false;
+        private Color4[] skinColors;
 
         public CharacterCreator()
         {
@@ -58,6 +60,14 @@ namespace DongLife.Controls
             female.CurrentScale = 0.65f;
             male.Position = new Vector2(male.Position.X, 380);
             male.CurrentScale = 0.65f;
+
+            skinColors = new Color4[6];
+            skinColors[0] = new Color4(1f, 1f, 1f, 1f);
+            skinColors[1] = new Color4(1f, 0.6f, 0.6f, 1f);
+            skinColors[2] = new Color4(0.6f, 1f, 0.6f, 1f);
+            skinColors[3] = new Color4(0.6f, 0.6f, 1f, 1f);
+            skinColors[4] = new Color4(1f, 0.6f, 1f, 1f);
+            skinColors[5] = new Color4(0.6f, 1f, 1f, 1f);
 
             AddChild(panel);
             AddChild(textInput);
@@ -118,6 +128,7 @@ namespace DongLife.Controls
                 GameManager.HatIndex = selectedHat;
                 GameManager.ShirtIndex = selectedShirt;
                 GameManager.MiscIndex = selectedMisc;
+                GameManager.PlayerColor = skinColors[selectedColor];
 
                 CharacterCreated(this);
             }
@@ -217,7 +228,14 @@ namespace DongLife.Controls
         }
         private void ColorOption_SelectionChanged(object sender, int value)
         {
+            selectedColor += value;
+            if (selectedColor < 0)
+                selectedColor = skinColors.Length - 1;
+            if (selectedColor >= skinColors.Length)
+                selectedColor = 0;
 
+            male.DrawColor = skinColors[selectedColor];
+            female.DrawColor = skinColors[selectedColor];
         }
 
         public delegate void CharacterCreatedDelegate(object sender);

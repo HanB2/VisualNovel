@@ -13,6 +13,7 @@ namespace DongLife.Code
             playerRef.NormalScale = 1f;
             playerRef.FocusScale = 1.25f;
             playerRef.CurrentScale = 1.25f;
+            playerRef.DrawColor = GameManager.PlayerColor;
 
             attachAccessories(playerRef);
         }
@@ -23,6 +24,7 @@ namespace DongLife.Code
             playerRef.NormalScale = 1f;
             playerRef.FocusScale = 1.25f;
             playerRef.CurrentScale = 1.25f;
+            playerRef.DrawColor = GameManager.PlayerColor;
 
             attachAccessories(playerRef);
         }
