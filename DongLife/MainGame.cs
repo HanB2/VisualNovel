@@ -32,6 +32,7 @@ namespace DongLife
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
             AccessoryManager.Init();
+            ActorFactory.Init();
 
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
@@ -78,10 +79,9 @@ namespace DongLife
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
             MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
-            MusicManager.SetVolume(0.01f);
 
             //Set first scene
-            sceneManager.SetScene("IN_HospitalScene");
+            sceneManager.SetScene("MainMenuScene");
         }
         public override void Draw(GameTime gameTime)
         {

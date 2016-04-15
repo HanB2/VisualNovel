@@ -15,7 +15,7 @@ namespace DongLife.Scenes.GameScenes
             background = new Background(@"Textures/Backgrounds/water_background.png");
 
             player = ActorFactory.CreateActor("Player");
-            playerAlt = ActorFactory.CreateActor("Player");
+            playerAlt = ActorFactory.CreateActor("PlayerNew");
             playerAlt.Name = "PlayerAlt";
             playerAlt.Position = new Vector2(GameSettings.WindowWidth / 2 + 200f, player.PosY);
 

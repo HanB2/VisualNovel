@@ -113,7 +113,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(104, new SequenceMessage("Mother", "Me being human and him being just a Fishman, we were unable to produce offspring, which makes him even more upset."));
             Sequences.RegisterSequence(105, new SequenceMessage("Player", "Can humans and fishpeople not reproduce?"));
             Sequences.RegisterSequence(106, new SequenceMessage("Mother", "No, his penis is just too small. ;)"));
-            Sequences.RegisterSequence(107, new SequenceStageTransition(23));
+            Sequences.RegisterSequence(107, new SequenceStageTransition(22));
 
             //Who are you people?
             Sequences.RegisterSequence(200, new SequenceMessage("Player", "Who are you people?"));
@@ -121,7 +121,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(202, new SequenceMessage("Player", "But I'm 37, why on Earth do I need foster parents?"));
             Sequences.RegisterSequence(203, new SequenceMessage("Mother", "The state decided they didn't trust you enough to not harass police with your... package... :)"));
             Sequences.RegisterSequence(204, new SequenceMessage("Player", "That's not even how it happened... whatever."));
-            Sequences.RegisterSequence(205, new SequenceStageTransition(23));
+            Sequences.RegisterSequence(205, new SequenceStageTransition(22));
 
             //Where am I?
             Sequences.RegisterSequence(300, new SequenceMessage("Player", "Where am I?"));
@@ -151,6 +151,7 @@ namespace DongLife.Scenes.GameScenes
         private void CharacterCreatedEvent(object sender)
         {
             //Update player actor - hack
+            ActorFactory.UpdatePlayerModel();
             player = ActorFactory.CreateActor("Player");
             player.LoadContent(Manager.Game.Content);
             player.SetAlpha(0f);

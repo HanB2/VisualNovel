@@ -26,7 +26,7 @@ namespace DongLife.Scenes.GameScenes
             fatigueBar.Position = new Vector2(GameSettings.WindowWidth / 2 - 320f, GameSettings.WindowHeight / 2 + 95f);
 
             player = ActorFactory.CreateActor("Player");
-            playerDisguise = ActorFactory.CreateActor("Player");
+            playerDisguise = ActorFactory.CreateActor("PlayerNew");
             playerDisguise.Name = "PlayerDisguised";
             playerDisguise.TexturePath = @"Textures/Actors/head_honcho_skin.png";
 

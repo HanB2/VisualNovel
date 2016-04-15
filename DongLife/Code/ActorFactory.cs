@@ -4,11 +4,37 @@ namespace DongLife.Code
 {
     public static class ActorFactory
     {
+        private static Player playerRef;
+
+        public static void Init()
+        {
+            playerRef = new Player();
+            playerRef.Position = new Vector2(300f, 650f);
+            playerRef.NormalScale = 1f;
+            playerRef.FocusScale = 1.25f;
+            playerRef.CurrentScale = 1.25f;
+
+            attachAccessories(playerRef);
+        }
+        public static void UpdatePlayerModel()
+        {
+            playerRef.TexturePath = GameManager.TexturePath;
+            playerRef.Position = new Vector2(300f, 650f);
+            playerRef.NormalScale = 1f;
+            playerRef.FocusScale = 1.25f;
+            playerRef.CurrentScale = 1.25f;
+
+            attachAccessories(playerRef);
+        }
+
         public static Actor CreateActor(string actorName)
         {
             switch (actorName)
             {
                 case "Player":
+                    playerRef.Position = new Vector2(300f, 650f);
+                    return playerRef;
+                case "PlayerNew":
                     Player player = new Player();
                     player.Position = new Vector2(300f, 650f);
                     player.NormalScale = 1f;

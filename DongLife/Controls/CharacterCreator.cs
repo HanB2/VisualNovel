@@ -50,9 +50,9 @@ namespace DongLife.Controls
             accOption.SelectionChanged += AccOption_SelectionChanged;
             colorOption.SelectionChanged += ColorOption_SelectionChanged;
 
-            female = ActorFactory.CreateActor("Player") as Player;
+            female = ActorFactory.CreateActor("PlayerNew") as Player;
             female.TexturePath = @"Textures/Actors/player_female.png";
-            male = ActorFactory.CreateActor("Player") as Player;
+            male = ActorFactory.CreateActor("PlayerNew") as Player;
 
             female.Position = new Vector2(female.Position.X, 380);
             female.CurrentScale = 0.65f;
