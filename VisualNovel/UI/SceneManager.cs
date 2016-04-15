@@ -28,27 +28,27 @@ namespace Minalear.UI
             game.Window.KeyPress += Window_KeyPress;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             currentScene.Draw(spriteBatch);
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             currentScene.Update(gameTime);
         }
 
-        public void RegisterScene(Scene scene)
+        public virtual void RegisterScene(Scene scene)
         {
             scene.Manager = this;
             scenes.Add(scene.Name, scene);
         }
-        public void SetScene(string sceneName)
+        public virtual void SetScene(string sceneName)
         {
             currentScene = scenes[sceneName];
             currentScene.LoadContent(game.Content);
             currentScene.OnEnter();
         }
-        public void ChangeScene(string sceneName)
+        public virtual void ChangeScene(string sceneName)
         {
             currentScene.OnExit();
             currentScene.UnloadContent();
@@ -57,41 +57,41 @@ namespace Minalear.UI
         }
 
         #region MouseEvents
-        private void Window_MouseMove(object sender, MouseMoveEventArgs e)
+        protected virtual void Window_MouseMove(object sender, MouseMoveEventArgs e)
         {
             currentScene.OnMouseMove(e);
         }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        protected virtual void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             currentScene.OnMouseDown(e);
         }
-        private void Window_MouseUp(object sender, MouseButtonEventArgs e)
+        protected virtual void Window_MouseUp(object sender, MouseButtonEventArgs e)
         {
             currentScene.OnMouseUp(e);
         }
-        private void Window_MouseEnter(object sender, EventArgs e)
+        protected virtual void Window_MouseEnter(object sender, EventArgs e)
         {
             currentScene.OnMouseEnter();
         }
-        private void Window_MouseLeave(object sender, EventArgs e)
+        protected virtual void Window_MouseLeave(object sender, EventArgs e)
         {
             currentScene.OnMouseLeave();
         }
-        private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
+        protected virtual void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             currentScene.OnMouseWheel(e);
         }
         #endregion
         #region KeyboardEvents
-        private void Window_KeyDown(object sender, KeyboardKeyEventArgs e)
+        protected virtual void Window_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             currentScene.OnKeyDown(sender, e);
         }
-        private void Window_KeyUp(object sender, KeyboardKeyEventArgs e)
+        protected virtual void Window_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
             currentScene.OnKeyUp(sender, e);
         }
-        private void Window_KeyPress(object sender, OpenTK.KeyPressEventArgs e)
+        protected virtual void Window_KeyPress(object sender, OpenTK.KeyPressEventArgs e)
         {
             currentScene.OnKeyPress(sender, e);
         }

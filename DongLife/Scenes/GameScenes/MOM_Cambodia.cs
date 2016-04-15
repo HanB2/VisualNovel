@@ -26,6 +26,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(mother);
             RegisterActor(shiaMother);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Player", "Wow... we're finally in Cambodia.");
             Sequences.RegisterSequence(1, "Mother", "That was such a long trip, I'm glad we made it safely.");
             Sequences.RegisterSequence(2, "Player", "So what do we do now?");
@@ -33,8 +34,8 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(4, new SequenceSpecial("MomReveal"));
             ((SequenceSpecial)Sequences.Sequences[4]).OnSequenceExecution += (sender, e) =>
             {
-                mother.Animator.FadeOut(1500f);
-                shiaMother.Animator.FadeIn(1500f);
+                mother.Animator.AnimateFade(0f, 1500f);
+                shiaMother.Animator.AnimateFade(1f, 1500f);
             };
             Sequences.RegisterSequence(5, "ShiaMother", "My name is actually Shia LaBeouf and I love you.");
             Sequences.RegisterSequence(6, new SequenceDecision("Player",
@@ -57,18 +58,19 @@ namespace DongLife.Scenes.GameScenes
             //Deny Love
             Sequences.RegisterSequence(20, "ShiaMother", "Well, I guess you will just have to die. ¯\\_(ツ)_/¯");
             Sequences.RegisterSequence(21, new SequenceSceneTransition("BEND_EatenAlive_Shia"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            shiaMother.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            shiaMother.SetAlpha(0f);
         }
 
-        private void Mother_AnimationEnd(ControlAnimator.AnimationModes finishedMode)
+        private void Mother_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
         {
-            if (finishedMode == ControlAnimator.AnimationModes.FadeIn && Sequences.GetCurrentSequence().SequenceStage == 4)
+            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 4)
             {
                 Sequences.SetStage(5);
                 Sequences.ExecuteSequence(this);

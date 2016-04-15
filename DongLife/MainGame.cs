@@ -1,6 +1,5 @@
-﻿using System;
-using Minalear;
-using Minalear.UI;
+﻿using Minalear;
+using DongLife.Code;
 using DongLife.Scenes;
 using DongLife.Scenes.EndScenes;
 using DongLife.Scenes.GameScenes;
@@ -10,7 +9,7 @@ namespace DongLife
     public class MainGame : Game
     {
         private SpriteBatch spriteBatch;
-        private SceneManager sceneManager;
+        private VNSceneManager sceneManager;
 
         public MainGame(int width, int height) : base(width, height, "Life with a Massive Dong™")
         {
@@ -22,7 +21,8 @@ namespace DongLife
             spriteBatch = new SpriteBatch(
                 Content.LoadShader(@"Shaders/vert.glsl", @"Shaders/frag.glsl"),
                 Window.Width, Window.Height);
-            sceneManager = new SceneManager(this);
+            sceneManager = new VNSceneManager(this, spriteBatch);
+            MusicManager.Init(Content);
 
             //Message Box init
             VNScene.MessageBox = new Controls.MessageBox(
@@ -31,7 +31,8 @@ namespace DongLife
             VNScene.MessageBox.PosX = GameSettings.WindowWidth / 2 - VNScene.MessageBox.Width / 2;
             VNScene.MessageBox.PosY = GameSettings.WindowHeight - VNScene.MessageBox.Height;
 
-            GameManager.Init();
+            AccessoryManager.Init();
+            ActorFactory.Init();
 
             //Scene Creation
             sceneManager.RegisterScene(new MainMenuScene());
@@ -75,7 +76,12 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_DetentionDeath());
             sceneManager.RegisterScene(new BEND_DateDeath());
 
-            sceneManager.SetScene("SCHL_Date");
+            //Music Track Registration
+            MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
+            MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
+
+            //Set first scene
+            sceneManager.SetScene("MainMenuScene");
         }
         public override void Draw(GameTime gameTime)
         {
@@ -84,8 +90,8 @@ namespace DongLife
         public override void Update(GameTime gameTime)
         {
             sceneManager.Update(gameTime);
+            MusicManager.Update(gameTime);
         }
-
         public override void LoadContent()
         {
             VNScene.MessageBox.LoadContent(Content);

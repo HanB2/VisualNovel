@@ -1,12 +1,10 @@
 ﻿using System.Drawing;
 using OpenTK;
-using Minalear;
 using Minalear.UI.Controls;
 using OpenTK.Input;
 
 namespace DongLife.Controls
 {
-    //TODO: Optimize the text rendering
     public class MessageButton : Control
     {
         public string Text { get; set; }
@@ -45,7 +43,7 @@ namespace DongLife.Controls
             base.OnMouseUp(e);
         }
 
-        public event ButtonEventDelegate Click;
-        public event ButtonEventDelegate Hover;
+        public event ButtonPressedDelegate Click;
+        public event ButtonPressedDelegate Hover;
     }
 }

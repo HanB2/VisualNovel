@@ -46,8 +46,7 @@ namespace DongLife.Controls
             textTimer = 0f;
             this.DrawOrder = 0f;
         }
-
-        //TODO Make decisions more apparent that it is actually a choice (it's not immediately apparent)
+        
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(renderTexture, Bounds, TK.Color4.White);
@@ -84,19 +83,6 @@ namespace DongLife.Controls
                     }
                 }
             }
-
-            /*if (!renderingButtons && textIndex < textBuffer.Length)
-            {
-                textTimer += (float)gameTime.ElapsedTime.TotalMilliseconds;
-
-                if (textTimer >= textDelay)
-                {
-                    updateText();
-
-                    textTimer = 0f;
-                    textIndex++;
-                }
-            }*/
             
             base.Update(gameTime);
         }
@@ -130,10 +116,6 @@ namespace DongLife.Controls
 
             if (ContentLoaded)
             {
-                /*fillBackground();
-
-                characterRegions.Clear();
-                calculateRegions(text);*/
                 textBuffer = wrapText(textBuffer, (int)Width - 20);
                 textIndex = 0;
             }
@@ -161,6 +143,7 @@ namespace DongLife.Controls
 
             renderingButtons = true;
 
+            //Disable all buttons and then enable the number of buttons that we need
             for (int i = 0; i < messageButtons.Length; i++)
             {
                 messageButtons[i].Enabled = false;
@@ -168,7 +151,7 @@ namespace DongLife.Controls
             for (int i = 0; i < buttons.Length && i < messageButtons.Length; i++)
             {
                 messageButtons[i].Enabled = true;
-                messageButtons[i].Text = buttons[i];
+                messageButtons[i].Text = ">> " + buttons[i];
             }
             
             if (ContentLoaded)
@@ -213,7 +196,7 @@ namespace DongLife.Controls
         private void formatText()
         {
             //PlayerName
-            textBuffer = textBuffer.Replace("{PLAYERNAME}", GameSettings.PlayerName);
+            textBuffer = textBuffer.Replace("{PLAYERNAME}", GameManager.PlayerName);
         }
         private void setText(string text)
         {

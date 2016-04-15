@@ -26,7 +26,7 @@ namespace DongLife.Scenes.GameScenes
             fatigueBar.Position = new Vector2(GameSettings.WindowWidth / 2 - 320f, GameSettings.WindowHeight / 2 + 95f);
 
             player = ActorFactory.CreateActor("Player");
-            playerDisguise = ActorFactory.CreateActor("Player");
+            playerDisguise = ActorFactory.CreateActor("PlayerNew");
             playerDisguise.Name = "PlayerDisguised";
             playerDisguise.TexturePath = @"Textures/Actors/head_honcho_skin.png";
 
@@ -57,6 +57,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(headhoncho);
             RegisterActor(shopOwner);
 
+            #region Sequences
             Sequences.RegisterSequence(0, "Player", "Where am I?");
             Sequences.RegisterSequence(1, "Guard", "Welcome to Camp La Fuckya!");
             Sequences.RegisterSequence(2, "Player", "Camp La Fuckwhat?");
@@ -98,9 +99,9 @@ namespace DongLife.Scenes.GameScenes
                 SetActorFocus("Guard");
                 MessageBox.SetText("Now get to work!");
 
-                guard.Animator.FadeOut(800f);
-                shekelsCounter.Animator.FadeIn(800f);
-                fatigueBar.Animator.FadeIn(800f);
+                guard.Animator.AnimateFade(0f, 800f);
+                shekelsCounter.Animator.AnimateFade(1f, 800f);
+                fatigueBar.Animator.AnimateFade(1f, 800f);
                 Sequences.SetStage(30);
             };
 
@@ -139,7 +140,7 @@ namespace DongLife.Scenes.GameScenes
                 else if (e == 1) //Go to shop
                 {
                     MessageBox.SetText("*You enter into the shop*");
-                    shopOwner.Animator.FadeIn(800f);
+                    shopOwner.Animator.AnimateFade(1f, 800f);
                     Sequences.SetStage(40);
                 }
                 else if (e == 2) //Sleep
@@ -152,7 +153,7 @@ namespace DongLife.Scenes.GameScenes
                     {
                         SetActorFocus(NO_ACTOR);
                         MessageBox.SetText("What do you think you're doing?!");
-                        guard.Animator.FadeIn(800f);
+                        guard.Animator.AnimateFade(1f, 800f);
 
                         Sequences.SetStage(35);
                     }
@@ -207,16 +208,16 @@ namespace DongLife.Scenes.GameScenes
 
                 dongLevel++;
                 SetActorFocus(NO_ACTOR);
-                shopOwner.Animator.FadeOut(800f);
+                shopOwner.Animator.AnimateFade(0f, 800f);
                 MessageBox.SetText("Your current dong level is: " + dongLevel.ToString());
 
                 if (dongLevel < 3)
                     Sequences.SetStage(31);
                 else
                 {
-                    headhoncho.Animator.FadeIn(800f);
-                    shekelsCounter.Animator.FadeOut(800f);
-                    fatigueBar.Animator.FadeOut(800f);
+                    headhoncho.Animator.AnimateFade(1f, 800f);
+                    shekelsCounter.Animator.AnimateFade(0f, 800f);
+                    fatigueBar.Animator.AnimateFade(0f, 800f);
                     Sequences.SetStage(60);
                 }
             };
@@ -227,7 +228,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(47, new SequenceSpecial("BoughtUpgrade"));
             ((SequenceSpecial)Sequences.Sequences[47]).OnSequenceExecution += (sender, e) =>
             {
-                shopOwner.Animator.FadeOut(800f);
+                shopOwner.Animator.AnimateFade(0f, 800f);
 
                 Sequences.SetStage(31);
                 //Sequences.ExecuteSequence(this);
@@ -277,7 +278,7 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceSpecial)Sequences.Sequences[73]).OnSequenceExecution += (sender, e) =>
             {
                 MessageBox.SetText("!BLURGH!");
-                headhoncho.Animator.FadeOut(800f);
+                headhoncho.Animator.AnimateFade(0f, 800f);
                 Sequences.SetStage(74);
             };
             Sequences.RegisterSequence(74, "Player", "I did it!  Now what?");
@@ -303,7 +304,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(77, new SequenceSpecial("GuardsKillPlayer"));
             ((SequenceSpecial)Sequences.Sequences[77]).OnSequenceExecution += (sender, e) =>
             {
-                guard.Animator.FadeIn(800f);
+                guard.Animator.AnimateFade(1f, 800f);
                 Sequences.SetStage(78);
             };
             Sequences.RegisterSequence(78, "Guard", "Stop that runaway slave!");
@@ -316,24 +317,25 @@ namespace DongLife.Scenes.GameScenes
                 SetActorFocus(NO_ACTOR);
                 MessageBox.SetText("Time to get cutting!");
 
-                player.Animator.FadeOut(800f);
-                playerDisguise.Animator.FadeIn(800f);
+                player.Animator.AnimateFade(0f, 800f);
+                playerDisguise.Animator.AnimateFade(1f, 800f);
 
                 Sequences.SetStage(81);
             };
             Sequences.RegisterSequence(81, "PlayerDisguised", "This is oddly comfortable!");
             Sequences.RegisterSequence(82, new SequenceSceneTransition("GEND_HeadHoncho"));
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            headhoncho.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            shopOwner.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            shekelsCounter.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            fatigueBar.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            playerDisguise.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            headhoncho.SetAlpha(0f);
+            shopOwner.SetAlpha(0f);
+            shekelsCounter.SetAlpha(0f);
+            fatigueBar.SetAlpha(0f);
+            playerDisguise.SetAlpha(0f);
         }
     }
 }

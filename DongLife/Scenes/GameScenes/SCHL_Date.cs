@@ -32,6 +32,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(principal);
             RegisterActor(principalAlt);
 
+            #region Sequences
             //Movie Date
             Sequences.RegisterSequence(0, "Principal", "Man... Pacific Rim 2 is really good.");
             Sequences.RegisterSequence(1, "Player", "I know, these giant robots really know how to put a good fucking to these giant monsters.");
@@ -99,8 +100,8 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceSpecial)Sequences.Sequences[64]).OnSequenceExecution += (sender, e) =>
             {
                 SetActorFocus(NO_ACTOR);
-                principal.Animator.FadeOut(800f);
-                principalAlt.Animator.FadeIn(800f);
+                principal.Animator.AnimateFade(0f, 800f);
+                principalAlt.Animator.AnimateFade(1f, 800f);
 
                 Sequences.SetStage(65);
             };
@@ -147,14 +148,14 @@ namespace DongLife.Scenes.GameScenes
             //Time Paradox
             Sequences.RegisterSequence(90, "Player", "I͢͞'̨҉̛͜͝m͏҉̸͟ ̡̛m̸̢͝͡o̢҉r͢ę̕ ͟͢t̷̡̛h̕҉a̶̴͢n̵͡ ̢͡͞o͠҉͘k̶͝͡a̵̸̵y̵̢̢͏ ̢͟͝w҉̶͞i̸̛ţ̴͠͏̶h̡̕͡͡͡ ͏̶̨̕͏y̵̨̧̕͢ǫ̧͜͠u̴̢͟ ͝͡b̶̀é̛i̢n̢͡͏́͝g̷̢̕ ̡á͏̛́͘ ̷̛S̷̕ḩ̷̧͢i̡͞͞҉ą͜͡ ̵̧͞͞L̸̡̕͞͠e̶̴̸̸B̴̕͢e̸͘͟o҉̶̢́͘ù̕͠͝f̶͝͏̴͏!̀͏͏̵͟ ̴̴̨́ ͜҉̢̨I̴̢͡ ̡͏̶͝w̶̷̛͘í̴̛̕͝l͝͡͏̛l̵͘͏ ̷͝a̛̛l̢̕w̷҉a̷̧̛ý̸̴͝s̸͘͟͏ ̷͢͠͠l̡̕͡͡ó͜͝v̸e͏ ́͘͜y͘͟͝ó̴̕͟͟ư̧͜͢͠,̸͘ ̵͟ņ́͟͢͝o̷͝ ̷m̧̧͜a̶͝͠͝t̵͞͞t̸̨̢͝e͠͏r̷̨̧͜͠ ̵̡͟͝w̶͠h̨̢̧͞a̵̵t̸͟!̕͜͢");
             Sequences.RegisterSequence(91, new SequenceSceneTransition("GEND_TimeParadox"));
-
+            #endregion
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            principalAlt.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
+            principalAlt.SetAlpha(0f);
             timeParadox = false;
         }
 

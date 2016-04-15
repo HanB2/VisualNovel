@@ -9,6 +9,6 @@ uniform mat4 model;
 
 void main()
 {
-	TexCoords = pos;
+	TexCoords = vec2(pos.x, -pos.y); //Adjust Y for FBO
 	gl_Position = proj * model * vec4(pos, 0, 1);
 }

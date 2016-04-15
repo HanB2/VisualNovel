@@ -4,7 +4,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Minalear
 {
-    public class Shader
+    public class Shader : IDisposable
     {
         private int shaderProgram;
 
@@ -12,6 +12,7 @@ namespace Minalear
         {
             shaderProgram = GL.CreateProgram();
         }
+
         public void LoadSource(ShaderType type, string @source)
         {
             int shaderID = GL.CreateShader(type);
@@ -27,10 +28,13 @@ namespace Minalear
         {
             GL.LinkProgram(shaderProgram);
         }
-
         public void UseProgram()
         {
             GL.UseProgram(shaderProgram);
+        }
+        public void Dispose()
+        {
+            GL.DeleteProgram(shaderProgram);
         }
 
         private void checkCompStatus(int id, ShaderType type)

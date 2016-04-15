@@ -24,11 +24,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL" />
@@ -43,14 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioClip.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameTime.cs" />
+    <Compile Include="GeoRenderer.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RNG.cs" />
     <Compile Include="Shader.cs" />
+    <Compile Include="AudioPlayer.cs" />
     <Compile Include="SpriteBatch.cs" />
     <Compile Include="Texture2D.cs" />
     <Compile Include="UI\Controls\Control.cs" />

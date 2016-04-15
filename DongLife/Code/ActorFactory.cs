@@ -1,22 +1,49 @@
 ﻿using OpenTK;
-using Minalear;
-using Minalear.UI.Controls;
-using DongLife.Controls;
 
 namespace DongLife.Code
 {
     public static class ActorFactory
     {
+        private static Player playerRef;
+
+        public static void Init()
+        {
+            playerRef = new Player();
+            playerRef.Position = new Vector2(300f, 650f);
+            playerRef.NormalScale = 1f;
+            playerRef.FocusScale = 1.25f;
+            playerRef.CurrentScale = 1.25f;
+            playerRef.DrawColor = GameManager.PlayerColor;
+
+            attachAccessories(playerRef);
+        }
+        public static void UpdatePlayerModel()
+        {
+            playerRef.TexturePath = GameManager.TexturePath;
+            playerRef.Position = new Vector2(300f, 650f);
+            playerRef.NormalScale = 1f;
+            playerRef.FocusScale = 1.25f;
+            playerRef.CurrentScale = 1.25f;
+            playerRef.DrawColor = GameManager.PlayerColor;
+
+            attachAccessories(playerRef);
+        }
+
         public static Actor CreateActor(string actorName)
         {
             switch (actorName)
             {
                 case "Player":
-                    Actor player = new Actor("Player", @"Textures/Actors/player_male.png");
+                    playerRef.Position = new Vector2(300f, 650f);
+                    return playerRef;
+                case "PlayerNew":
+                    Player player = new Player();
                     player.Position = new Vector2(300f, 650f);
                     player.NormalScale = 1f;
                     player.FocusScale = 1.25f;
                     player.CurrentScale = 1.25f;
+
+                    attachAccessories(player);
 
                     return player;
                 case "Professor":
@@ -78,6 +105,23 @@ namespace DongLife.Code
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);
+        }
+
+        private static void attachAccessories(Player player)
+        {
+            if (GameManager.HatIndex != -1)
+                player.EquipAccessory(AccessoryManager.Hats[GameManager.HatIndex]);
+            if (GameManager.ShirtIndex != -1)
+            {
+                if (GameManager.Gender == "Male")
+                    player.EquipAccessory(AccessoryManager.MaleShirts[GameManager.ShirtIndex]);
+                else
+                    player.EquipAccessory(AccessoryManager.FemaleShirts[GameManager.ShirtIndex]);
+            }
+            if (GameManager.MiscIndex != -1)
+                player.EquipAccessory(AccessoryManager.Misc[GameManager.MiscIndex]);
+
+            //player.DrawColor = GameManager.PlayerColor;
         }
     }
 }

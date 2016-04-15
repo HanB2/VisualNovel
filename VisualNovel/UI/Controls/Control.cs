@@ -17,7 +17,7 @@ namespace Minalear.UI.Controls
         private bool contentLoaded = false;
         private bool visible = true;
         private bool enabled = true;
-        private float drawOrder = 1f;
+        private float drawOrder = 0.5f;
 
         public Control()
         {
@@ -69,6 +69,10 @@ namespace Minalear.UI.Controls
                 children[i].Dispose();
             UnloadContent();
             contentLoaded = false;
+        }
+        public void SetAlpha(float alpha)
+        {
+            this.drawColor.A = MathHelper.Clamp(alpha, 0f, 1f);
         }
 
         #region MouseEvents

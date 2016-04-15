@@ -28,7 +28,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(1, new SequenceSpecial("PlayerSleeps"));
             ((SequenceSpecial)Sequences.Sequences[1]).OnSequenceExecution += (sender, e) =>
             {
-                player.Animator.FadeOut(800f);
+                player.Animator.AnimateFade(0f, 800f);
                 Sequences.SetStage(2);
             };
             Sequences.RegisterSequence(2, NO_ACTOR, "*Hours pass as you sleep when someone slips into your room, unnoticed*");
@@ -36,7 +36,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(4, new SequenceSpecial("JanitorDrugsYou"));
             ((SequenceSpecial)Sequences.Sequences[4]).OnSequenceExecution += (sender, e) =>
             {
-                janitor.Animator.FadeIn(800f);
+                janitor.Animator.AnimateFade(1f, 800f);
 
                 SetActorFocus("Janitor");
                 MessageBox.SetText("Take this!");
@@ -49,9 +49,9 @@ namespace DongLife.Scenes.GameScenes
         public override void OnEnter()
         {
             base.OnEnter();
-
-            janitor.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 0f);
-            player.DrawColor = new OpenTK.Graphics.Color4(1f, 1f, 1f, 1f);
+            
+            janitor.SetAlpha(0f);
+            player.SetAlpha(1f);
         }
     }
 }

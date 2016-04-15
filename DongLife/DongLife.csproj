@@ -51,14 +51,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\AnimationFade.cs" />
+    <Compile Include="Animations\AnimationMove.cs" />
+    <Compile Include="Animations\AnimationActorZoom.cs" />
+    <Compile Include="Animations\Transition.cs" />
+    <Compile Include="Code\Accessory.cs" />
+    <Compile Include="Code\AccessoryManager.cs" />
     <Compile Include="Code\Actor.cs" />
     <Compile Include="Code\ActorFactory.cs" />
     <Compile Include="Code\Background.cs" />
+    <Compile Include="Code\Player.cs" />
     <Compile Include="Code\Sequence.cs" />
+    <Compile Include="Controls\CharacterCreator.cs" />
+    <Compile Include="Controls\CreatorOptionSelector.cs" />
     <Compile Include="Controls\FatigueBar.cs" />
+    <Compile Include="Controls\GeoButton.cs" />
+    <Compile Include="Controls\GeoPanel.cs" />
+    <Compile Include="Controls\LabelBox.cs" />
     <Compile Include="Controls\ShekelsCounter.cs" />
     <Compile Include="Controls\ControlAnimator.cs" />
-    <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Image.cs" />
     <Compile Include="Controls\MessageBox.cs" />
     <Compile Include="Controls\MessageButton.cs" />
@@ -66,6 +78,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="MainGame.cs" />
+    <Compile Include="MusicManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\EndScene.cs" />
@@ -105,6 +118,8 @@
     <Compile Include="Scenes\GameScenes\SLAVE_HomeAmbush.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\VNScene.cs" />
+    <Compile Include="TransitionRenderer.cs" />
+    <Compile Include="VNSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VisualNovel\Minalear.csproj">
@@ -116,6 +131,18 @@
     <None Include="Content\Shaders\frag.glsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Shaders\geofrag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\geovert.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\tfrag.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\tvert.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Shaders\vert.glsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -124,6 +151,90 @@
     <Folder Include="Content\Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Audio\In_Pursuit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\Necropolis.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_06.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Hats\hat_07.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\MaleShirts\mshirt_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\MaleShirts\mshirt_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\MaleShirts\mshirt_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\MaleShirts\mshirt_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\MaleShirts\mshirt_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_06.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Accessories\Misc\acc_07.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\player_female.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\player_male.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Backgrounds\baseball_game.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -205,13 +316,7 @@
     <Content Include="Content\Textures\Actors\professor_kaiju.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Actors\player_male.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Textures\Backgrounds\bedroom.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Backgrounds\city_water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\hospital_room.png">

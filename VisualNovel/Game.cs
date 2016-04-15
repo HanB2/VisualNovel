@@ -3,7 +3,7 @@ using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
-using Minalear.UI;
+using OpenTK.Audio;
 
 namespace Minalear
 {
@@ -12,6 +12,7 @@ namespace Minalear
         private GameWindow gameWindow;
         private ContentManager content;
         private GameTime gameTime;
+        private AudioContext audioContext;
 
         public Game() : this(800, 450) { }
         public Game(int width, int height) : this(width, height, "VisualNovel") { }
@@ -28,6 +29,7 @@ namespace Minalear
 
             gameTime = new GameTime();
             content = new ContentManager();
+            audioContext = new AudioContext();
         }
 
         public void Run()
@@ -73,5 +75,6 @@ namespace Minalear
 
         public GameWindow Window { get { return this.gameWindow; } }
         public ContentManager Content { get { return this.content; } }
+        public AudioContext AudioContext { get { return this.audioContext; } }
     }
 }
