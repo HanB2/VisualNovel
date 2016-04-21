@@ -13,6 +13,7 @@ namespace Minalear
         private ContentManager content;
         private GameTime gameTime;
         private AudioContext audioContext;
+        private Color4 clearColor = Color4.Black;
 
         public Game() : this(800, 450) { }
         public Game(int width, int height) : this(width, height, "VisualNovel") { }
@@ -41,7 +42,7 @@ namespace Minalear
         }
         public void Resize()
         {
-            GL.ClearColor(Color.Black);
+            GL.ClearColor(clearColor);
             GL.Viewport(0, 0, gameWindow.Width, gameWindow.Height);
         }
 
@@ -76,5 +77,6 @@ namespace Minalear
         public GameWindow Window { get { return this.gameWindow; } }
         public ContentManager Content { get { return this.content; } }
         public AudioContext AudioContext { get { return this.audioContext; } }
+        public Color4 ClearColor { get { return this.clearColor; } set { this.clearColor = value; } }
     }
 }

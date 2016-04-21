@@ -79,6 +79,7 @@ namespace DongLife
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
             MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
+            MusicManager.SetVolume(1f);
 
             //Set first scene
             sceneManager.SetScene("MainMenuScene");

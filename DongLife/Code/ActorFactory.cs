@@ -99,9 +99,21 @@ namespace DongLife.Code
                     father.Position = new Vector2(980, 425);
                     father.NormalScale = 0.75f;
                     father.FocusScale = 0.8f;
-                    father.NormalScale = 0.75f;
+                    father.CurrentScale = 0.75f;
 
                     return father;
+                case "Teacher":
+                    Actor teacher = new Actor("Teacher", @"Textures/Actors/professor_kaiju.png");
+                    teacher.Position = new Vector2(1000, 475);
+                    teacher.NormalScale = 0.85f;
+                    teacher.FocusScale = 1f;
+                    teacher.CurrentScale = 0.85f;
+
+                    return teacher;
+                case "JaegerPrime":
+                    Actor jaeger = new Actor("JaegerPrime", @"Textures/Actors/JaegerPrime.png");
+                    jaeger.Position = new Vector2(980, 450);
+                    return jaeger;
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);
