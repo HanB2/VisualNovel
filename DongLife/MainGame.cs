@@ -82,7 +82,7 @@ namespace DongLife
             MusicManager.SetVolume(1f);
 
             //Set first scene
-            sceneManager.SetScene("MainMenuScene");
+            sceneManager.SetScene("MOM_Seduction");
         }
         public override void Draw(GameTime gameTime)
         {

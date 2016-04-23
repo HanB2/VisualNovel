@@ -28,6 +28,10 @@ namespace DongLife.Code
 
             attachAccessories(playerRef);
         }
+        public static void ResetPlayerPosition()
+        {
+            playerRef.Position = new Vector2(300f, 650f);
+        }
 
         public static Actor CreateActor(string actorName)
         {

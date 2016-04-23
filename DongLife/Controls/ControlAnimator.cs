@@ -70,6 +70,10 @@ namespace DongLife.Controls
                     this.activeAnimations[i].ForceEndAnimation();
             }
         }
+        public void Reset()
+        {
+            this.activeAnimations.Clear();
+        }
 
         private void registerNewAnimation(Animation animation)
         {

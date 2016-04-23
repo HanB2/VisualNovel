@@ -78,7 +78,7 @@ namespace DongLife.Code
 
             //Reset Zoom
             SetFocus(false);
-            Animator.ForceEndAllAnimations();
+            Animator.Reset();
             CurrentScale = NormalScale;
         }
 

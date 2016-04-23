@@ -11,7 +11,7 @@ namespace DongLife.Scenes.GameScenes
         private bool up = false;
         private bool fatherCameIn = false;
 
-        private Vector2 startPos;
+        private Vector2 upPos, downPos;
         private Vector2 playerStartPos;
 
         public MOM_Seduction() : base("MOM_Seduction")
@@ -22,7 +22,8 @@ namespace DongLife.Scenes.GameScenes
             playerStartPos = player.Position;
             sexyMother = ActorFactory.CreateActor("SexyMother");
             sexyMother.PosY -= 60f;
-            startPos = sexyMother.Position;
+            downPos = sexyMother.Position;
+            upPos = new Vector2(downPos.X + 40f, downPos.Y - 60f);
 
             player.DrawOrder = 0.5f;
             sexyMother.DrawOrder = 0.6f;
@@ -30,7 +31,6 @@ namespace DongLife.Scenes.GameScenes
             father = ActorFactory.CreateActor("Father");
 
             sexyMother.Animator.AnimationEnd += Mother_AnimationEnd;
-            father.Animator.AnimationEnd += Father_AnimationEnd;
 
             AddChild(background);
             RegisterActor(player);
@@ -120,7 +120,7 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceSpecial)Sequences.Sequences[72]).OnSequenceExecution += (sender, e) =>
             {
                 father.Animator.AnimateFade(1f, 1500f);
-                sexyMother.Animator.AnimateMove(startPos, 1500f);
+                sexyMother.Animator.AnimateMove(downPos, 1500f);
                 player.Animator.AnimateMove(playerStartPos, 1500f);
 
                 fatherCameIn = true;
@@ -147,10 +147,12 @@ namespace DongLife.Scenes.GameScenes
             //Kill your New Dad
             Sequences.RegisterSequence(90, "Player", "TIME TO DIE MO'FUCKER!");
             Sequences.RegisterSequence(91, "Father", "Wut?!");
-            Sequences.RegisterSequence(92, "Father", "*BLURRRRGHHHHHH*  *Dead*");
+            Sequences.RegisterSequence(92, new SequenceStageTransition(93));
             Sequences.RegisterSequence(93, new SequenceSpecial("FatherDead"));
             ((SequenceSpecial)Sequences.Sequences[93]).OnSequenceExecution += (sender, e) =>
             {
+                SetActorFocus("Father");
+                MessageBox.SetText("*BLURRRRGHHHHH!*");
                 father.Animator.AnimateFade(0f, 1000f);
             };
             Sequences.RegisterSequence(94, "Mother", "OH MY GOD.... He's... dead...");
@@ -170,10 +172,12 @@ namespace DongLife.Scenes.GameScenes
         {
             base.OnEnter();
 
+            fatherCameIn = false;
+
             //Simulate animation finish to start animation
-            Mother_AnimationEnd(sexyMother, Animations.AnimationTypes.Move);
+            sexyMother.Position = downPos; up = false;
+            Mother_AnimationEnd(null, Animations.AnimationTypes.Move);
             player.Position = new Vector2(GameSettings.WindowWidth / 2, player.Position.Y);
-            sexyMother.Position = startPos;
 
             father.SetAlpha(0f);
         }
@@ -182,22 +186,16 @@ namespace DongLife.Scenes.GameScenes
         {
             if (!fatherCameIn)
             {
-                if (finishedMode == Animations.AnimationTypes.ActorZoom)
+                if (finishedMode == Animations.AnimationTypes.Move)
                 {
-                    sexyMother.Animator.AnimateMove(startPos, 1500f);
-                }
-                else if (finishedMode == Animations.AnimationTypes.Move)
-                {
-                    Vector2 currentPos = sexyMother.Position;
-
                     up = !up;
                     if (up)
                     {
-                        sexyMother.Animator.AnimateMove(new Vector2(currentPos.X + 15f, currentPos.Y - 30f), 1500f);
+                        sexyMother.Animator.AnimateMove(upPos, 2500f);
                     }
                     else
                     {
-                        sexyMother.Animator.AnimateMove(new Vector2(currentPos.X - 10f, currentPos.Y + 30f), 1500f);
+                        sexyMother.Animator.AnimateMove(downPos, 2500f);
                     }
                 }
             }
@@ -208,14 +206,6 @@ namespace DongLife.Scenes.GameScenes
                     Sequences.SetStage(73);
                     Sequences.ExecuteSequence(this);
                 }
-            }
-        }
-        private void Father_AnimationEnd(object sender, Animations.AnimationTypes finishedMode)
-        {
-            if (finishedMode == Animations.AnimationTypes.Fade && Sequences.GetCurrentSequence().SequenceStage == 93)
-            {
-                Sequences.SetStage(94);
-                Sequences.ExecuteSequence(this);
             }
         }
     }

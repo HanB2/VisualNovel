@@ -96,6 +96,9 @@ namespace DongLife
             base.Draw(spriteBatch);
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
 
+            //Really gross hack to fix the player position bug
+            Code.ActorFactory.ResetPlayerPosition();
+
             //Change scene
             base.ChangeScene(sceneName);
 

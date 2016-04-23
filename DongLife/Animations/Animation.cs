@@ -53,8 +53,7 @@ namespace DongLife.Animations
             this.currentTimer = this.animationLength;
             this.dispose = true;
 
-            if (AnimationEnd != null)
-                AnimationEnd(this, this.type);
+            AnimationEnd?.Invoke(this, this.type);
         }
         
         public event AnimationEndDelegate AnimationEnd;
