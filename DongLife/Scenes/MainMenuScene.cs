@@ -73,7 +73,8 @@ namespace DongLife.Scenes
             earthAnimator.AnimateMove(new Vector2(150, 92), 15000f);
             titleAnimator.AnimateMove(new Vector2(0, 0), 15000f);
 
-            MusicManager.PlaySong("Necropolis");
+            MusicManager.PlaySong("TrevorSux");
+            GameManager.ResetDefaults();
 
             base.OnEnter();
         }

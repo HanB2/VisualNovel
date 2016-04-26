@@ -108,16 +108,36 @@ namespace DongLife.Code
                     return father;
                 case "Teacher":
                     Actor teacher = new Actor("Teacher", @"Textures/Actors/professor_kaiju.png");
-                    teacher.Position = new Vector2(1000, 475);
-                    teacher.NormalScale = 0.85f;
-                    teacher.FocusScale = 1f;
-                    teacher.CurrentScale = 0.85f;
+                    teacher.Position = new Vector2(1100, 510);
+                    teacher.NormalScale = 0.9f;
+                    teacher.FocusScale = 1.15f;
+                    teacher.CurrentScale = 0.9f;
 
                     return teacher;
+                case "BabyKaiju":
+                    Actor baby = new Actor("BabyKaiju", @"Textures/Actors/baby_kaiju.png");
+                    baby.Position = new Vector2(1100, 610);
+                    baby.NormalScale = 0.6f;
+                    baby.FocusScale = 0.8f;
+                    baby.CurrentScale = 0.6f;
+
+                    return baby;
                 case "JaegerPrime":
                     Actor jaeger = new Actor("JaegerPrime", @"Textures/Actors/JaegerPrime.png");
-                    jaeger.Position = new Vector2(980, 450);
+                    jaeger.Position = new Vector2(940, 510);
+                    jaeger.NormalScale = 0.85f;
+                    jaeger.FocusScale = 1.05f;
+                    jaeger.CurrentScale = 0.85f;
+
                     return jaeger;
+                case "Cop":
+                    Actor cop = new Actor("Cop", @"Textures/Actors/Cop.png");
+                    cop.Position = new Vector2(900, 480);
+                    cop.NormalScale = 0.85f;
+                    cop.FocusScale = 1f;
+                    cop.CurrentScale = 0.85f;
+
+                    return cop;
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);

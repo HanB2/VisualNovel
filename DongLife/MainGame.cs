@@ -54,6 +54,9 @@ namespace DongLife
             sceneManager.RegisterScene(new SCHL_Alley());
             sceneManager.RegisterScene(new SLAVE_HomeAmbush());
             sceneManager.RegisterScene(new SLAVE_Base());
+            sceneManager.RegisterScene(new SCHL_Hallway());
+            sceneManager.RegisterScene(new KIJU_Home());
+            sceneManager.RegisterScene(new KIJU_HomeArrest());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -75,14 +78,16 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_SlaveWorkToDeath());
             sceneManager.RegisterScene(new BEND_DetentionDeath());
             sceneManager.RegisterScene(new BEND_DateDeath());
+            sceneManager.RegisterScene(new BEND_KaijuDeath());
 
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
             MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
-            MusicManager.SetVolume(1f);
+            MusicManager.RegisterSong("TrevorSux", @"Audio/TrevorSux.wav");
+            MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("MOM_Seduction");
+            sceneManager.SetScene("KIJU_Home");
         }
         public override void Draw(GameTime gameTime)
         {

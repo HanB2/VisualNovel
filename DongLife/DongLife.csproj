@@ -86,6 +86,7 @@
     <Compile Include="Scenes\EndScenes\BEND_DeadInBasement.cs" />
     <Compile Include="Scenes\EndScenes\BEND_DetentionDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_KaijuDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDieByGuards.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="Scenes\GameScenes\CMP_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
+    <Compile Include="Scenes\GameScenes\KIJU_Home.cs" />
+    <Compile Include="Scenes\GameScenes\KIJU_HomeArrest.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Base.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Scenes\GameScenes\SCHL_Base.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Date.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_Detention.cs" />
+    <Compile Include="Scenes\GameScenes\SCHL_Hallway.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_PrincipalOffice.cs" />
     <Compile Include="Scenes\GameScenes\SCHL_SchoolRoom.cs" />
     <Compile Include="Scenes\GameScenes\SLAVE_Base.cs" />
@@ -155,6 +159,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Audio\Necropolis.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\TrevorSux.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Accessories\FemaleShirts\fshirt_01.png">
@@ -227,6 +234,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Accessories\Misc\acc_07.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\baby_kaiju.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\cop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Actors\JaegerPrime.png">
