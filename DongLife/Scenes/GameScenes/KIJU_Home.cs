@@ -23,7 +23,7 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(professor);
 
             #region Sequences
-            Sequences.RegisterSequence(0, "Cop", "Hey, thank you for having me over Professor Kaiju!  I really appreciate it.");
+            Sequences.RegisterSequence(0, "Player", "Hey, thank you for having me over Professor Kaiju!  I really appreciate it.");
             Sequences.RegisterSequence(1, "Teacher", "Don't mention it, {PLAYERNAME}.  It is a pleasure to have you over.");
             Sequences.RegisterSequence(2, new SequenceDecision("Player",
                 "Wow, you have a very nice house!",
