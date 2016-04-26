@@ -193,7 +193,7 @@ namespace DongLife.Scenes.GameScenes
 
             //Cheese it
             Sequences.RegisterSequence(80, "Player", "I gotta get out of here!");
-            Sequences.RegisterSequence(67, new SequenceSceneTransition("KIJU_HomeArrest"));
+            Sequences.RegisterSequence(81, new SequenceSceneTransition("KIJU_HomeArrest"));
 
             //Wait Patiently
             Sequences.RegisterSequence(100, "Player", "Well, I'll just hang out until he gets back.");
