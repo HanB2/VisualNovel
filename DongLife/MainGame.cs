@@ -67,6 +67,8 @@ namespace DongLife
             sceneManager.RegisterScene(new GEND_FinalEnding());
             sceneManager.RegisterScene(new GEND_TimeParadox());
             sceneManager.RegisterScene(new GEND_GrowOldShia());
+            sceneManager.RegisterScene(new GEND_KaijuSlave());
+            sceneManager.RegisterScene(new GEND_KingKaiju());
 
             //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
@@ -89,7 +91,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("KIJU_Home");
+            sceneManager.SetScene("BASE_Home");
         }
         public override void Draw(GameTime gameTime)
         {

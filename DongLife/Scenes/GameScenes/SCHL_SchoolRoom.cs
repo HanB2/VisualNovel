@@ -67,7 +67,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(18, new SequenceSceneTransition("SCHL_Hallway"));
 
             //Meet the professor
-            Sequences.RegisterSequence(20, "Teacher", "Thank you for seeing {PLAYERNAME}.  Most of the students here typically don't respect me enough to stay.");
+            Sequences.RegisterSequence(20, "Teacher", "Thank you for seeing me, {PLAYERNAME}.  Most of the students here typically don't respect me enough to stay.");
             Sequences.RegisterSequence(21, new SequenceSpecial("CheckHomework"));
             ((SequenceSpecial)Sequences.Sequences[21]).OnSequenceExecution += (sender, e) =>
             {
@@ -92,7 +92,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(34, "Player", "My father tried talking to them, but it was too late.  They opened fire and I don't remember much after that.  I just remember waking up in a hospital room with a new family.");
             Sequences.RegisterSequence(35, "Teacher", "That's absolutely terrible, {PLAYERNAME}!  The paper made it sound like it was all your fault!");
             Sequences.RegisterSequence(36, "Player", "Most people don't take too kindly with us Giant Dongitus carrying folk.  It's a hard life.");
-            Sequences.RegisterSequence(37, "Teacher", "You're talking to a Kaiju {PLAYERNAME}.  I know my fair share of prejudice.");
+            Sequences.RegisterSequence(37, "Teacher", "You're talking to a Kaiju, {PLAYERNAME}.  I know my fair share of prejudice.");
             Sequences.RegisterSequence(38, "Teacher", "You know what, {PLAYERNAME}?  How about you join me and my family tonight for dinner?  We can discuss your situation more in depth.");
             Sequences.RegisterSequence(39, new SequenceDecision("Player",
                 "Sure, why not?",
@@ -118,6 +118,52 @@ namespace DongLife.Scenes.GameScenes
 
             Sequences.RegisterSequence(100, "Player", "Oh wait, I killed my professor.  There's no class!  Woo!");
             Sequences.RegisterSequence(101, new SequenceSceneTransition("BASE_Home"));
+
+
+            //After first day
+            Sequences.RegisterSequence(200, "Teacher", "Welcome students, please turn in your textbook to page 347 and begin the assignment.");
+            Sequences.RegisterSequence(201, "JaegerPrime", "Fuck you, Prof!");
+            Sequences.RegisterSequence(202, new SequenceSpecial("JaegerFadeIn"));
+            ((SequenceSpecial)Sequences.Sequences[202]).OnSequenceExecution += (sender, e) =>
+            {
+                jaeger.Animator.AnimateFade(1f, 800f);
+                Sequences.SetStage(203);
+            };
+            Sequences.RegisterSequence(203, "Teacher", "Jaeger Prime... I swear to god if you interrupt my lecture one more time, you will be severely punished!");
+            Sequences.RegisterSequence(204, "JaegerPrime", "Bite me!");
+            Sequences.RegisterSequence(205, "Teacher", "That's it!  To the principal's office with you!");
+            Sequences.RegisterSequence(206, "JaegerPrime", "Whatevs...");
+            Sequences.RegisterSequence(207, new SequenceSpecial("JaegerFadeOut"));
+            ((SequenceSpecial)Sequences.Sequences[207]).OnSequenceExecution += (sender, e) =>
+            {
+                jaeger.Animator.AnimateFade(0f, 800f);
+                Sequences.SetStage(208);
+            };
+            Sequences.RegisterSequence(208, "Teacher", "Okay... With that out of the way, let us return to the lesson.");
+            Sequences.RegisterSequence(209, NO_ACTOR, "*HOURS PASS*");
+            Sequences.RegisterSequence(210, "Teacher", "And that is our lesson for the day.  Thank you class for your undivided attention, please be here on time tomorrow.");
+            Sequences.RegisterSequence(211, "Player", "Hey, professor!");
+            Sequences.RegisterSequence(212, "Teacher", "Hello, {PLAYERNAME}!  Would you be interested in coming over for dinner again?  Baby Kaiju really likes you, even though he doesn't show it.");
+            Sequences.RegisterSequence(213, new SequenceDecision("Player",
+                "Yes!",
+                "I'll pass this time."));
+            ((SequenceDecision)Sequences.Sequences[213]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Yes
+                    Sequences.SetStage(214);
+                else if (e == 1) //Nah
+                    Sequences.SetStage(220);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Yes
+            Sequences.RegisterSequence(214, "Teacher", "Alright, let us go then!");
+            Sequences.RegisterSequence(215, new SequenceSceneTransition("KIJU_Home"));
+
+            //Nah
+            Sequences.RegisterSequence(220, "Teacher", "That's a damn shame.  You are welcome anytime.  Have a nice day, {PLAYERNAME}.");
+            Sequences.RegisterSequence(221, new SequenceSceneTransition("BASE_Home"));
             #endregion
         }
 
@@ -135,6 +181,13 @@ namespace DongLife.Scenes.GameScenes
 
                 Sequences.ExecuteSequence(this);
             }
+            else if (GameManager.AttendedClass)
+            {
+                Sequences.SetStage(200);
+                Sequences.ExecuteSequence(this);
+            }
+            else
+                GameManager.AttendedClass = true;
         }
     }
 }

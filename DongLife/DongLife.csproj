@@ -98,6 +98,8 @@
     <Compile Include="Scenes\EndScenes\GEND_FinalEnding.cs" />
     <Compile Include="Scenes\EndScenes\GEND_GrowOldShia.cs" />
     <Compile Include="Scenes\EndScenes\GEND_HeadHoncho.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_KaijuSlave.cs" />
+    <Compile Include="Scenes\EndScenes\GEND_KingKaiju.cs" />
     <Compile Include="Scenes\EndScenes\GEND_TimeParadox.cs" />
     <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
@@ -272,6 +274,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\movie_theater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\pawns_of_war.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\principal_office.png">

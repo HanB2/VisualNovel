@@ -19,6 +19,8 @@ namespace DongLife
         public static bool DeniedFeelings = false;
         public static bool CompletedHomework = false;
         public static bool TeacherDied = false;
+        public static bool AttendedClass = false;
+        public static bool HadDinner = false;
 
         public static GeoRenderer Renderer;
 
@@ -37,6 +39,8 @@ namespace DongLife
             DeniedFeelings = false;
             CompletedHomework = false;
             TeacherDied = false;
+            AttendedClass = false;
+            HadDinner = false;
         }
     }
 }

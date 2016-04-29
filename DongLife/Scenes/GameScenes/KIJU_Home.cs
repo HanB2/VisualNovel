@@ -250,7 +250,7 @@ namespace DongLife.Scenes.GameScenes
             //Tragic story
             Sequences.RegisterSequence(120, "Teacher", "Thank you for your sympathy, {PLAYERNAME}.");
             Sequences.RegisterSequence(121, "Player", "You said you knew who did it?");
-            Sequences.RegisterSequence(122, "Teacher", "Yes!  It was that gang of Jaegers that hang out behind the school.  They're blatantly racist against use Kaijus.");
+            Sequences.RegisterSequence(122, "Teacher", "Yes!  It was that gang of Jaegers that hang out behind the school.  They're blatantly racist against Kaijus.");
             Sequences.RegisterSequence(123, "Teacher", "They were caught on our security video that the police 'lost' on accident.  All racists, I must say.");
             Sequences.RegisterSequence(124, "Player", "Wow, that's really terrible!  A similar thing happened to the body cameras of the police that attacked my parents.  They don't really like us non-humans.");
             Sequences.RegisterSequence(125, "Teacher", "No, they do not, {PLAYERNAME}...");
@@ -262,7 +262,7 @@ namespace DongLife.Scenes.GameScenes
             ((SequenceDecision)Sequences.Sequences[128]).Choice += (sender, e) =>
             {
                 if (e == 0) //Sure
-                    Sequences.SetStage(120);
+                    Sequences.SetStage(131);
                 else if (e == 1) //Nah
                     Sequences.SetStage(129);
 
@@ -276,7 +276,28 @@ namespace DongLife.Scenes.GameScenes
             //Sure
             Sequences.RegisterSequence(131, "Teacher", "Great!  Follow me!");
             Sequences.RegisterSequence(132, new SequenceSceneTransition("KIJU_WorldDomination"));
+
+
+            //Not first dinner
+            Sequences.RegisterSequence(200, "Teacher", "Say hi to {PLAYERNAME}, Baby Kaiju.");
+            Sequences.RegisterSequence(201, "BabyKaiju", "...hi");
+            Sequences.RegisterSequence(202, "Player", "Hi, Baby Kaiju");
+            Sequences.RegisterSequence(203, "Teacher", "I'm going to take him and put him to bed, then we'll continue the dinner.");
+            Sequences.RegisterSequence(204, new SequenceStageTransition(20));
             #endregion
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            if (GameManager.HadDinner)
+            {
+                Sequences.SetStage(200);
+                Sequences.ExecuteSequence(this);
+            }
+            else
+                GameManager.HadDinner = true;
         }
     }
 }
