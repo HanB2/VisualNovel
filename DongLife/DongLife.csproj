@@ -107,6 +107,7 @@
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_Home.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_HomeArrest.cs" />
+    <Compile Include="Scenes\GameScenes\KIJU_WorldDomination.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Base.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Basement.cs" />
     <Compile Include="Scenes\GameScenes\MOM_Cambodia.cs" />

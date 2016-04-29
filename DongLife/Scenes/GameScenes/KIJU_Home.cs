@@ -227,6 +227,55 @@ namespace DongLife.Scenes.GameScenes
 
             Sequences.RegisterSequence(110, "Player", "Do you mind telling me more about your wife?");
             Sequences.RegisterSequence(111, "Teacher", "Well... It was only about three months ago when it happened.");
+            Sequences.RegisterSequence(112, "Teacher", "A bunch of hooligans from school thought it would be a great prank to light my home on fire.");
+            Sequences.RegisterSequence(113, "Player", "Holy shit!");
+            Sequences.RegisterSequence(114, "Teacher", "My wife, naturally being allergic to fire, died as soon as the blaze reached our room.  It was really terrible.  I was barely able to save our son from a similar fate. :(");
+            Sequences.RegisterSequence(115, new SequenceDecision("Player",
+                "Wow, that is a really tragic story.",
+                "She deserved it, you dirty reptilian freak."));
+            ((SequenceDecision)Sequences.Sequences[115]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Tragic Story
+                    Sequences.SetStage(120);
+                else if (e == 1) //Dirty Reptilian Freak
+                    Sequences.SetStage(116);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Dirty reptilian freak
+            Sequences.RegisterSequence(116, "Teacher", "Why you little...");
+            Sequences.RegisterSequence(117, new SequenceSceneTransition("BEND_KaijuDeath"));
+
+            //Tragic story
+            Sequences.RegisterSequence(120, "Teacher", "Thank you for your sympathy, {PLAYERNAME}.");
+            Sequences.RegisterSequence(121, "Player", "You said you knew who did it?");
+            Sequences.RegisterSequence(122, "Teacher", "Yes!  It was that gang of Jaegers that hang out behind the school.  They're blatantly racist against use Kaijus.");
+            Sequences.RegisterSequence(123, "Teacher", "They were caught on our security video that the police 'lost' on accident.  All racists, I must say.");
+            Sequences.RegisterSequence(124, "Player", "Wow, that's really terrible!  A similar thing happened to the body cameras of the police that attacked my parents.  They don't really like us non-humans.");
+            Sequences.RegisterSequence(125, "Teacher", "No, they do not, {PLAYERNAME}...");
+            Sequences.RegisterSequence(126, "Teacher", "I have a proposition {PLAYERNAME}... Being a Kaiju, I am exceptionally good at destroying civilizations...");
+            Sequences.RegisterSequence(127, "Teacher", "Would you fight alongside me and destroy this racist world and rebuild it as a utopia of acceptance?");
+            Sequences.RegisterSequence(128, new SequenceDecision("Player",
+                "Sure.",
+                "Nah."));
+            ((SequenceDecision)Sequences.Sequences[128]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Sure
+                    Sequences.SetStage(120);
+                else if (e == 1) //Nah
+                    Sequences.SetStage(129);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+            //Nah
+            Sequences.RegisterSequence(129, "Teacher", "Oh, well that's a shame.  Come back and talk to me again if you change your mind.");
+            Sequences.RegisterSequence(130, new SequenceSceneTransition("BASE_Home"));
+
+            //Sure
+            Sequences.RegisterSequence(131, "Teacher", "Great!  Follow me!");
+            Sequences.RegisterSequence(132, new SequenceSceneTransition("KIJU_WorldDomination"));
             #endregion
         }
     }
