@@ -38,7 +38,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(6, "Cop", "Look who's talking, big penis man!");
             Sequences.RegisterSequence(7, "Player", "Hey!  That's racist!");
             Sequences.RegisterSequence(8, "Cop", "Tell it to the judge!");
-            Sequences.RegisterSequence(9, new SequenceStageTransition(0));
+            Sequences.RegisterSequence(9, new SequenceSceneTransition("CORT_Base"));
         }
 
         public override void OnEnter()

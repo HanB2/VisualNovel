@@ -102,6 +102,7 @@
     <Compile Include="Scenes\EndScenes\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
     <Compile Include="Scenes\GameScenes\CMP_Base.cs" />
+    <Compile Include="Scenes\GameScenes\CORT_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_Home.cs" />
@@ -245,6 +246,9 @@
     <Content Include="Content\Textures\Actors\JaegerPrime.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Actors\judge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\player_female.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -255,6 +259,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\bowling_alley.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\court.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\detention.png">

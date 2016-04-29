@@ -197,6 +197,36 @@ namespace DongLife.Scenes.GameScenes
 
             //Wait Patiently
             Sequences.RegisterSequence(100, "Player", "Well, I'll just hang out until he gets back.");
+            Sequences.RegisterSequence(101, new SequenceSpecial("ProfessorComesBack"));
+            ((SequenceSpecial)Sequences.Sequences[101]).OnSequenceExecution += (sender, e) =>
+            {
+                SetActorFocus("Teacher");
+                MessageBox.SetText("I am back, {PLAYERNAME}!");
+
+                professor.Animator.AnimateFade(1f, 800f);
+                Sequences.SetStage(102);
+            };
+            Sequences.RegisterSequence(102, "Player", "This food is absolutely wonderful, Professor Kaiju!");
+            Sequences.RegisterSequence(103, "Teacher", "Yes, I worked very hard to prepare a nice meal for my guest.");
+            Sequences.RegisterSequence(104, new SequenceDecision("Player",
+                "Inquire about his wife.",
+                "Ignore the elephant in the room."));
+            ((SequenceDecision)Sequences.Sequences[104]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Inquire
+                    Sequences.SetStage(110);
+                else if (e == 1) //Ignore
+                    Sequences.SetStage(105);
+
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(105, NO_ACTOR, "*You two have small talk as the evening progresses*");
+            Sequences.RegisterSequence(106, "Player", "Welp, that was a very nice dinner, Professor Kaiju, but I better get going.");
+            Sequences.RegisterSequence(107, "Teacher", "It was a very nice dinner, {PLAYERNAME}.  I would love for you to come over again another time.");
+            Sequences.RegisterSequence(108, new SequenceSceneTransition("BASE_Home"));
+
+            Sequences.RegisterSequence(110, "Player", "Do you mind telling me more about your wife?");
+            Sequences.RegisterSequence(111, "Teacher", "Well... It was only about three months ago when it happened.");
             #endregion
         }
     }

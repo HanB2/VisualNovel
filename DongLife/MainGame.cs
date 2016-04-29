@@ -57,6 +57,7 @@ namespace DongLife
             sceneManager.RegisterScene(new SCHL_Hallway());
             sceneManager.RegisterScene(new KIJU_Home());
             sceneManager.RegisterScene(new KIJU_HomeArrest());
+            sceneManager.RegisterScene(new CORT_Base());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -87,7 +88,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("KIJU_Home");
+            sceneManager.SetScene("CORT_Base");
         }
         public override void Draw(GameTime gameTime)
         {

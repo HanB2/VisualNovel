@@ -138,6 +138,14 @@ namespace DongLife.Code
                     cop.CurrentScale = 0.85f;
 
                     return cop;
+                case "Judge":
+                    Actor judge = new Actor("Judge", @"Textures/Actors/judge.png");
+                    judge.Position = new Vector2(955, 565);
+                    judge.NormalScale = 0.6f;
+                    judge.FocusScale = 0.7f;
+                    judge.CurrentScale = 0.6f;
+
+                    return judge;
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);
