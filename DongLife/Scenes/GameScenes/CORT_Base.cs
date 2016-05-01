@@ -57,13 +57,13 @@ namespace DongLife.Scenes.GameScenes
                 else if (e == 1) //They deserved it
                     Sequences.SetStage(40);
                 else if (e == 2) //I don't know them
-                    Sequences.SetStage(0);
+                    Sequences.SetStage(50);
 
                 Sequences.ExecuteSequence(this);
             };
 
             //Jaeger Gang
-            Sequences.RegisterSequence(30, "Player", "The Jaeger gang!  They're the one that did it.");
+            Sequences.RegisterSequence(30, "Player", "The Jaeger gang!  They're the ones that did it.");
             Sequences.RegisterSequence(31, "Judge", "That is a serious allegation, what evidence do you have?");
             Sequences.RegisterSequence(32, "Player", "They hate Kaijus more than the average person!  I am a Giant Dongitus person, so I identify with them.  Why on Earth would I harm the Kaiju family?");
             Sequences.RegisterSequence(33, "Player", "Think, Judge!  It makes perfect sense!");
@@ -86,9 +86,9 @@ namespace DongLife.Scenes.GameScenes
 
             //I don't know them
             Sequences.RegisterSequence(50, "Player", "I don't know them.  I wasn't even there.");
-            Sequences.RegisterSequence(51, "Judge", "What?  He's your professor and your DNA was found at the crime scene!  We have an eye witness placing you at the scene of the crime.");
+            Sequences.RegisterSequence(51, "Judge", "What?  He's your professor and your DNA was found at the crime scene!  We even have an eye witness who saw you there!");
             Sequences.RegisterSequence(52, "Player", "That doesn't prove anything.  Anyone could have my DNA, I don't pay attention in class, and that Baby Kaiju is a dirty liar.");
-            Sequences.RegisterSequence(53, "Judge", "I mean, you can't argue against that flawless argument...");
+            Sequences.RegisterSequence(53, "Judge", "I mean, you can't really argue against that...");
             Sequences.RegisterSequence(54, "Judge", "You're released of all charges.");
             Sequences.RegisterSequence(55, "Player", "Yes!");
             Sequences.RegisterSequence(56, new SequenceSceneTransition("BASE_Home"));

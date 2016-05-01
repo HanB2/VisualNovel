@@ -7,6 +7,7 @@ namespace DongLife
     {
         //Appearance
         public static string PlayerName = "Robert";
+        public static string JaegerName = "Robert";
         public static string ChosenDate = "MOVIES";
         public static string TexturePath = @"Textures/Actors/player_male.png";
         public static int HatIndex = -1;
@@ -28,6 +29,7 @@ namespace DongLife
         public static void ResetDefaults()
         {
             PlayerName = "Robert";
+            JaegerName = "Robert";
             ChosenDate = "MOVIES";
             TexturePath = @"Textures/Actors/player_male.png";
             HatIndex = -1;
@@ -43,6 +45,12 @@ namespace DongLife
             AttendedClass = false;
             HadDinner = false;
             BlamedJaegers = false;
+        }
+
+        public static void GenerateJaegerName()
+        {
+            string[] JaegerTitles = System.IO.File.ReadAllLines(@"Content/Data/jaeger_titles.txt");
+            JaegerName = string.Format("{0} Jaeger", JaegerTitles[RNG.Next(0, JaegerTitles.Length)]);
         }
     }
 }

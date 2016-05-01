@@ -64,5 +64,12 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(30, "JaegerPrime", "Whatever weirdo, go home and cry to your mommy!");
             Sequences.RegisterSequence(31, new SequenceSceneTransition("BASE_Home"));
         }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            prime.PosX += 275;
+        }
     }
 }

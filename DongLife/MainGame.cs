@@ -60,6 +60,7 @@ namespace DongLife
             sceneManager.RegisterScene(new KIJU_WorldDomination());
             sceneManager.RegisterScene(new CORT_Base());
             sceneManager.RegisterScene(new JAGR_HomeAmbush());
+            sceneManager.RegisterScene(new JAGR_Alley());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -86,6 +87,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_KaijuDeath());
             sceneManager.RegisterScene(new BEND_PsychiatricWard());
             sceneManager.RegisterScene(new BEND_Prison());
+            sceneManager.RegisterScene(new BEND_JaegerDeath());
 
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
@@ -94,7 +96,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("JAGR_HomeAmbush");
+            sceneManager.SetScene("JAGR_Alley");
         }
         public override void Draw(GameTime gameTime)
         {

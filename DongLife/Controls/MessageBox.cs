@@ -197,6 +197,7 @@ namespace DongLife.Controls
         {
             //PlayerName
             textBuffer = textBuffer.Replace("{PLAYERNAME}", GameManager.PlayerName);
+            textBuffer = textBuffer.Replace("{JAEGERNAME}", GameManager.JaegerName);
         }
         private void setText(string text)
         {
