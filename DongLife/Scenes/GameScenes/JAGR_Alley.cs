@@ -104,10 +104,49 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(43, "Player", "How do I do that?");
             Sequences.RegisterSequence(44, "JaegerPrime", "You have to prove you hate Kaijus as much as us.");
             Sequences.RegisterSequence(45, "KaijuJaeger", "Yea!  We hate them Kaijus, yep we do!");
-            Sequences.RegisterSequence(46, "JaegerPrime", "You have to rob a local jewelry store to prove your worth.  It's old by this old Kaiju bitch who deserves a good robbing.");
-            Sequences.RegisterSequence(47, "MetroidJaeger", "We all had our initiations, now it's your turn, {JAEGERNAME}.");
+            Sequences.RegisterSequence(46, "JaegerPrime", "You have to rob a local jewelry store to prove your worth.  It's ran by this old Kaiju bitch who deserves a good robbing.");
+            Sequences.RegisterSequence(47, "IronJaeger", "We all had our initiations, now it's your turn, {JAEGERNAME}.");
             Sequences.RegisterSequence(48, "JaegerPrime", "Get to it!");
             Sequences.RegisterSequence(49, new SequenceSceneTransition("JAGR_JewelryStore"));
+
+            //Pooped
+            Sequences.RegisterSequence(80, "Player", "Hey!  I did it!");
+            Sequences.RegisterSequence(81, "JaegerPrime", "Where's the loot, {JAEGERNAME}?");
+            Sequences.RegisterSequence(82, "Player", "I... uh... I decided to poop on the counter instead.");
+            Sequences.RegisterSequence(83, "JaegerPrime", "(⊙︿⊙)");
+            Sequences.RegisterSequence(84, "MetroidJaeger", "(⊙︿⊙)");
+            Sequences.RegisterSequence(85, "IronJaeger", "(⊙︿⊙)");
+            Sequences.RegisterSequence(86, "KaijuJaeger", "Yea!  Take that Grandma!");
+            Sequences.RegisterSequence(87, "KaijuJaeger", "er...");
+            Sequences.RegisterSequence(88, "KaijuJaeger", "(⊙︿⊙)");
+            Sequences.RegisterSequence(89, "Player", @"¯\_(ツ)_/¯");
+            Sequences.RegisterSequence(90, "JaegerPrime", "Whatever, you defaced their property.  It's good enough.  You're an official Jaeger now!");
+            Sequences.RegisterSequence(91, new SequenceStageTransition(103));
+
+            //After Jewelry Heist
+            Sequences.RegisterSequence(100, "Player", "Hey!  I did it!");
+            Sequences.RegisterSequence(101, "JaegerPrime", "Good job, {JAEGERNAME}.  You're an official Jaeger now!");
+            Sequences.RegisterSequence(102, "KaijuJaeger", "Yay!");
+            Sequences.RegisterSequence(103, "MetroidJaeger", "I still don't approve.");
+            Sequences.RegisterSequence(104, "JaegerPrime", "I didn't ask for your opinion, Copyright Infringement Jaeger!  Now shut it!");
+            Sequences.RegisterSequence(105, "JaegerPrime", "Now that you're an official Jaeger, you can help with our primary goal...");
+            Sequences.RegisterSequence(106, "IronJaeger", "The ethnic cleansing of all Kaijus!");
+            Sequences.RegisterSequence(107, "KaijuJaeger", "Ye... yea!");
+            Sequences.RegisterSequence(108, "JaegerPrime", "So what do you say, {JAEGERNAME}?  Will you join us in this noble pursuit?");
+            Sequences.RegisterSequence(109, new SequenceDecision("Player",
+                "Death to all Kaijus!",
+                "I'm not sure if we should... you know... kill them all?"));
+            ((SequenceDecision)Sequences.Sequences[109]).Choice += (sender, e) =>
+            {
+                if (e == 0) //Kill them all
+                    Sequences.SetStage(200);
+                else if (e == 1) //Back out
+                    Sequences.SetStage(110);
+
+                Sequences.ExecuteSequence(this);
+            };
+
+
         }
 
         public override void OnEnter()
@@ -115,6 +154,17 @@ namespace DongLife.Scenes.GameScenes
             base.OnEnter();
 
             numberGenerated = 0;
+
+            if (GameManager.RobbedJewelryStore)
+            {
+                Sequences.SetStage(100);
+                Sequences.ExecuteSequence(this);
+            }
+            else if (GameManager.PoopedOnCounter)
+            {
+                Sequences.SetStage(80);
+                Sequences.ExecuteSequence(this);
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace DongLife.Scenes.GameScenes
             };
             Sequences.RegisterSequence(7, "Player", "What's going on?");
             Sequences.RegisterSequence(8, "JaegerPrime", "You betrayed your own kind, {JAEGERNAME}.  How dare you.");
-            Sequences.RegisterSequence(9, "MetroidJaeger", "You sold us out, mang!");
+            Sequences.RegisterSequence(9, "MetroidJaeger", "We trusted you!");
             Sequences.RegisterSequence(10, "IronJaeger", "You're going to pay for that!");
             Sequences.RegisterSequence(11, "KaijuJaeger", "Yea!  What they said!");
             Sequences.RegisterSequence(12, "JaegerPrime", "You're going to die for your crimes against the Jaeger Gang, scum!");

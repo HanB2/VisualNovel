@@ -23,6 +23,8 @@ namespace DongLife
         public static bool AttendedClass = false;
         public static bool HadDinner = false;
         public static bool BlamedJaegers = false;
+        public static bool RobbedJewelryStore = false;
+        public static bool PoopedOnCounter = false;
 
         public static GeoRenderer Renderer;
 
@@ -45,6 +47,8 @@ namespace DongLife
             AttendedClass = false;
             HadDinner = false;
             BlamedJaegers = false;
+            RobbedJewelryStore = false;
+            PoopedOnCounter = false;
         }
 
         public static void GenerateJaegerName()

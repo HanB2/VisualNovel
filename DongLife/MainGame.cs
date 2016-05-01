@@ -61,6 +61,7 @@ namespace DongLife
             sceneManager.RegisterScene(new CORT_Base());
             sceneManager.RegisterScene(new JAGR_HomeAmbush());
             sceneManager.RegisterScene(new JAGR_Alley());
+            sceneManager.RegisterScene(new JAGR_JewelryStore());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -88,6 +89,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_PsychiatricWard());
             sceneManager.RegisterScene(new BEND_Prison());
             sceneManager.RegisterScene(new BEND_JaegerDeath());
+            sceneManager.RegisterScene(new BEND_Electrocution());
 
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
