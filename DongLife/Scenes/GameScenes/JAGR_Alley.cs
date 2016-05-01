@@ -146,7 +146,15 @@ namespace DongLife.Scenes.GameScenes
                 Sequences.ExecuteSequence(this);
             };
 
+            //Back out
+            Sequences.RegisterSequence(110, "IronJaeger", "Wow, what a poon.");
+            Sequences.RegisterSequence(111, "JaegerPrime", "You will regret not going with us on our glorious revolution!");
+            Sequences.RegisterSequence(112, "JaegerPrime", "Get him boys!");
+            Sequences.RegisterSequence(113, new SequenceSceneTransition("BEND_JaegerDeath"));
 
+            //Ethnic cleansing
+            Sequences.RegisterSequence(200, "JaegerPrime", "Alright!  Let's suit up gang!");
+            Sequences.RegisterSequence(201, new SequenceSceneTransition("GEND_EthnicCleansing"));
         }
 
         public override void OnEnter()

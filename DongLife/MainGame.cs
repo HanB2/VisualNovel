@@ -72,6 +72,7 @@ namespace DongLife
             sceneManager.RegisterScene(new GEND_GrowOldShia());
             sceneManager.RegisterScene(new GEND_KaijuSlave());
             sceneManager.RegisterScene(new GEND_KingKaiju());
+            sceneManager.RegisterScene(new GEND_EthnicCleansing());
 
             //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());

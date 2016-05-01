@@ -79,7 +79,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(23, "Player", "Oh no, the fuzz!");
             Sequences.RegisterSequence(24, "Cop", "Ah, I'm just joshing you.  I came here to steal shit too.");
             Sequences.RegisterSequence(25, "Player", "Really!?");
-            Sequences.RegisterSequence(26, "Cop", "Fuck yea, I'll disable the alarm and you start filling this sack.");
+            Sequences.RegisterSequence(26, "Cop", "Fuck yea, I'll disable the alarm.  You should start filling this sack.");
             Sequences.RegisterSequence(27, "Player", "Yipee!");
             Sequences.RegisterSequence(28, NO_ACTOR, "*You two rob the old Kaiju lady blind and split up the loot, going your separate ways*");
             Sequences.RegisterSequence(29, new SequenceSceneTransition("JAGR_Alley"));
