@@ -94,7 +94,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("BASE_Home");
+            sceneManager.SetScene("JAGR_HomeAmbush");
         }
         public override void Draw(GameTime gameTime)
         {

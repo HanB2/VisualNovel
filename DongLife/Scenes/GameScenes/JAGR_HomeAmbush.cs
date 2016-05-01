@@ -25,6 +25,13 @@ namespace DongLife.Scenes.GameScenes
             RegisterActor(metroid);
             RegisterActor(iron);
             RegisterActor(kaiju);
+
+            Sequences.RegisterSequence(0, "Player", "Hey!");
+            Sequences.RegisterSequence(1, "JaegerPrime", "Hey!");
+            Sequences.RegisterSequence(2, "MetroidJaeger", "Hey!");
+            Sequences.RegisterSequence(3, "IronJaeger", "Hey!");
+            Sequences.RegisterSequence(4, "KaijuJaeger", "Hey!");
+            Sequences.RegisterSequence(5, new SequenceStageTransition(0));
         }
     }
 }

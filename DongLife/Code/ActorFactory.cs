@@ -122,14 +122,6 @@ namespace DongLife.Code
                     baby.CurrentScale = 0.6f;
 
                     return baby;
-                case "JaegerPrime":
-                    Actor jaeger = new Actor("JaegerPrime", @"Textures/Actors/JaegerPrime.png");
-                    jaeger.Position = new Vector2(940, 510);
-                    jaeger.NormalScale = 0.85f;
-                    jaeger.FocusScale = 1.05f;
-                    jaeger.CurrentScale = 0.85f;
-
-                    return jaeger;
                 case "Cop":
                     Actor cop = new Actor("Cop", @"Textures/Actors/Cop.png");
                     cop.Position = new Vector2(900, 480);
@@ -146,6 +138,39 @@ namespace DongLife.Code
                     judge.CurrentScale = 0.6f;
 
                     return judge;
+                case "JaegerPrime":
+                    Actor jaeger = new Actor("JaegerPrime", @"Textures/Actors/JaegerPrime.png");
+                    jaeger.Position = new Vector2(700, 510);
+                    jaeger.NormalScale = 0.85f;
+                    jaeger.FocusScale = 1.05f;
+                    jaeger.CurrentScale = 0.85f;
+
+                    return jaeger;
+                case "MetroidJaeger":
+                    Actor metroid = new Actor("MetroidJaeger", @"Textures/Actors/infringement_jaeger.png");
+                    metroid.Position = new Vector2(920, 460);
+                    metroid.NormalScale = 0.85f;
+                    metroid.FocusScale = 1.05f;
+                    metroid.CurrentScale = 0.85f;
+                    metroid.DrawOrder = 0.51f;
+
+                    return metroid;
+                case "IronJaeger":
+                    Actor iron = new Actor("IronJaeger", @"Textures/Actors/iron_jaeger.png");
+                    iron.Position = new Vector2(900, 510);
+                    iron.NormalScale = 0.8f;
+                    iron.FocusScale = 1.0f;
+                    iron.CurrentScale = 0.8f;
+
+                    return iron;
+                case "KaijuJaeger":
+                    Actor kaijuJaeger = new Actor("KaijuJaeger", @"Textures/Actors/kaiju_jaeger.png");
+                    kaijuJaeger.Position = new Vector2(1100, 450);
+                    kaijuJaeger.NormalScale = 0.85f;
+                    kaijuJaeger.FocusScale = 1.05f;
+                    kaijuJaeger.CurrentScale = 0.85f;
+
+                    return kaijuJaeger;
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);
