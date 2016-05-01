@@ -63,24 +63,14 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(41, new SequenceSpecial("KillYourself"));
             ((SequenceSpecial)Sequences.Sequences[41]).OnSequenceExecution += (sender, e) =>
             {
-                int chance = Minalear.RNG.Next(1, 101);
-                if (chance <= 50)
-                {
-                    player.Animator.AnimateFade(0f, 2000f);
-                    Sequences.SetStage(50); //Succeed
-                }
-                else
-                    Sequences.SetStage(60); //Fail
+                player.Animator.AnimateFade(0f, 1250f);
+                Sequences.SetStage(50);
+
                 Sequences.ExecuteSequence(this);
             };
-
-            //Succeed in suicide
+            
             Sequences.RegisterSequence(50, "Player", "Whelp, goodbye cruel world.  *blurgh*");
             Sequences.RegisterSequence(51, new SequenceSceneTransition("BEND_Suicide"));
-
-            //Fail in suicide
-            Sequences.RegisterSequence(60, "Player", "Whelp, goodbye cruel world... ");
-            Sequences.RegisterSequence(61, new SequenceSceneTransition("PSYCHIATRIC_WARD"));
         }
 
         public override void OnEnter()
@@ -88,6 +78,10 @@ namespace DongLife.Scenes.GameScenes
             if (GameManager.PissedOffJanitor)
             {
                 Manager.ChangeScene("SLAVE_HomeAmbush");
+            }
+            else if (GameManager.BlamedJaegers)
+            {
+                Manager.ChangeScene("JAGR_HomeAmbush");
             }
             else
                 base.OnEnter();

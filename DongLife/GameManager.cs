@@ -21,6 +21,7 @@ namespace DongLife
         public static bool TeacherDied = false;
         public static bool AttendedClass = false;
         public static bool HadDinner = false;
+        public static bool BlamedJaegers = false;
 
         public static GeoRenderer Renderer;
 
@@ -41,6 +42,7 @@ namespace DongLife
             TeacherDied = false;
             AttendedClass = false;
             HadDinner = false;
+            BlamedJaegers = false;
         }
     }
 }

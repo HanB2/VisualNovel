@@ -87,6 +87,8 @@
     <Compile Include="Scenes\EndScenes\BEND_DetentionDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_EatenAlive_Shia.cs" />
     <Compile Include="Scenes\EndScenes\BEND_KaijuDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_Prison.cs" />
+    <Compile Include="Scenes\EndScenes\BEND_PsychiatricWard.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SandCoffin.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND_SlaveDieByGuards.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Scenes\GameScenes\CORT_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN_HospitalScene.cs" />
+    <Compile Include="Scenes\GameScenes\JAGR_HomeAmbush.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_Home.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_HomeArrest.cs" />
     <Compile Include="Scenes\GameScenes\KIJU_WorldDomination.cs" />

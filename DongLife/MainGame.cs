@@ -83,6 +83,8 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_DetentionDeath());
             sceneManager.RegisterScene(new BEND_DateDeath());
             sceneManager.RegisterScene(new BEND_KaijuDeath());
+            sceneManager.RegisterScene(new BEND_PsychiatricWard());
+            sceneManager.RegisterScene(new BEND_Prison());
 
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
