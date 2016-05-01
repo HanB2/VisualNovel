@@ -59,6 +59,7 @@ namespace DongLife
             sceneManager.RegisterScene(new KIJU_HomeArrest());
             sceneManager.RegisterScene(new KIJU_WorldDomination());
             sceneManager.RegisterScene(new CORT_Base());
+            sceneManager.RegisterScene(new JAGR_HomeAmbush());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
