@@ -52,7 +52,14 @@ namespace DongLife.Scenes.GameScenes
 
             //Access computer
             Sequences.RegisterSequence(20, "Player", "Guess I could rub one out before class.");
-            Sequences.RegisterSequence(21, new SequenceSceneTransition("CMP_Base"));
+            Sequences.RegisterSequence(21, new SequenceSpecial("ChangeMessageBoxTheme"));
+            ((SequenceSpecial)Sequences.Sequences[21]).OnSequenceExecution += (sender, e) =>
+            {
+                MessageBox.CurrentTheme = MessageBox.Themes.Computer;
+                Sequences.SetStage(22);
+                Sequences.ExecuteSequence(this);
+            };
+            Sequences.RegisterSequence(22, new SequenceSceneTransition("CMP_Base"));
 
             //Talk to foster mother
             Sequences.RegisterSequence(30, "Player", "I wonder what my new mom is doing...");

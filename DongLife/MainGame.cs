@@ -62,6 +62,7 @@ namespace DongLife
             sceneManager.RegisterScene(new JAGR_HomeAmbush());
             sceneManager.RegisterScene(new JAGR_Alley());
             sceneManager.RegisterScene(new JAGR_JewelryStore());
+            sceneManager.RegisterScene(new CMP_Base());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -99,7 +100,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("JAGR_Alley");
+            sceneManager.SetScene("BASE_Home");
         }
         public override void Draw(GameTime gameTime)
         {

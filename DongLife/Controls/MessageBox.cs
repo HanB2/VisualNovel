@@ -34,6 +34,7 @@ namespace DongLife.Controls
 
         private bool cursorDisplayed = true;
         private int cursorDelay = 600;
+        private Themes currentTheme = Themes.Normal;
 
         public MessageBox(int width, int height)
         {
@@ -202,13 +203,21 @@ namespace DongLife.Controls
         private void setText(string text)
         {
             fillBackground();
-            graphics.DrawString(text, messageFont, Brushes.White, 10, 10);
+
+            if (currentTheme == Themes.Normal)
+                graphics.DrawString(text, messageFont, Brushes.White, 10, 10, StringFormat.GenericDefault);
+            else if (currentTheme == Themes.Computer)
+                graphics.DrawString(text, messageFont, Brushes.Black, 10, 10, StringFormat.GenericDefault);
 
             updateTexture();
         }
         private void updateText()
         {
-            graphics.DrawString(textBuffer[textIndex].ToString(), messageFont, Brushes.White, characterRegions[textIndex].Location);
+            if (currentTheme == Themes.Normal)
+                graphics.DrawString(textBuffer[textIndex].ToString(), messageFont, Brushes.White, characterRegions[textIndex].Location);
+            else if (currentTheme == Themes.Computer)
+                graphics.DrawString(textBuffer[textIndex].ToString(), messageFont, Brushes.Black, characterRegions[textIndex].Location);
+
             updateTexture();
         }
         private void calculateRegions(string text)
@@ -264,12 +273,22 @@ namespace DongLife.Controls
         }
         private void fillBackground()
         {
-            HatchBrush fill = new HatchBrush(HatchStyle.Weave, Color.FromArgb(200, 25, 25, 25), Color.FromArgb(200, 10, 10, 10));
-            Pen border = new Pen(new LinearGradientBrush(Bounds, Color.White, Color.Black, LinearGradientMode.Vertical), 2f);
+            if (currentTheme == Themes.Normal)
+            {
+                HatchBrush fill = new HatchBrush(HatchStyle.Weave, Color.FromArgb(200, 25, 25, 25), Color.FromArgb(200, 10, 10, 10));
+                Pen border = new Pen(new LinearGradientBrush(Bounds, Color.White, Color.Black, LinearGradientMode.Vertical), 2f);
 
-            graphics.Clear(Color.Transparent);
-            graphics.FillRectangle(fill, 0, 0, Bounds.Width, Bounds.Height);
-            graphics.DrawRectangle(border, 2, 2, Bounds.Width - 4, Bounds.Height);
+                graphics.Clear(Color.Transparent);
+                graphics.FillRectangle(fill, 0, 0, Bounds.Width, Bounds.Height);
+                graphics.DrawRectangle(border, 2, 2, Bounds.Width - 4, Bounds.Height);
+            }
+            else if (currentTheme == Themes.Computer)
+            {
+                graphics.Clear(Color.Transparent);
+                graphics.FillRectangle(Brushes.Black, 0, 0, Bounds.Width, Bounds.Height - 64);
+                graphics.FillRectangle(Brushes.White, 1, 1, Bounds.Width - 2, Bounds.Height - 66);
+                graphics.DrawRectangle(Pens.Black, 5, 5, Bounds.Width - 11, Bounds.Height - 75);
+            }
         }
         private void updateTexture()
         {
@@ -347,10 +366,17 @@ namespace DongLife.Controls
             get { return this.textBuffer; }
             set { this.setText(value); }
         }
+        public Themes CurrentTheme
+        {
+            get { return this.currentTheme; }
+            set { this.currentTheme = value; }
+        }
 
         public delegate void TextFinishedDelegate(object sender, EventArgs args);
         public delegate void MessageBoxOptionSelectedDelegate(object sender, int optionID);
         public event MessageBoxOptionSelectedDelegate OptionSelected;
         public event TextFinishedDelegate TextFinished;
+
+        public enum Themes { Normal, Computer }
     }
 }
