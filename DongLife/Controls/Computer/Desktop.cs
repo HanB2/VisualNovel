@@ -10,7 +10,8 @@ namespace DongLife.Controls.Computer
 {
     public class Desktop : Control
     {
-        private Texture2D wallpaper;
+        private Texture2D[] wallpapers;
+        private int currentWallpaperID = 0;
         private Texture2D desktop;
 
         private Icon porn, homework, news, settings;
@@ -42,21 +43,29 @@ namespace DongLife.Controls.Computer
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.wallpaper, new RectangleF(0f, 0f, 1280f, 720f), Color4.White);
+            spriteBatch.Draw(this.wallpapers[currentWallpaperID], new RectangleF(0f, 0f, 1280f, 720f), Color4.White);
             spriteBatch.Draw(this.desktop, new RectangleF(0f, 0f, 1280f, 720f), Color4.White);
 
             base.Draw(spriteBatch);
         }
         public override void LoadContent(ContentManager content)
         {
-            wallpaper = content.LoadTexture2D(@"Textures/Wallpapers/wallpaper_01.png");
+            string[] wallpaperPaths = System.IO.Directory.GetFiles(@"Content/Textures/Wallpapers/", "*.png");
+            this.wallpapers = new Texture2D[wallpaperPaths.Length];
+
+            for (int i = 0; i < wallpaperPaths.Length; i++)
+            {
+                wallpapers[i] = content.LoadTexture2D(wallpaperPaths[i].Replace("Content/", string.Empty));
+            }
+            
             desktop = content.LoadTexture2D(@"Textures/Misc/desktop.png");
 
             base.LoadContent(content);
         }
         public override void UnloadContent()
         {
-            wallpaper.Dispose();
+            for (int i = 0; i < wallpapers.Length; i++)
+                wallpapers[i].Dispose();
             desktop.Dispose();
 
             base.UnloadContent();
@@ -76,7 +85,15 @@ namespace DongLife.Controls.Computer
         }
         private void Settings_OnIconClick(object sender, OpenTK.Input.MouseButtonEventArgs e)
         {
+            if (e.Button == OpenTK.Input.MouseButton.Left)
+                currentWallpaperID++;
+            else if (e.Button == OpenTK.Input.MouseButton.Right)
+                currentWallpaperID--;
 
+            if (currentWallpaperID < 0)
+                currentWallpaperID = wallpapers.Length - 1;
+            else if (currentWallpaperID >= wallpapers.Length)
+                currentWallpaperID = 0;
         }
         private void QuitButton_OnIconClick(object sender, OpenTK.Input.MouseButtonEventArgs e)
         {

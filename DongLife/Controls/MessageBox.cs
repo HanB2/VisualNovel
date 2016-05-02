@@ -281,13 +281,20 @@ namespace DongLife.Controls
                 graphics.Clear(Color.Transparent);
                 graphics.FillRectangle(fill, 0, 0, Bounds.Width, Bounds.Height);
                 graphics.DrawRectangle(border, 2, 2, Bounds.Width - 4, Bounds.Height);
+
+                fill.Dispose();
+                border.Dispose();
             }
             else if (currentTheme == Themes.Computer)
             {
+                Brush fill = new SolidBrush(Color.FromArgb(200, 255, 255, 255));
+
                 graphics.Clear(Color.Transparent);
-                graphics.FillRectangle(Brushes.Black, 0, 0, Bounds.Width, Bounds.Height - 64);
-                graphics.FillRectangle(Brushes.White, 1, 1, Bounds.Width - 2, Bounds.Height - 66);
+                graphics.DrawRectangle(Pens.Black, 0, 0, Bounds.Width, Bounds.Height - 64);
+                graphics.FillRectangle(fill, 1, 1, Bounds.Width - 2, Bounds.Height - 66);
                 graphics.DrawRectangle(Pens.Black, 5, 5, Bounds.Width - 11, Bounds.Height - 75);
+
+                fill.Dispose();
             }
         }
         private void updateTexture()
