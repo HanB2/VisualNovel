@@ -66,6 +66,7 @@
     <Compile Include="Controls\CharacterCreator.cs" />
     <Compile Include="Controls\Computer\Desktop.cs" />
     <Compile Include="Controls\Computer\Icon.cs" />
+    <Compile Include="Controls\Computer\Window.cs" />
     <Compile Include="Controls\CreatorOptionSelector.cs" />
     <Compile Include="Controls\FatigueBar.cs" />
     <Compile Include="Controls\GeoButton.cs" />
@@ -312,6 +313,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Misc\desktop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Misc\window_homework.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Misc\window_news.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Misc\window_porn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Props\shekels_hud.png">

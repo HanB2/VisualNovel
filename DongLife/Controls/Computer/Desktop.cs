@@ -14,30 +14,32 @@ namespace DongLife.Controls.Computer
         private int currentWallpaperID = 0;
         private Texture2D desktop;
 
-        private Icon porn, homework, news, settings;
+        private Icon pornIcon, homeworkIcon, newsIcon, settingsIcon;
         private Icon quitButton;
+
+        private Window porn, homework, news;
 
         public Desktop()
         {
             this.DrawOrder = 0.9f;
             this.Bounds = new RectangleF(0f, 0f, 1280f, 720f);
 
-            porn =      new Icon(new RectangleF(34f,  22f, 66f, 68f));
-            homework =  new Icon(new RectangleF(34f, 130f, 66f, 62f));
-            news =      new Icon(new RectangleF(34f, 210f, 66f, 65f));
-            settings =  new Icon(new RectangleF(34f, 572f, 66f, 68f));
+            pornIcon =      new Icon(new RectangleF(34f,  22f, 66f, 68f));
+            homeworkIcon =  new Icon(new RectangleF(34f, 130f, 66f, 62f));
+            newsIcon =      new Icon(new RectangleF(34f, 210f, 66f, 65f));
+            settingsIcon =  new Icon(new RectangleF(34f, 572f, 66f, 68f));
             quitButton = new Icon(new RectangleF(4f, 672f, 108f, 44f));
 
-            porn.DoubleClick += Porn_OnIconClick;
-            homework.DoubleClick += Homework_OnIconClick;
-            news.DoubleClick += News_OnIconClick;
-            settings.DoubleClick += Settings_OnIconClick;
+            pornIcon.DoubleClick += Porn_OnIconClick;
+            homeworkIcon.DoubleClick += Homework_OnIconClick;
+            newsIcon.DoubleClick += News_OnIconClick;
+            settingsIcon.DoubleClick += Settings_OnIconClick;
             quitButton.SingleClick += QuitButton_OnIconClick;
 
-            AddChild(porn);
-            AddChild(homework);
-            AddChild(news);
-            AddChild(settings);
+            AddChild(pornIcon);
+            AddChild(homeworkIcon);
+            AddChild(newsIcon);
+            AddChild(settingsIcon);
             AddChild(quitButton);
         }
 
