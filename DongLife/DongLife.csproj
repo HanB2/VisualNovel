@@ -95,6 +95,7 @@
     <Compile Include="Scenes\EndScenes\BEND\BEND_KaijuDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_Prison.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_PsychiatricWard.cs" />
+    <Compile Include="Scenes\EndScenes\BEND\BEND_Roofie.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_SandCoffin.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_SlaveDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_SlaveDieByGuards.cs" />
@@ -109,11 +110,13 @@
     <Compile Include="Scenes\EndScenes\GEND\GEND_HeadHoncho.cs" />
     <Compile Include="Scenes\EndScenes\GEND\GEND_KaijuSlave.cs" />
     <Compile Include="Scenes\EndScenes\GEND\GEND_KingKaiju.cs" />
+    <Compile Include="Scenes\EndScenes\GEND\GEND_Nic.cs" />
     <Compile Include="Scenes\EndScenes\GEND\GEND_TimeParadox.cs" />
     <Compile Include="Scenes\EndScenes\GEND\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
     <Compile Include="Scenes\GameScenes\CMP\CMP_Base.cs" />
     <Compile Include="Scenes\GameScenes\CMP\CMP_Matrix.cs" />
+    <Compile Include="Scenes\GameScenes\CMP\CMP_Nic.cs" />
     <Compile Include="Scenes\GameScenes\CORT_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN\IN_HospitalScene.cs" />
@@ -275,6 +278,12 @@
     <Content Include="Content\Textures\Actors\kaiju_jaeger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Actors\morpheus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Actors\nic_cage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Actors\player_female.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -297,6 +306,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\laser_tag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Backgrounds\matrix.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Backgrounds\movie_theater.png">

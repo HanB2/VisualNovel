@@ -63,6 +63,8 @@ namespace DongLife
             sceneManager.RegisterScene(new JAGR_Alley());
             sceneManager.RegisterScene(new JAGR_JewelryStore());
             sceneManager.RegisterScene(new CMP_Base());
+            sceneManager.RegisterScene(new CMP_Matrix());
+            sceneManager.RegisterScene(new CMP_Nic());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -74,6 +76,7 @@ namespace DongLife
             sceneManager.RegisterScene(new GEND_KaijuSlave());
             sceneManager.RegisterScene(new GEND_KingKaiju());
             sceneManager.RegisterScene(new GEND_EthnicCleansing());
+            sceneManager.RegisterScene(new GEND_Nic());
 
             //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
@@ -93,6 +96,7 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_JaegerDeath());
             sceneManager.RegisterScene(new BEND_Electrocution());
             sceneManager.RegisterScene(new BEND_DrownedExplicit());
+            sceneManager.RegisterScene(new BEND_Roofie());
 
             //Music Track Registration
             MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
@@ -101,7 +105,7 @@ namespace DongLife
             MusicManager.SetVolume(0f);
 
             //Set first scene
-            sceneManager.SetScene("BASE_Home");
+            sceneManager.SetScene("MainMenuScene");
         }
         public override void Draw(GameTime gameTime)
         {

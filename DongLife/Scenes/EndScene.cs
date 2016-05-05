@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using Minalear;
 using Minalear.UI;
+using OpenTK.Input;
 
 namespace DongLife.Scenes
 {
@@ -61,6 +62,14 @@ namespace DongLife.Scenes
             background.Dispose();
 
             base.UnloadContent();
+        }
+
+        public override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            if (!(Manager as VNSceneManager).Transitioning)
+                Manager.ChangeScene("MainMenuScene");
+
+            base.OnMouseDown(e);
         }
     }
 }

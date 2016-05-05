@@ -40,7 +40,7 @@ namespace DongLife.Scenes.GameScenes
             Sequences.RegisterSequence(17, new SequenceStageTransition(200));
 
             Sequences.RegisterSequence(18, NO_ACTOR, "I really like Keanu Reeves... let's whip it out!");
-            Sequences.RegisterSequence(19, new SequenceStageTransition(100));
+            Sequences.RegisterSequence(19, new SequenceStageTransition(300));
 
             //Homework Icon
             Sequences.RegisterSequence(20, NO_ACTOR, "I guess I'll do some homework... need to decide on the essay subject.");
@@ -100,6 +100,46 @@ namespace DongLife.Scenes.GameScenes
             {
                 MessageBox.CurrentTheme = MessageBox.Themes.Normal;
                 Manager.ChangeScene("CMP_Matrix");
+            };
+
+            //Suicide Homework
+            Sequences.RegisterSequence(400, NO_ACTOR, "I guess I can write about my illness...");
+            Sequences.RegisterSequence(401, NO_ACTOR, "*tap* *tap* *tap*");
+            Sequences.RegisterSequence(402, NO_ACTOR, "This is really depressing...");
+            Sequences.RegisterSequence(403, NO_ACTOR, "*tap* *tap* *tap*");
+            Sequences.RegisterSequence(404, NO_ACTOR, "I... I don't know if I can keep this up.");
+            Sequences.RegisterSequence(405, NO_ACTOR, "*tap* *tap* *tap*");
+            Sequences.RegisterSequence(406, NO_ACTOR, "*sniff*");
+            Sequences.RegisterSequence(407, NO_ACTOR, "Screw this!  Fuck this gay earth!");
+            Sequences.RegisterSequence(408, new SequenceSpecial("Suicide"));
+            ((SequenceSpecial)Sequences.Sequences[408]).OnSequenceExecution += (sender, e) =>
+            {
+                MessageBox.CurrentTheme = MessageBox.Themes.Normal;
+                Manager.ChangeScene("BEND_Suicide");
+            };
+
+            //Nic Cage Homework
+            Sequences.RegisterSequence(500, NO_ACTOR, "Nicolas Cage is a pretty interesting person.");
+            Sequences.RegisterSequence(501, NO_ACTOR, "*tap* *tap* *tap*");
+            Sequences.RegisterSequence(502, NO_ACTOR, "Man, this essay is really good so far!  I wonder if Nic would appreciate it...");
+            Sequences.RegisterSequence(503, NO_ACTOR, "*knock* *knock* *knock*");
+            Sequences.RegisterSequence(504, NO_ACTOR, "What?  Someone is at the door?");
+            Sequences.RegisterSequence(505, new SequenceSpecial("Nic"));
+            ((SequenceSpecial)Sequences.Sequences[505]).OnSequenceExecution += (sender, e) =>
+            {
+                MessageBox.CurrentTheme = MessageBox.Themes.Normal;
+                Manager.ChangeScene("CMP_Nic");
+            };
+
+            //Regular Ass Homework
+            Sequences.RegisterSequence(600, NO_ACTOR, "This essay will be my magnum opus!");
+            Sequences.RegisterSequence(601, NO_ACTOR, "*tap* *tap* *tap*");
+            Sequences.RegisterSequence(602, NO_ACTOR, "Wow!  This has to be the best essay I have ever typed!  I can't wait to get to school.");
+            Sequences.RegisterSequence(603, new SequenceSpecial("School"));
+            ((SequenceSpecial)Sequences.Sequences[603]).OnSequenceExecution += (sender, e) =>
+            {
+                MessageBox.CurrentTheme = MessageBox.Themes.Normal;
+                Manager.ChangeScene("SCHL_Base");
             };
         }
 

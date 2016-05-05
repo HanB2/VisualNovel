@@ -47,17 +47,28 @@ namespace DongLife.Controls.Computer
             Icon homework_essay01 = new Icon(466, 131, 134, 186);
             homework_essay01.SingleClick += (sender, e) =>
             {
-
+                //Nic Cage
+                parent.Sequences.SetStage(500);
+                parent.Sequences.ExecuteSequence(parent);
+                Enabled = false;
             };
             Icon homework_essay02 = new Icon(609, 131, 134, 186);
             homework_essay02.SingleClick += (sender, e) =>
             {
-
+                //Dong Essay
+                parent.Sequences.SetStage(400);
+                parent.Sequences.ExecuteSequence(parent);
+                Enabled = false;
             };
             Icon homework_essay03 = new Icon(752, 131, 134, 186);
             homework_essay03.SingleClick += (sender, e) =>
             {
+                //Regular Ass Homework
+                parent.Sequences.SetStage(600);
+                parent.Sequences.ExecuteSequence(parent);
+                Enabled = false;
 
+                GameManager.CompletedHomework = true;
             };
 
             homeworkWindow.AddChild(homework_essay01);
@@ -67,6 +78,7 @@ namespace DongLife.Controls.Computer
             Icon porn_link01 = new Icon(457, 132, 105, 155);
             porn_link01.SingleClick += (sender, e) =>
             {
+                //Vin Diesel
                 parent.Sequences.SetStage(12);
                 parent.Sequences.ExecuteSequence(parent);
                 Enabled = false;
@@ -74,6 +86,7 @@ namespace DongLife.Controls.Computer
             Icon porn_link02 = new Icon(567, 132, 105, 155);
             porn_link02.SingleClick += (sender, e) =>
             {
+                //Saitama
                 parent.Sequences.SetStage(14);
                 parent.Sequences.ExecuteSequence(parent);
                 Enabled = false;
@@ -81,6 +94,7 @@ namespace DongLife.Controls.Computer
             Icon porn_link03 = new Icon(676, 132, 105, 155);
             porn_link03.SingleClick += (sender, e) =>
             {
+                //Shia Laboof
                 parent.Sequences.SetStage(16);
                 parent.Sequences.ExecuteSequence(parent);
                 Enabled = false;
@@ -88,6 +102,7 @@ namespace DongLife.Controls.Computer
             Icon porn_link04 = new Icon(786, 132, 105, 155);
             porn_link04.SingleClick += (sender, e) =>
             {
+                //Keanu Reeves
                 parent.Sequences.SetStage(18);
                 parent.Sequences.ExecuteSequence(parent);
                 Enabled = false;

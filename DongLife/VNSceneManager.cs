@@ -21,6 +21,7 @@ namespace DongLife
         private int texBase, texDest, texTran;
 
         private bool transitioning = false;
+        public bool Transitioning { get { return transitioning; } }
 
         public VNSceneManager(Game game, SpriteBatch spriteBatch) : base(game)
         {
@@ -114,8 +115,10 @@ namespace DongLife
             {
                 transitioning = false;
             }
-
-            base.Window_MouseUp(sender, e);
+            else
+            {
+                base.Window_MouseUp(sender, e);
+            }
         }
 
         private void initFBO()
