@@ -154,6 +154,8 @@ namespace DongLife.Scenes.GameScenes
                 SetActorFocus("Father");
                 MessageBox.SetText("*BLURRRRGHHHHH!*");
                 father.Animator.AnimateFade(0f, 1000f);
+
+                Sequences.SetStage(94);
             };
             Sequences.RegisterSequence(94, "Mother", "OH MY GOD.... He's... dead...");
             Sequences.RegisterSequence(95, "Player", "Quick baby... we must flee before the cops arrive.");
