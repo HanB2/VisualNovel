@@ -48,7 +48,7 @@ namespace DongLife.Scenes.GameScenes
                 MessageBox.Visible = false;
                 MessageBox.Enabled = false;
             };
-            Sequences.RegisterSequence(02, new SequenceMessage("Doctor", "Nice to meet you {PLAYERNAME}.  You sound absolutely hideous!"));
+            Sequences.RegisterSequence(02, new SequenceMessage("Doctor", "Nice to meet you {PLAYERNAME}."));
             Sequences.RegisterSequence(03, new SequenceSpecial("SpawnPlayer"));
             (Sequences.Sequences[03] as SequenceSpecial).OnSequenceExecution += (sender, e) =>
             {
@@ -57,7 +57,7 @@ namespace DongLife.Scenes.GameScenes
                 player.Animator.AnimateFade(1f, 800f);
                 Sequences.ProgressStage();
             };
-            Sequences.RegisterSequence(04, new SequenceMessage("Doctor", "Wow... that sounds hideous."));
+            Sequences.RegisterSequence(04, new SequenceMessage("Doctor", "You sound absolutely hideous!"));
             Sequences.RegisterSequence(05, new SequenceMessage("Player", "Hey, fuck you pal.  Where are my parents?"));
             Sequences.RegisterSequence(06, new SequenceMessage("Doctor", "Don't be testy now.  You're parents are dead and gone.  You have been placed into a foster home by the state."));
             Sequences.RegisterSequence(07, new SequenceMessage("Player", "Wut!?"));
@@ -136,8 +136,11 @@ namespace DongLife.Scenes.GameScenes
 
         public override void OnEnter()
         {
+            //Clear player from scene (crash fix)
+            RemoveActor("Player");
+
             base.OnEnter();
-            
+
             mother.SetAlpha(0f);
             father.SetAlpha(0f);
 
@@ -145,7 +148,7 @@ namespace DongLife.Scenes.GameScenes
             mother.Position = new Vector2(725, 500);
             father.Position = new Vector2(980, 425);
 
-            MusicManager.PlaySong("In_Pursuit");
+            //MusicManager.PlaySong("In_Pursuit");
         }
 
         private void CharacterCreatedEvent(object sender)

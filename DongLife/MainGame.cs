@@ -99,10 +99,10 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_Roofie());
 
             //Music Track Registration
-            MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
+            /*MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
             MusicManager.RegisterSong("Necropolis", @"Audio/Necropolis.wav");
             MusicManager.RegisterSong("TrevorSux", @"Audio/TrevorSux.wav");
-            MusicManager.SetVolume(0f);
+            MusicManager.SetVolume(0f);*/
 
             //Set first scene
             sceneManager.SetScene("MainMenuScene");

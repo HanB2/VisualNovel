@@ -50,6 +50,11 @@ namespace DongLife.Scenes
             actors.Add(actor.Name, actor);
             AddChild(actor);
         }
+        public void RemoveActor(string name)
+        {
+            if (actors.ContainsKey(name))
+                actors.Remove(name);
+        }
         public void SetActorFocus(string actorName, bool soleFocus = true)
         {
             if (soleFocus)
