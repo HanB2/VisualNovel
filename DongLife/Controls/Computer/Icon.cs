@@ -17,6 +17,10 @@ namespace DongLife.Controls.Computer
         {
             this.Bounds = bounds;
         }
+        public Icon(int x, int y, int w, int h)
+        {
+            this.Bounds = new RectangleF(x, y, w, h);
+        }
 
         public override void OnMouseUp(MouseButtonEventArgs e)
         {

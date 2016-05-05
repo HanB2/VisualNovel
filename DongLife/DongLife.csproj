@@ -88,6 +88,7 @@
     <Compile Include="Scenes\EndScenes\BEND\BEND_DateDeath.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_DeadInBasement.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_DetentionDeath.cs" />
+    <Compile Include="Scenes\EndScenes\BEND\BEND_DrownedExplicit.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_EatenAlive_Shia.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_Electrocution.cs" />
     <Compile Include="Scenes\EndScenes\BEND\BEND_JaegerDeath.cs" />
@@ -111,7 +112,8 @@
     <Compile Include="Scenes\EndScenes\GEND\GEND_TimeParadox.cs" />
     <Compile Include="Scenes\EndScenes\GEND\GEND_TvStar_Shia.cs" />
     <Compile Include="Scenes\GameScenes\BASE_Home.cs" />
-    <Compile Include="Scenes\GameScenes\Computer\CMP_Base.cs" />
+    <Compile Include="Scenes\GameScenes\CMP\CMP_Base.cs" />
+    <Compile Include="Scenes\GameScenes\CMP\CMP_Matrix.cs" />
     <Compile Include="Scenes\GameScenes\CORT_Base.cs" />
     <Compile Include="Scenes\GameScenes\IN\IN_Home.cs" />
     <Compile Include="Scenes\GameScenes\IN\IN_HospitalScene.cs" />
@@ -313,6 +315,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Misc\desktop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Misc\explicit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Misc\window_homework.png">
