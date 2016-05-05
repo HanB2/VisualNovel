@@ -89,7 +89,7 @@ namespace DongLife.Scenes.GameScenes
                 if (e == 0) //Go to the Principal's Office
                 {
                     timesEnteredOffice++;
-                    if (timesEnteredOffice == 1)
+                    if (timesEnteredOffice == 6)
                     {
                         Manager.ChangeScene("SCHL_AlternateOffice");
                         return;
