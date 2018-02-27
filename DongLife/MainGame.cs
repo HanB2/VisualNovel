@@ -22,7 +22,7 @@ namespace DongLife
                 Content.LoadShader(@"Shaders/vert.glsl", @"Shaders/frag.glsl"),
                 Window.Width, Window.Height);
             sceneManager = new VNSceneManager(this, spriteBatch);
-            MusicManager.Init(Content);
+            //MusicManager.Init(Content);
 
             //Message Box init
             VNScene.MessageBox = new Controls.MessageBox(
@@ -65,6 +65,7 @@ namespace DongLife
             sceneManager.RegisterScene(new CMP_Base());
             sceneManager.RegisterScene(new CMP_Matrix());
             sceneManager.RegisterScene(new CMP_Nic());
+            sceneManager.RegisterScene(new ROE_Weed());
 
             //Good Endings
             sceneManager.RegisterScene(new GEND_TvStar_Shia());
@@ -77,6 +78,7 @@ namespace DongLife
             sceneManager.RegisterScene(new GEND_KingKaiju());
             sceneManager.RegisterScene(new GEND_EthnicCleansing());
             sceneManager.RegisterScene(new GEND_Nic());
+            sceneManager.RegisterScene(new GEND_Weed());
 
             //Bad Endings
             sceneManager.RegisterScene(new BEND_EatenAlive_Shia());
@@ -97,6 +99,8 @@ namespace DongLife
             sceneManager.RegisterScene(new BEND_Electrocution());
             sceneManager.RegisterScene(new BEND_DrownedExplicit());
             sceneManager.RegisterScene(new BEND_Roofie());
+            sceneManager.RegisterScene(new BEND_Weed());
+            sceneManager.RegisterScene(new BEND_Overdose());
 
             //Music Track Registration
             /*MusicManager.RegisterSong("In_Pursuit", @"Audio/In_Pursuit.wav");
@@ -114,7 +118,7 @@ namespace DongLife
         public override void Update(GameTime gameTime)
         {
             sceneManager.Update(gameTime);
-            MusicManager.Update(gameTime);
+            //MusicManager.Update(gameTime);
         }
         public override void LoadContent()
         {

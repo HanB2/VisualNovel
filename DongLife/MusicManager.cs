@@ -13,7 +13,7 @@ namespace DongLife
 
         public static void Init(ContentManager content)
         {
-            audioPlayer = new AudioPlayer();
+            //audioPlayer = new AudioPlayer();
             contentManager = content;
             songs = new Dictionary<string, string>();
         }

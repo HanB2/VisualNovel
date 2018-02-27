@@ -171,6 +171,14 @@ namespace DongLife.Code
                     kaijuJaeger.CurrentScale = 0.85f;
 
                     return kaijuJaeger;
+                case "WeedLord":
+                    Actor weedLord = new Actor("WeedLord", @"Textures/Actors/weed_lord.png");
+                    weedLord.Position = new Vector2(960f, 500f);
+                    weedLord.NormalScale = 0.5f;
+                    weedLord.FocusScale = 0.6f;
+                    weedLord.CurrentScale = 0.5f;
+
+                    return weedLord;
             }
 
             throw new System.ArgumentException("Invalid Actor: " + actorName);

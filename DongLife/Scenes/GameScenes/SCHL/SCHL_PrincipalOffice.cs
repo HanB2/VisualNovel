@@ -12,6 +12,8 @@ namespace DongLife.Scenes.GameScenes
         private ControlAnimator gunAnimator;
 
         private int timesEnteredOffice = 0;
+        private int principalAge;
+        private int playerAge;
 
         public SCHL_PrincipalOffice() : base("SCHL_PrincipalOffice")
         {
@@ -139,16 +141,31 @@ namespace DongLife.Scenes.GameScenes
 
             //Ask him out on a date
             Sequences.RegisterSequence(50, "Player", "Mr. Principal, I don't care if it is inappropriate.  I really like you.");
-            Sequences.RegisterSequence(51, "Principal", "{PLAYERNAME}!  This is not okay!  I'm 87.  You're 32!");
-            Sequences.RegisterSequence(52, "Principal", "I couldn't in the right mind reciprocate the feelings you have for me!");
-            Sequences.RegisterSequence(53, "Player", "Just go on one measly date with me and you will see how amazing I am.  We are meant to be together.");
-            Sequences.RegisterSequence(54, "Principal", "Oh... okay.  Where would we go for this date?");
-            Sequences.RegisterSequence(55, new SequenceDecision("Player",
+            Sequences.RegisterSequence(51, "Principal", "{PLAYERNAME}!  This is not okay!  I'm {0} years old.  You're only {1}!");
+            Sequences.RegisterSequence(52, new SequenceSpecial("WeedCheck"));
+            ((SequenceSpecial)Sequences.Sequences[52]).OnSequenceExecution += (sender, e) =>
+            {
+                if (principalAge == 420 && playerAge == 69)
+                {
+                    //Execute special weed ending
+                    Sequences.SetStage(60);
+                    Sequences.ExecuteSequence(this);
+                }
+                else
+                {
+                    Sequences.SetStage(53);
+                    Sequences.ExecuteSequence(this);
+                }
+            };
+            Sequences.RegisterSequence(53, "Principal", "I couldn't in the right mind reciprocate the feelings you have for me!");
+            Sequences.RegisterSequence(54, "Player", "Just go on one measly date with me and you will see how amazing I am.  We are meant to be together.");
+            Sequences.RegisterSequence(55, "Principal", "Oh... okay.  Where would we go for this date?");
+            Sequences.RegisterSequence(56, new SequenceDecision("Player",
                 "Take him to the movies.",
                 "Take him to a baseball game.",
                 "Take him bowling.",
                 "Take him to laser tag."));
-            ((SequenceDecision)Sequences.Sequences[55]).Choice += (sender, e) =>
+            ((SequenceDecision)Sequences.Sequences[56]).Choice += (sender, e) =>
             {
                 if (e == 0) //Movie date
                     GameManager.ChosenDate = "MOVIES";
@@ -159,11 +176,15 @@ namespace DongLife.Scenes.GameScenes
                 else if (e == 3) //Laser tag
                     GameManager.ChosenDate = "LASER";
 
-                Sequences.SetStage(56);
+                Sequences.SetStage(57);
                 Sequences.ExecuteSequence(this);
             };
-            Sequences.RegisterSequence(56, "Principal", "That sounds like a great idea!  Let's go, you little rapscallion!");
-            Sequences.RegisterSequence(57, new SequenceSceneTransition("SCHL_Date"));
+            Sequences.RegisterSequence(57, "Principal", "That sounds like a great idea!  Let's go, you little rapscallion!");
+            Sequences.RegisterSequence(58, new SequenceSceneTransition("SCHL_Date"));
+
+            //Trevor Roe's super secret ending
+            Sequences.RegisterSequence(60, "Player", "LOL THAT'S THE WEED AND SEX NUMBERS!");
+            Sequences.RegisterSequence(61, new SequenceSceneTransition("ROE_Weed"));
             #endregion
         }
 
@@ -172,6 +193,22 @@ namespace DongLife.Scenes.GameScenes
             base.OnEnter();
 
             gun.SetAlpha(0f);
+
+            if (Minalear.RNG.Next(1, 101) <= 20)
+            {
+                principalAge = 420;
+                playerAge = 69;
+            }
+            else
+            {
+                principalAge = Minalear.RNG.Next(4, 3032);
+                playerAge = Minalear.RNG.Next(-8, 70);
+            }
+
+            //Update the sequence text
+            const int SEQUENCE_ID = 51;
+            ((SequenceMessage)Sequences.Sequences[SEQUENCE_ID]).Text = string.Format("{0}!  This is not okay!  I'm {1} years old.  You're only {2}!",
+                GameManager.PlayerName, principalAge, playerAge);
         }
     }
 }
